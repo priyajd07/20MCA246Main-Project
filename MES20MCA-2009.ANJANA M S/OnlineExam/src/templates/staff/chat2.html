@@ -1,0 +1,144 @@
+{% extends 'staff/staffindex.html' %}
+{% block body %}
+<style>
+
+.containern {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+.containern1 {
+
+  background-color: #0000;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.container img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.container img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right:0;
+}
+
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+.time-left {
+  float: left;
+  color: #999;
+}
+
+.time-center {
+  float: center;
+  color: #999;
+}
+
+.registerbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  bohttps://www.w3schools.com/rder: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity: 1;
+}
+ textarea {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+
+</style>
+
+<form id="form1" name="form1" method="post" action="/send">
+    <div class="containern1">
+      <h1>{{first_name}} {{middle_name}} {{last_name}}</h1>
+        <br/>
+</div>
+{% for d in data %}
+
+ {% if fr == d[1]|string %}
+    <div class="containern">
+      <p class="time-left">{{d[3]}}</p>
+        <br/>  <br/>  <br/>  <br/>  <br/>  <br/>
+</div>
+{% else %}
+ <div class="containern darker">
+  <p class="time-right">{{d[3]}}</p>
+     <br/>  <br/>  <br/>
+</div>
+   {% endif %}
+  {% endfor %}
+    <!--<div class="containern ">-->
+        <input type="hidden" name="hid" value="{{fr}}"/>
+    <!--<p class="time-right">{{data[1]}}</p>-->
+<!--</div>-->
+
+    <div class="container darker">
+   <textarea name="textarea" id="textareas" cols="30" rows="2" align="left" required></textarea>
+      <input type="submit" name="button" id="button" value="send"  class="registerbtn"/>
+</div>
+
+  <!--<div align="center">-->
+    <!--<table width="255" border="1" align="center" >-->
+    <!--<input type="hidden" name="toid" value="{{fr}}"/>-->
+    <!--<tr align="center">-->
+      <!--<td class="blue" width="245" scope="col">{{fname}} {{lname}} </td>-->
+    <!--</tr>-->
+    <!--{% for d in data %}-->
+    <!--<tr  {% if fr == d[1]|string %} align="left"{% else %} align="right" {% endif %} >-->
+      <!--<td class="blue" height="84" scope="row" >{{d[3]}}         </td>-->
+    <!--</tr>-->
+    <!--{% endfor %}-->
+    <!--<tr>-->
+      <!--<th scope="row"><label for="textarea"></label>-->
+      <!--<textarea name="textarea" id="textarea" cols="30" rows="2" align="left" required ></textarea>-->
+      <!--<input type="submit" name="button" id="button" value="send" /></th>-->
+    <!--</tr>-->
+
+  <!--</table>-->
+  <!--</div>-->
+</form>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function()
+    {
+    $("#textareas").focus();
+    });
+</script>
+{% endblock %}

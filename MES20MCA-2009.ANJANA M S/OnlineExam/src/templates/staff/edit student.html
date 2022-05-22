@@ -1,0 +1,125 @@
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />-->
+<!--<title>Untitled Document</title>-->
+<!--</head>-->
+
+<!--<body>-->
+{% extends 'admin/adminindex.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="update_student" enctype="multipart/form-data">
+  <table width="357" border="1" class="table table-hover">
+    <tr>
+      <td class="info" width="174"><b>First Name</b> </td>
+      <td width="167"><label>
+        <input type="text" name="textfield" value="{{val[2]}}" required pattern="[A-Z a-z.]{3,25}"/>
+      </label></td>
+    </tr>
+    <tr>
+      <td class="info"><b>Middle Name</b> </td>
+      <td><label>
+        <input type="text" name="textfield2" value="{{val[3]}}" required pattern="[A-Z a-z.]{1,25}"/>
+      </label></td>
+    </tr>
+    <tr>
+      <td class="info"><b>Last Name</b></td>
+      <td><label>
+        <input type="text" name="textfield3" value="{{val[4]}}" required pattern="[A-Z a-z.]{1,25}"/>
+      </label></td>
+    </tr>
+    <tr>
+      <td class="info"><b>DOB</b></td>
+      <td><label>
+        <input type="date" name="textfield4" value="{{val[5]}}"  min="1990-01-01" max="2019-12-31" required  />
+      </label></td>
+    </tr>
+    <tr>
+      <td class="info"><b>Gender</b></td>
+      <td><b>Male</b>
+        <label>
+        <input name="radiobutton" type="radio" value="male" {% if val[6]=='male' %} checked {% endif %} />
+          <b>Female</b>
+      <input name="radiobutton" type="radio" value="female" {% if val[6]=='female' %} checked {% endif %} />
+      </label></td>
+    </tr>
+    <tr>
+      <td class="info"><b>Course</b></td>
+      <td><label>
+        <select name="select">
+        {% for i in vals %}
+          <option value="{{i[0]}}" {%  if val[7] == i[0] %} selected {% endif %}>{{i[1]}}</option>
+          {% endfor %}
+        </select>
+      </label></td>
+    </tr>
+    <tr>
+      <td class="info"><b>Semester</b></td>
+      <td><label>
+        <select name="select2">
+           <option value="1" {% if val[14] == "1" %} selected {% endif %}>1 </option>
+              <option value="2" {% if val[14] == "2" %} selected {% endif %}>2</option>
+              <option value="3" {% if val[14] == "3" %} selected {% endif %}>3</option>
+              <option value="4" {% if val[14] == "4" %} selected {% endif %}>4</option>
+              <option value="5"{% if val[14] == "5" %} selected {% endif %}>5</option>
+              <option value="6"{% if val[14] == "6" %} selected {% endif %}>6</option>
+        </select>
+      </label></td>
+    </tr>
+    <tr>
+      <td class="info"><b>Date of Admision</b></td>
+      <td><label>
+        <input type="date" name="textfield5" value="{{val[13]}}" required/>
+      </label></td>
+    </tr>
+    <tr>
+      <td class="info"><b>Place</b></td>
+      <td><label>
+        <input type="text" name="textfield6" value="{{val[8]}}" pattern="[A-Z a-z.]{3,25}"/>
+      </label></td>
+    </tr>
+    <tr>
+      <td class="info"><b>Post</b></td>
+      <td><label>
+        <input type="text" name="textfield7" value="{{val[9]}}" pattern="[A-Z a-z.]{3,25}"/>
+      </label></td>
+    </tr>
+    <tr>
+      <td class="info"><b>Pin</b></td>
+      <td><label>
+        <input type="text" name="textfield8" value="{{val[10]}}" required pattern="[0-9]{6}"/>
+      </label></td>
+    </tr>
+    <tr>
+      <td class="info"><b>Phone</b></td>
+      <td><label>
+        <input type="text" name="textfield9" value="{{val[11]}}" required pattern="[6789][0-9]{9}"/>
+      </label></td>
+    </tr>
+    <tr>
+      <td class="info"><b>Email</b></td>
+      <td><label>
+        <input type="text" name="textfield10" value="{{val[12]}}" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"/>
+
+      </label></td>
+    </tr>
+ <tr>
+      <td class="info"><b>Photo</b></td>
+      <td><label>
+        <input type="file" name="file" />
+
+      </label></td>
+    </tr>
+    <tr>
+      <td colspan="2"><label>
+        <div align="center">
+          <input type="submit" name="Submit" value="update" class="btn btn-info" />
+          </div>
+      </label></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}
+
+<!--</body>-->
+<!--</html>-->
