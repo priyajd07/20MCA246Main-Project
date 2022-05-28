@@ -161,14 +161,6 @@ def updatestf():
 
 
 
-
-
-
-
-
-
-
-
 @app.route('/add_manage_staff')
 @login_required
 def add_manage_staff():
@@ -275,11 +267,6 @@ def add_staff():
 
 
 
-
-
-
-
-
 @app.route('/allocate_sub',methods=['post'])
 def allocate_sub():
     subject=request.form['select3']
@@ -302,9 +289,6 @@ def delete_alocatesub():
     v=(str(id))
     iud(q,v)
     return '''<script> alert("deleted successfully");window.location="/allocate_subject_to_staff"</script>'''
-
-
-
 
 
 
@@ -344,18 +328,6 @@ def timetable():
 #     v=(subject,day,time)
 #     iud(q,v)
 #     return '''<script> alert("success");window.location="/timetable"</script>'''
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
