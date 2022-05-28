@@ -11,15 +11,15 @@
 <form id="form1" name="form1" method="post" action="">
   <table width="200" border="1" class="table table-hover">
     <tr class="info">
-      <td><b>Subject</b></td>
-      <td><b>Day</b></td>
-      <td><b>Hour</b></td>
+      <td><b>Timetable</b></td>
+      <td></td>
+
     </tr>
     {% for i in val %}
     <tr>
-      <td>{{i[0]}}&nbsp;</td>
-      <td>{{i[3]}}&nbsp;</td>
-      <td>{{i[4]}}&nbsp;</td>
+      <td>{{i[0]}}</td>
+      <td><a href="static/timetable/{{i[0]}}">Download</a></td>
+
     </tr>
     {% endfor %}
   </table>
