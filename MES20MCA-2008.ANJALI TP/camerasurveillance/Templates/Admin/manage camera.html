@@ -1,0 +1,29 @@
+{% extends 'adminindex.html'%}
+{% block body %}
+<body>
+<form id="form1" name="form1" method="post" action="add_camera#about">
+  <div align="center">
+    <table width="200" border="0" class="table table-striped">
+      <tr class="success">
+        <th scope="row">Camera number </th>
+        <td>&nbsp;</td>
+      </tr>
+      {% for i in val %}
+      <tr>
+        <td scope="row">{{i[1]}}</td>
+        <td><p><a href="editcam?id={{i[0]}}#about">edit</a></p>
+          <p><a href="dltcam?id={{i[0]}}#about">delete</a></p></td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <th colspan="2" scope="row"><p>
+         <div align="center">
+          <input type="submit" name="Submit" value="Add" class="btn btn-success" /></div>
+          <!--</label>-->
+        </p></th>
+      </tr>
+      </table>
+  </div>
+</form>
+</body>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'adminindex.html'%}
+{% block body %}
+
+<body>
+<form id="form1" name="form1" method="post" action="addsecurity">
+  <table width="554" height="143" border="0" class="table table-striped">
+    <tr>
+      <td>Name</td>
+      <td>Gender</td>
+      <td>Place</td>
+      <td>Address</td>
+      <td>Dob</td>
+      <td>Phone</td>
+      <td>&nbsp;Email</td>
+      <td></td>
+    </tr>
+    {% for i in val %}
+    <tr>
+      <td>&nbsp;{{i[2]}} {{i[3]}}</td>
+      <td>{{i[4]}}</td>
+      <td>{{i[5]}}</td>
+      <td>{{i[6]}} {{i[7]}}</td>
+      <td>{{i[8]}}</td>
+      <td>&nbsp;{{i[9]}}</td>
+      <td>{{i[10]}}</td>
+      <td><p><a href="edit_security?id={{i[1]}}">Edit</a></p>
+      <p><a href="dlt_security?id={{i[1]}}">Delete</a></p></td>
+    </tr>
+    {% endfor %}
+    <tr>
+      <td colspan="7"><label>
+        <div align="center">
+          <input type="submit" name="Submit" value="AddNew" />
+          </div>
+      </label></td>
+    </tr>
+  </table>
+</form>
+</body>
+{% endblock %}

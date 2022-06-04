@@ -1,0 +1,35 @@
+{% extends 'adminindex.html'%}
+{% block body %}
+<body>
+<form id="form1" name="form1" method="post" action="add_staff#about">
+  <div align="center">
+    <table width="200" border="0" class="table table-striped">
+      <tr class="success">
+        <th scope="col">Staff Name </th>
+        <th scope="col">Address</th>
+        <th scope="col">DOB</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Email</th>
+        <th scope="col">&nbsp;</th>
+      </tr>
+      {% for i in val %}
+      <tr>
+        <td>&nbsp;{{i[2]}} {{i[3]}}</td>
+        <td>&nbsp;{{i[5]}}, {{i[6]}}, {{i[7]}}</td>
+        <td>&nbsp;{{i[8]}}</td>
+        <td>&nbsp;{{i[9]}}</td>
+        <td>&nbsp;{{i[10]}}</td>
+        <td><p><a href="edit_staff?id={{i[1]}}#about">edit</a></p>
+        <p><a href="dlt_staff?id={{i[1]}}#about">delete</a></p></td>
+      </tr>{% endfor %}
+
+      <tr>
+        <td colspan="6"><div align="center">
+          <input type="submit" name="Submit" value="Add" class="btn btn-success" />
+        </div>          <div align="center"></div>          <div align="center"></div>          <div align="center"></div>          <div align="center"></div>          <div align="center"></div></td>
+      </tr>
+      </table>
+  </div>
+</form>
+</body>
+{% endblock %}

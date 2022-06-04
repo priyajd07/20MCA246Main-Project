@@ -1,0 +1,22 @@
+{% extends 'adminindex.html'%}
+{% block body %}
+<body>
+<form id="form1" name="form1" method="post" action="add_camera1">
+  <div align="center">
+    <table width="200" border="0" class="table table-striped">
+      <tr>
+        <th scope="row">Camera number </th>
+        <td><label>
+          <input type="text" name="textfield" required class="form-control" />
+        </label></td>
+      </tr>
+      <tr>
+        <th colspan="2" scope="row"><div align="center">
+          <input type="submit" name="Submit" value="Add" class="btn btn-success" /></div>
+        </th>
+      </tr>
+      </table>
+  </div>
+</form>
+</body>
+{% endblock %}
