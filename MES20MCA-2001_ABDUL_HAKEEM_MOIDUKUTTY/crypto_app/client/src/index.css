@@ -79,6 +79,25 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+#send_now {
+  width: 400px;
+}
+
+#connect {
+  width: 300px;
+}
+
+@media only screen and (min-width: 600px) {
+
+  #send_now {
+    width: 350px;
+  }
+  
+  #connect {
+    width: 500px;
+  }
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
