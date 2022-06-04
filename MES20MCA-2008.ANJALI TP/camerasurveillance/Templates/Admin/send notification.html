@@ -1,0 +1,34 @@
+{% extends 'adminindex.html'%}
+{% block body %}
+
+<body>
+<form id="form1" name="form1" method="post" action="send_notification1">
+  <div align="center">
+    <table width="200" border="0" class="table table-striped">
+      <tr>
+        <th scope="row">Staff</th>
+        <td><label>
+          <select name="select">
+            {% for i in val %}
+            <option value="{{i[1]}}">{{i[2]}} {{i[3]}}</option>
+            {% endfor %}
+          </select>
+        </label></td>
+      </tr>
+      <tr>
+        <th scope="row">Notification</th>
+        <td><label>
+          <textarea name="textarea" required class="form-control"></textarea>
+        </label></td>
+      </tr>
+      <tr>
+        <th colspan="2" scope="row"><div align="center">
+          <input type="submit" name="Submit" value="Add" class="btn btn-success"/>
+        </div>
+        </th>
+      </tr>
+      </table>
+  </div>
+</form>
+</body>
+{% endblock %}

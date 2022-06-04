@@ -1,0 +1,32 @@
+{% extends 'adminindex.html'%}
+{% block body %}
+<body>
+<form id="form1" name="form1" method="post" action="assign_work_to_staff1">
+  <div align="center">
+    <table width="200" border="0" class="table table-striped">
+      <tr>
+        <th scope="row">Staff name </th>
+        <td><label>
+          <select name="select">
+            {% for i in val %}
+            <option value="{{i[1]}}}">{{i[2]}} {{i[3]}}</option>
+            {% endfor %}
+          </select>
+        </label></td>
+      </tr>
+      <tr>
+        <th scope="row">Work</th>
+        <td><label>
+          <textarea name="textarea" required class="form-control"></textarea>
+        </label></td>
+      </tr>
+      <tr>
+        <th colspan="2" scope="row"><div align="center">
+          <input type="submit" name="Submit" value="Assign" class="btn btn-success" /></div>
+        </th>
+      </tr>
+      </table>
+  </div>
+</form>
+</body>
+{% endblock %}
