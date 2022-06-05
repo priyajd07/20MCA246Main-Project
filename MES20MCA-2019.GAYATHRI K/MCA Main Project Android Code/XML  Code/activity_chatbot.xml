@@ -1,0 +1,82 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lyt"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+
+    android:orientation="vertical"
+    android:background="@drawable/chat"
+
+    >
+
+    <TableRow
+        android:id="@+id/tableRow18"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_gravity="center"
+        android:background="#DAF7A6"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    </TableRow>
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="382dp"
+        android:layout_height="518dp"
+        android:layout_marginLeft="15dp">
+
+        <LinearLayout
+            android:id="@+id/linear1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"></LinearLayout>
+    </ScrollView>
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center" >
+
+        <EditText
+            android:id="@+id/editText1"
+            android:layout_width="187dp"
+            android:layout_height="100dp"
+            android:ems="10"
+            android:hint="Type Here">
+
+            <requestFocus />
+        </EditText>
+
+        <Button
+            android:id="@+id/button17"
+            android:layout_width="110dp"
+            android:layout_height="60dp"
+            android:text="TAP TO SPEAK" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/button1"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="92dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="#FA8072"
+            android:text="Send" />
+    </TableRow>
+
+</LinearLayout>
