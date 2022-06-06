@@ -1,8 +1,9 @@
+import logo from '../../images/logo.png'
 const Footer = () =>{
     return (
-        <h1>
-            Footer
-        </h1>
+        <div className='w-full flex md:justify-center justify-between items-center flex-col p-4 gradient-bg-footer'>
+
+        </div>
     );
 }
 
