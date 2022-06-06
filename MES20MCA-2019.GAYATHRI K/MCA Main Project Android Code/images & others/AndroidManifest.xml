@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.talkarena">
+
+    <queries>
+        <intent>
+            <action android:name="android.speech.RecognitionService" />
+        </intent>
+    </queries>
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/images"
+        android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Talkarena"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".sendcomment"
+            android:exported="false" />
+        <activity
+            android:name=".addpost"
+            android:exported="false" />
+        <activity
+            android:name=".viewotherspost"
+            android:exported="false" />
+        <activity
+            android:name=".viewmycomments"
+            android:exported="false" />
+        <activity
+            android:name=".viewmypost"
+            android:exported="false" />
+        <activity
+            android:name=".sendfriendrequest"
+            android:exported="false" />
+        <activity
+            android:name=".viewfriends"
+            android:exported="false" />
+        <activity
+            android:name=".viewfriendrequest"
+            android:exported="false" />
+        <activity android:name=".custom2" />
+        <activity android:name=".custom3" />
+        <activity
+            android:name=".Chatbot"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".SENDCOMMENTS" />
+        <activity android:name=".ADD_COMPLAINTS" />
+        <activity android:name=".COMPLAINTS" />
+        <activity android:name=".userhome" />
+        <activity android:name=".signup" />
+        <activity android:name=".login" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

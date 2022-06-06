@@ -1,0 +1,36 @@
+{% extends 'adminindex.html'%}
+{% block body %}
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <div align="center">
+    <table width="449" border="1">
+      <tr>
+        <td width="37">Name</td>
+        <td width="33">DOB</td>
+        <td width="45">Gender</td>
+        <td width="51">Address</td>
+        <td width="75">Qualification</td>
+        <td width="66">Phone_No</td>
+        <td width="34">Email</td>
+        <td width="56">&nbsp;</td>
+      </tr>
+         {% for i in res1 %}
+      <tr>
+        <td>{{i[2]}} {{i[3]}}</td>
+        <td>{{i[4]}}</td>
+        <td>{{i[5]}}</td>
+        <td>{{i[6]}}</td>
+        <td>{{i[7]}} {{i[8]}} {{i[9]}}</td>
+        <td>{{i[10]}}</td>
+        <td>{{i[11]}}</td>
+        <td><p><a href="accept_co?id={{i[1]}}">Accept</a></p>
+        <p><a href="reject_co?id={{i[1]}}">Reject</a></p></td>
+      </tr>
+        {%endfor %}
+
+      </tr>
+      </table>
+  </div>
+</form>
+</body>
+{% endblock %}

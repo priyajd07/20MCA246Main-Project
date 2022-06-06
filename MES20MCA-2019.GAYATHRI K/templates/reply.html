@@ -1,0 +1,15 @@
+{% extends 'adminindex.html'%}
+{% block body %}
+<form id="form1" name="form1" method="post" action="reply1">
+  <table width="200" border="0" class="table table-striped">
+    <tr>
+      <th scope="row">Reply</th>
+      <td><label for="textarea"></label>
+      <textarea name="textarea" id="textarea" cols="45" rows="5" required></textarea></td>
+    </tr>
+    <tr>
+      <th colspan="2" scope="row"><input type="submit" name="button" id="button" value="Send" /></th>
+    </tr>
+  </table>
+</form>
+{% endblock %}

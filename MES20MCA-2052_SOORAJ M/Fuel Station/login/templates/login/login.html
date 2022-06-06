@@ -1,0 +1,29 @@
+{% extends 'temp/home.html' %}
+{% block base %}
+        <form method="POST">
+        {% csrf_token %}
+	        <div class="wrapper row4">
+        <footer id="footer" class="hoc clear">
+            <div class="group btmspace-50">
+                <div class="one_quarter">.</div>
+                <div class="two_quarter">
+            <form action="#" method="post">
+                <h1 align="center">LOGIN</h1>
+            <fieldset>
+                <input class="btmspace-15" type="text" value="" name="username" placeholder="username">
+                <input class="btmspace-15" type="Password" name="password" value="" placeholder="password">
+                <center><button class="btn btmspace-50" type="submit" name="login" value="submit" style="background-color: #00ACEE">LOGIN</button></center>
+            </fieldset>
+          </form>
+                </div>
+            </div>
+        </footer>
+        </div>
+        {% if msg %}
+    <script>
+        alert("{{ msg }}")
+    </script>
+{% endif %}
+
+    </form>
+{% endblock %}

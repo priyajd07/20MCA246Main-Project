@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/home1"
+    >
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="203dp"
+            android:layout_height="wrap_content"
+            android:text="CHAT BOT" />
+    </TableRow>
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"/>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="203dp"
+            android:layout_height="wrap_content"
+            android:text="Send Complaint" />
+    </TableRow>
+
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="203dp"
+            android:layout_height="wrap_content"
+            android:text="Complaints Reply" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/button15"
+            android:layout_width="203dp"
+            android:layout_height="wrap_content"
+            android:text="Feedback" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SEND FRIEND REQUEST" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="219dp"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/button18"
+            android:layout_width="295dp"
+            android:layout_height="wrap_content"
+            android:text="VIEW FRIEND REQUEST" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/button19"
+            android:layout_width="229dp"
+            android:layout_height="wrap_content"
+            android:text="VIEW FRIENDS" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center|center_horizontal|center_vertical">
+
+        <Button
+            android:id="@+id/button22"
+            android:layout_width="228dp"
+            android:layout_height="wrap_content"
+            android:text="ADD POST" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/button23"
+            android:layout_width="216dp"
+            android:layout_height="wrap_content"
+            android:text="VIEW POST" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/button10"
+            android:layout_width="203dp"
+            android:layout_height="wrap_content"
+            android:text="LOGOUT" />
+    </TableRow>
+
+</LinearLayout>
