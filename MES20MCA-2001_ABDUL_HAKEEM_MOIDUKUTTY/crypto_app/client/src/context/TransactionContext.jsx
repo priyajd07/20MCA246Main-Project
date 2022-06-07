@@ -102,7 +102,7 @@ export const TransactionsProvider = ({ children }) => {
   };
 
   const sendTransaction = async () => {
-    try {
+    try {   
       if (ethereum) {
         const { addressTo, amount, keyword, message } = formData;
         const transactionsContract = createEthereumContract();
