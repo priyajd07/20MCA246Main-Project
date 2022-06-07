@@ -1,0 +1,30 @@
+{% extends 'temp/admin.html' %}
+{% block base %}
+    <div class="points group">
+<h1 align="center"><u>VIEW COMPLAINT</u></h1><br>
+    {% csrf_token %}
+	<table align="center" border="2">
+
+		<tr>
+            <th>com id</th>
+            <th>user_id</th>
+			<th>username</th>
+			<th>complaint</th>
+			<th>date</th>
+            <th>reply</th>
+
+
+		</tr>
+        {% for i in obj %}
+		<tr>
+            <td>{{ i.com_id }}</td>
+			<td>{{ i.user_id }}</td>
+			<td>{{ i.username }}</td>
+			<td>{{ i.complaint }}</td>
+			<td>{{ i.date }}</td>
+			<td><a href="{% url 'reply' idd=i.com_id %}" class="btn btn-primary">reply</a></td>
+		</tr>
+    {% endfor %}
+	</table>
+    </div>
+{% endblock %}

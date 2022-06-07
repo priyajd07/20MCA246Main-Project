@@ -1,0 +1,23 @@
+{% extends 'temp/admin.html' %}
+{% block base %}
+<center></center>
+<form  method="post">
+        {% csrf_token %}
+        <div class="wrapper row4">
+        <footer id="footer" class="hoc clear">
+            <div class="group btmspace-50">
+                <div class="one_quarter">.</div>
+                <div class="two_quarter">
+            <form action="#" method="post">
+                <h1 align="center">POST REPLY</h1>
+            <fieldset>
+                <input class="btmspace-15" type="text" value="" name="reply" placeholder="REPLY">
+                <center><button class="btn btmspace-50" type="submit" name="Submit" value="submit" style="background-color: #00ACEE">REPLY</button></center>
+            </fieldset>
+          </form>
+                </div>
+            </div>
+        </footer>
+        </div>
+	</form>
+{% endblock %}

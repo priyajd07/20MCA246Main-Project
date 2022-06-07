@@ -1,0 +1,26 @@
+{% extends 'temp/home.html' %}
+{% block base %}
+<form method="post">
+        {% csrf_token %}
+        <div class="wrapper row4">
+        <footer id="footer" class="hoc clear">
+            <div class="group btmspace-50">
+                <div class="one_quarter">.</div>
+                <div class="two_quarter">
+            <form action="#" method="post">
+                <h1 align="center">REGISTER</h1>
+            <fieldset>
+                <input class="btmspace-15" type="text" value="" name="name" placeholder="Username">
+                <input class="btmspace-15" type="Password" name="pass" value="" placeholder="Password">
+                <input class="btmspace-15" type="textarea" value="" name="adds" placeholder="Address">
+                <input class="btmspace-15" type="text" name="phone" value="" placeholder="Phone NO">
+                <input class="btmspace-15" type="email" name="mail" value="" placeholder="E Mail">
+                <center><button class="btn btmspace-50" type="submit" name="login" value="submit" style="background-color: #00ACEE">REGISTER</button></center>
+            </fieldset>
+          </form>
+                </div>
+            </div>
+        </footer>
+        </div>
+	</form>
+{% endblock %}
