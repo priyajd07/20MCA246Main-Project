@@ -1,0 +1,90 @@
+{% load static %}
+<html>
+<head>
+    
+<title >login form</title>
+</head>
+<body  background="{% static 'second.jpg' %}" class="layout-default" >
+
+    <style>
+        body {
+          margin: 0;
+          font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        .topnav {
+          overflow: hidden;
+          background-color: #333;
+        }
+        
+        .topnav a {
+          float: left;
+          color: #f2f2f2;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 17px;
+        }
+        
+        .topnav a:hover {
+          background-color: #ddd;
+          color: black;
+        }
+        
+        .topnav a.active {
+          background-color: #04AA6D;
+          color: white;
+        }
+        </style>
+       
+        
+       
+         
+       
+        
+       </head>
+       
+       <body background="{% static '1.jpg' %}">
+         
+         <div class="topnav">
+           <a class="active" href="/index">HOME</a>
+           
+         </div>
+   
+
+<h1 ALIGN="CENTER" style="color:rgb(11, 10, 10);font-size: 40px;position: relative;top: 100px;">Login form</h1>
+<br><br><br>
+
+<form action="/log/" method="POST">
+    {% csrf_token %}
+<table border="0" align="center">
+<tbody style="color:rgb(15, 10, 89);font-size: 25px;" >
+
+<br>
+<br>
+<br>
+<br>
+
+
+
+<tr>
+<td><label  for="username">User Name:</label></td>
+<td><input id="username" maxlength="50" height="" name="username" type="text" /></td>
+</tr>
+
+
+
+<tr>
+<td><label for="password">Password:</label></td>
+<td><input id="password" maxlength="50" name="password" type="password" /></td>
+</tr>
+
+<tr>
+<td align="right"><input name="Submit" type="Submit" value="login" /></td>
+</tr>
+
+</tbody>
+</table>
+</form>
+</body>
+</html>
