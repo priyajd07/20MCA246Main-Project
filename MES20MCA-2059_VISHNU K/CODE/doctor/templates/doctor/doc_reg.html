@@ -1,0 +1,45 @@
+{#<html>#}
+{#<head>#}
+{#	<title>DOCTOR REGISTRATION</title>#}
+{#</head>#}
+{#<body>#}
+{% extends 'temp/HOME.html' %}
+{% block base %}
+    <center>
+<form method="post">
+    {% csrf_token %}
+	<h1 align="center">DOCTOR REGISTRATION</h1><br><br>
+	<table align="center" >
+		<tr>
+			<td> DOCTOR NAME </td>
+			<td><input type="text" name="name" required=""></td>
+		</tr>
+		<tr>
+			<td>ADDRESS</td>
+			<td><textarea cols="25" rows="5" name="addr">
+			</textarea></td>
+		</tr>
+		<tr>
+			<td>PHONE NO</td>
+			<td><input type="text" name="phone" required="" class="form-control" style= "color: black"></td>
+		</tr>
+		<tr>
+			<td>EMAIL ID</td>
+			<td><input type="text" name="email" required="" class="form-control" style= "color: black"></td>
+		</tr>
+		<tr>
+			<td>USERNAME</td>
+			<td><input type="text" name="username" required="" class="form-control" style= "color: black"></td>
+		</tr>
+		<tr>
+			<td>PASSWORD</td>
+			<td><input type="password" name="password" required="" class="form-control" style= "color: black"></td>
+		</tr>
+		<td><input type="submit" name="REGISTER" value="REGISTER" class="btn btn-primary"></td>
+		</tr>
+	</table>
+</form>
+    </center>
+{% endblock %}
+{#</body>#}
+{#</html>#}

@@ -1,0 +1,48 @@
+{% extends 'temp/DOCTOR.html' %}
+{% block base %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>VIEW USER DETAILS</title>
+</head>
+<body>
+    <center>
+       <u> <h1 align="center">VIEW USER DETAILS</h1></u><br><br>
+<form method="post">
+    <table border="1" class="table table-bordered">
+        <tr>
+
+            <th style="border: solid">NAME</th>
+            <th style="border: solid">ADDRESS</th>
+            <th style="border: solid">PHONE</th>
+            <th style="border: solid">EMAIL_ID</th>
+            <th style="border: solid">USERNAME</th>
+{#            <th>PASSWORD</th>#}
+{#            <td>EMAIL ID</td>#}
+{#            <td>LATITUDE</td>#}
+{#            <td>LONGITUDE</td>#}
+
+{#            <td></td>#}
+{#            <td></td>#}
+        </tr>
+         {% for i in userview %}
+        <tr>
+            <td style="border: solid">{{ i.name}}</td>
+            <td style="border: solid">{{ i.address }}</td>
+            <td style="border: solid">{{ i.phone }}</td>
+            <td style="border: solid">{{ i.email }}</td>
+            <td style="border: solid">{{ i.username }}</td>
+{#            <td>{{ i.password }}</td>#}
+
+{#            <td>{{  }}</td>#}
+
+{#            <td><a href="{% url 'approve' idd=i.hos_id %}" class="btn btn-primary">APPROVE</a></td>#}
+{#            <td><a href="{% url 'reject' idd=i.hos_id %}" class="btn btn-danger">REJECT</a></td>#}
+        </tr>
+        {% endfor %}
+    </table>
+</form>
+</center>
+</body>
+</html>
+{% endblock %}

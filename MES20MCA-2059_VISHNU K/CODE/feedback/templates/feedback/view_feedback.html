@@ -1,0 +1,29 @@
+{% extends 'temp/DOCTOR.html' %}
+{% block base %}
+<body>
+<form method="post">
+<center>
+	<u><h1 align="center">VIEW FEEDBACK</h1></u>
+	<table border="1" align="center" class="table table-bordered">
+		<tr>
+			<th style="border: solid">F_ID</th>
+			<th style="border: solid">FEEDBACK</th>
+			<th style="border: solid">U_ID</th>
+{#			<th>DATE</th>#}
+{#			<th>TIME</th>#}
+		</tr>
+        {% for i in comp %}
+		<tr>
+			<td style="border: solid">{{ i.f_id }}</td>
+			<td style="border: solid">{{ i.feedback }}</td>
+			<td style="border: solid">{{ i.u_id }}</td>
+{#			<td>{{ i.date }}</td>#}
+{#			<td>{{ i.time }}</td>#}
+{#			<td><a href="{% url 'comp_reply' idd=i.complaint_id %}" class="btn btn-primary">REPLY</a></td>#}
+		</tr>
+        {% endfor %}
+	</table>
+</center>
+</form>
+</body>
+{% endblock %}

@@ -1,0 +1,33 @@
+{#<html>#}
+{#<head>#}
+{#	<title>LOGIN</title>#}
+{#</head>#}
+{#<body>#}
+{% extends 'temp/HOME.html' %}
+{% block base %}
+    <center>
+<form method="post">
+{% csrf_token %}
+	<h2 align="center">LOGIN HERE</h2>
+	<table align="center">
+		<tr>
+			<td style="color: black">USERNAME</td>
+			<td><input type="text" name="username" class="form-control" required=""></td>
+		</tr>
+		<tr>
+			<td style="color: black">PASSWORD</td>
+			<td><input type="password" name="password" class="form-control"  required=""></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input type="submit" name="login" class="btn btn-primary" value="LOGIN"></td>
+		</tr>
+	</table>
+    <br><br>
+    <a href="/doctor/doc_reg/">DOCTOR REGISTRATION</a><br>
+
+</form>
+    </center>
+{% endblock %}
+{#</body>#}
+{#</html>#}

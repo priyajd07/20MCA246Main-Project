@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Complaint Reply</title>
+</head>
+<body>
+{% extends 'temp/DOCTOR.html' %}
+{% block base %}
+    <center>
+        <h2>Complaint Reply</h2>
+        <form method="post">
+            {% csrf_token %}
+            <textarea rows="4" cols="20" placeholder="COMPLAINT REPLY" name="reply" ></textarea><br>
+             <button>REPLY</button>
+        </form>
+    </center>
+{% endblock %}
+</body>
+</html>
