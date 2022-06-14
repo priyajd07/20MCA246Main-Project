@@ -1,0 +1,16 @@
+{% extends 'temp/user.html' %}
+{% block base %}
+<h1 align="center"><u>VIEW ITEMS</u></h1>
+	<table align="center" border="2">
+		<tr>
+			<td>Items</td>
+		</tr>
+        {% for i in obj %}
+		<tr>
+
+			<td>{{ i.items }}</td>
+
+		</tr>
+         {% endfor %}
+	</table>
+{% endblock %}

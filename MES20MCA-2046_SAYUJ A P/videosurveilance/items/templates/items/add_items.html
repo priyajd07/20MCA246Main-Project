@@ -1,0 +1,22 @@
+{% extends 'temp/admin.html' %}
+{% block base %}
+<h1 align="center">Items</h1>
+	<form  method="post">
+        {% csrf_token %}
+		<center>
+			<table>
+				<tr>
+					<td>Add items</td>
+					<td><input type="text" name="items"></td>
+				</tr>
+				<tr></tr>
+				<tr></tr>
+				<tr></tr>
+				<tr>
+					<td></td>
+					<td><input type="Submit" name="Submit"></td>
+				</tr>
+			</table>
+		</center>
+	</form>
+{% endblock %}

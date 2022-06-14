@@ -1,0 +1,27 @@
+{% extends 'temp/user.html' %}
+{% block base %}
+<form method="post">
+	<h2 align="center">COMPLAINTS</h2>
+	<table border="1" align="center" class="table table-bordered">
+		<tr>
+			<th>NO.</th>
+			<th>COMPLAINT</th>
+{#			<td>USER NAME</td>#}
+			<th>REPLY</th>
+{#			<td>STATUS</td>#}
+{#			<td>TIME</td>#}
+		</tr>
+        {% for i in ok %}
+		<tr>
+			<td>{{ i.complaint_id}}</td>
+			<td>{{ i.comaplaint }}</td>
+{#			<td>{{ i.user_id}}</td>#}
+			<td>{{ i.reply }}</td>
+{#            <td>{{ i.status }}</td>#}
+{#			<td>{{ i.time }}</td>#}
+{#			<td><a href="{% url 'comp_reply' idd=i.complaint_id %}">REPLY</a></td>#}
+		</tr>
+        {% endfor %}
+	</table>
+</form>
+{% endblock %}
