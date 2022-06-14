@@ -13,14 +13,10 @@ def accident():
     lattitude=request.form['lattitude']
     longitude = request.form['longitude']
     speed=request.form['speed']
-
-
     q="insert into accident values(null,%s,%s,%s,curdate(),%s)"
     val=(userid,lattitude,longitude,speed)
     iud(q,val)
     return jsonify({'task': 'success'})
-
-
 
 
 @app.route("/login",methods=['post'])
@@ -28,14 +24,14 @@ def login():
     print(request.form)
     username=request.form['uname']
     password=request.form['pass']
-    q="SELECT * FROM `login`WHERE `username`=%s AND`password`=%s AND`usertype`='user'"
+    q="SELECT * FROM `login`WHERE `username`=%s AND`password`=%s"
     val=username,password
     res=selectonecond(q,val)
     print(res)
     if res is None:
         return jsonify({'task': 'unsuccessfull'})
     else:
-        return jsonify({'task': 'valid','lid':res[0]})
+        return jsonify({'task': 'valid','lid':res[0],'type':res[3]})
 
 @app.route("/profile",methods=['post'])
 def profile():
@@ -135,7 +131,6 @@ def capture():
         else:
             return jsonify({'result':res})
     except Exception as e:
-        print(e)
         return jsonify({'result': "error"})
 
 
@@ -162,7 +157,28 @@ def loc():
         print("ok")
         return jsonify({'task': 'some distrution are there please go slowly'})
 
+@app.route("/viewnotification",methods=['post'])
+def viewnotification():
+    qry="select * from notification"
+    res=androidselectallnew(qry)
+    print(res,"=====================")
+    return jsonify(res)
 
+@app.route("/acccidentalert",methods=['post'])
+def accidentalert():
+    qry="select user.fname,user.lname,accident.date from user join accident on user.user_lid=accident.user_id"
+    res=androidselectallnew(qry)
+    print(res,"=======")
+    return jsonify(res)
+@app.route("/maxalert",methods=['post'])
+def maxalert():
+    qry="select max(id) from accident"
+    res=selectone(qry)
+    if res is not None:
+        print(res[0])
+        return jsonify({'task': res[0]})
+    else:
+        return jsonify({'task': "1"})
 
 
 @app.route("/prediction",methods=['post'])
@@ -178,6 +194,6 @@ def prediction():
         return jsonify({'task': 'ok'})
     return jsonify({'task': 'normal'})
 
+
 if __name__=='__main__':
     app.run(host='0.0.0.0',port=5000)
-    # test_input(r'C:\Users\HP\PycharmProjects\road damage prediction\src\static\photo\abc.jpg')
