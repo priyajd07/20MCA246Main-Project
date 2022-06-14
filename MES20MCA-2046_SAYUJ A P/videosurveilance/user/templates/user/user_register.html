@@ -1,0 +1,58 @@
+{% extends 'temp/index.html' %}
+{% block base %}
+<h1 align="center">REGISTER</h1>
+	<form method="post">
+        {% csrf_token %}
+<center>
+	<table>
+		<tr>
+			<td>Name</td>
+			<td><input type="text" name="name"></td>
+		</tr>
+		<tr></tr>
+		<tr></tr>
+		<tr></tr>
+		<tr>
+			<td>Password</td>
+			<td><input type="Password" name="Password"></td>
+		</tr>
+		<tr></tr>
+		<tr></tr>
+		<tr></tr>
+		<tr>
+			<td>Email</td>
+			<td><input type="Email" name="Email"></td>
+		</tr>
+		<tr></tr>
+		<tr></tr>
+		<tr></tr>
+        <tr>
+			<td>Gender</td>
+			<td><input type="radio" value="Male"name="gen">Male
+				<input type="radio" value="Female"name="gen">Female
+            </td></tr>
+		<tr></tr>
+		<tr></tr>
+		<tr></tr>
+		<tr>
+			<td>Phone no</td>
+			<td><input type="Phone" name="phoneno"></td>
+		</tr>
+		<tr></tr>
+		<tr></tr>
+		<tr></tr>
+		<tr>
+			<td>Address</td>
+			<td><input type="Address" name="Address"></td>
+		</tr>
+		<tr></tr>
+		<tr></tr>
+		<tr></tr>
+		<tr>
+			<td></td>
+			<td><input type="submit" name="submit"></td>
+		</tr>
+	</table>
+</center>
+</form>
+{% endblock %}
