@@ -1,0 +1,251 @@
+introduction
+     This is a project for designing an IOT server to cater IOT and EDGE clients. There is
+     no current standard for IOT protocol. Previous trend was to gather data and send data
+     for switching using a server. IOT devices are being transformed to smarter EDGE 
+     devices capable of calculating average , mean , median , mode etc. It is getting smarter
+     by adding facilities for cleaning up data like removing outliers.
+objective:  
+     To create an IOT server and design a protocol for communication between EDGE devices
+     and servers. 
+problem:
+     Currently, vast amount of data is sent by IOT devies which consumes network and
+     computing resources especially on data used for machine learning. Not all the data is
+     needed in discrete form by many applications. EDGE devices can process the data to 
+     transform the data into aggreates and send it to the server.  
+basic functionalities:
+     The sever will be able to communicate with multiple EDGE devices concurrently.
+     Over and above the TCP/IP connection,  both server and EDGE device will set aside
+     a UDP port.  TCP port will be used for communication of control and reply commands
+     while UDP will be used for sending data and acknowledgement.
+
+     IOT and EDGE devices will not be restricted to gather only one type of data.While 
+     preparing IOT and EDGE devices, It can be configured to handle different types of data
+     and the aggregation to be done on each of them. On one type of data , only one aggregation
+     will be done.
+
+     It will also have facilities for EDGE device to report problems and status.
+
+     Inorder to store data at the server, diffrent tables are created. Some tables are populated 
+     from the data and messages received from clients while other tables are maintained
+     at server side. List of tables with structure, PL/SQL procedures for updating tables
+     and description of protocol  is given at the end. 
+
+Two separate programs are made to run at server.
+One for File updation and the other for capture
+
+   File Updating
+   ---------------------
+   IOTTables.java  Main program for file updation. It only calls IOTMenu
+   IOTMenu.java   For showing buttons and showing each screen on perssing a button
+   IOTAwt.java      Support routine for creating screen objects, capturing input and
+                                   calling database stored functions for Getting data and Writing.
+   Data Grabbing
+   ---------------------------
+   IOTServer.java   Main program which starts 2 Threads IOTCnt and IOTGrab. 
+                                   Both threads will be running permanently.
+   IOTCnt.java       IOTCnt  accepts network connection on TCP IP port . This is used for sending 
+                                   and receiving messages. 
+   IOTGrab.java     IOTGrab captures the data received and calls the thread IOTThrDb
+   IOTThrDb.java  IOTThrDb is a short lived thread which writes the data to the table 
+                                   IOTEDDAT and terminate.
+
+   Used by both Table upting and data grabbing
+   --------------------------------------------------------------
+   IOTDB.java      Routine to read the parameters for connecting database from a file 
+                                  called IOTSERVER.CFG and to connect database. 
+                                  This is called by IOTMenu and IOTGrab.
+
+    Details of working of table updating programs.
+    ----------------------------------------------------------------
+    Table updating program starts with creating instance of IOTAWT, IOTDB and calls 
+     IOTMenu. IOTMenu allows login. If login is successful, it displays the menu buttons.
+     Each menu maintenance screens contain fields pertaining to the table concerned.
+
+     Widgets creation is done by passing required fileds to various widget creation routines
+     in IOTAWT. Key press is also handled by IOTAWT. On pressing a key, it sets the value
+     of last key pressed and Value of the field being edited.
+
+     This is constantly checked by the last selected file maintenance routing. Key value is
+     passed by this routine to Get function of IOTAWT to read the values of the conerned
+     record and displays the fields if existing.
+
+     On pressing the Save button, it calls PUT function of the IOTAwt which in turn calls
+     a database PLSQL function to update. PLSQL function inserts a record, if it is new
+     otherwise it updates. Since arra is apssed from file maintenance screen, all file
+     maintenance functions use PUT and GET as generic fiunctions.
+
+    Details of working of Grabbing programs.
+    ----------------------------------------------------------------
+    Datagrabbing main program is in class IOTServer.
+    On start IOTServer creates an instance of IOTDB and reads parameters to connect to
+    the database through ReadParm() function of IOTDB and obtains a connection to database
+    through connection function of IOTDB. Then it creates a thread IOTGrab by passing 
+    Connection and debug flag as paramenters and starts the thread.
+    
+    After creating a TCP listener socket , it goes in to a never ending loop to listen on this port.
+    When it receives a connection request on this port, it accepts the socket connection and
+    creates a database connection. It then creates a instance of IOTCnt thread by passing
+    the socket , connection to db and debug flag and starts the thread. 
+    
+    Control thread - IOTCnt
+    ------------------------------------
+    This thread reads the string from the the socket. Then it checks the first character to 
+    decide which action to take and acts as follows.
+
+    1.  R
+      it is a client registration request. The string is cut  from second character onwards
+      to get the description of the client. It then reads the last client number from the data
+      base and inserts the data into IOTEDGCLN and sends the client code to client.
+    2. A 
+      it is an assignment requset. The string is cut from 2 to 5 , 5 to 7 and 8 to 10 to
+      get client code data code and assignment. This is inserted to IOTCLNASS table.
+      An 'OK' is returned to client
+    3. M 
+      it is an messagwe. The string is cut from 2 to end to get message. It
+      get client code data code and assignment. This is inserted to IOTMESSAGE table.
+      An 'OK' is returned to client
+
+     For all writes , database function with name WRITE_ followed by table name
+     is called with receoved variable.
+
+  IOTGRAB
+  ----------------
+     This thread is permanently running thread. It accepts data coming from clients
+     through UDP port , writes to data table and sends an reply with 'OK' . if any error
+     occured , detailed error description is sent as reply.
+     
+
+
+Protocol ( for Client to Server packets)
+----------------
+packet type 1B  
+        Code   Desc		Size				
+            R Client registration	2 or more bytes max(24)	
+            A  Client Assignment	11 Bytes			
+            D Data		38 bytes			
+            M Message  		Variable			
+
+Rest of the fields for Registration
+   Location variable length
+ 
+Rest of the fields for Assignment
+    CLNCODE 4 Bytes
+    Data Type3 Byte
+    Assignment 3 Bytes
+
+Rest of the fields for Data
+    CLNCODE 4 Bytes
+    Data Type3 Byte
+    Time       14 Bytes YYYYMMDD HH MM SS  (if aggregate-time of last reading)
+    Reading  16 Bytes 
+
+Rest of the fields for Message
+   Time 14 Bytes YYYYMMDD HH MM SS  
+   Message   Variable length        
+-----------------------------     
+Tables
+-----------------------------
+Maintained at server through program running at server
+--------------------------------------------------------------------------
+Table of Packet Types - Now there are only 2 packet type
+On for sending data and the other for message
+
+CREATE Table IOTPACKET(
+PackType Varchar2(1),
+PackDesc Varchar2(30));
+
+
+Table of fields in each packet type
+CREATE Table IOTFIELDS(
+PackType Varchar2(1),
+FLDCODE Varchar2(2),
+FldNAME Varchar2(30),
+FLDLen Number(2));
+
+Table of data code ( ex: Temp , pressure etc)
+CREATE Table IOTDATCOD(
+DataCode Varchar2(3),
+CodeName Varchar2(20),
+Unit   Varchar2(4));
+
+Table of aggregate code ( ex: Average  , Mean, Mode etc)
+CREATE Table IOTAGGREG(
+AggrType Varchar2(3),
+AggrDesc Varchar2(30));
+
+Table of users
+CREATE Table IOTUSER(
+USERID         VARCHAR2(10) 
+NAME           VARCHAR2(30) 
+PASSWORD       VARCHAR2(10) 
+STATUS         VARCHAR2(1) );  status will be either A ( administrator) N ( Normal)
+                                                       Only administrator can update or create user.
+
+Table updated from data received from the client
+----------------------------------------------------------------
+
+Table of client assignemts ( for each client what data and what aggregation , 
+    can have more than entry for each client . But ONE data only one aggregation)
+CREATE Table IOTCLNASS(
+CLNCODE Varchar2(4),
+CLNDATCODE VARCHAR2(2),
+EDAGGR    VARCHAR2(3));
+
+Table of client code ( Code and IP)
+CREATE Table IOTEDGCLN(
+CLNCODE Varchar2(4),
+CLNLOC     Varchar2(20));
+
+Maintenance program is avalable edit records of Client code and client assignments
+
+Table of Data captured
+CREATE Table IOTEDDAT(
+CLNCODE Varchar2(4),
+CLNDATCODE VARCHAR2(2),
+CLNDATTIM   Varchar2(14),
+CLNDATVAL   Number(16,4));
+
+CREATE Table IOTMESSAGE(
+CLNCODE Varchar2(4),
+CLNTIME  VARCHAR2(14),
+CLNMESSAGE   Varchar2(200));
+
+List of Database Functions
+For each table there are two functions 1 for reading and one for writing. Writing will
+update if present or insert if new. Apart from this there is LOGIN function to check
+user login inputs.
+
+For tables solely updated by clients , there is only one Function each to list the records.
+
+create or replace FUNCTION LOGIN ( USR IN vARCHAR2,PWD OUT VARCHAR2,St Out Varchar2)
+
+FUNCTION GET_AGGREG (AG In Varchar2, NM Out Varchar2)
+FUNCTION WRITE_AGGREG (AGG In Varchar2, NM In Varchar2)
+
+FUNCTION GET_DATCODE  (DC In Varchar2, NM Out Varchar2,UN Out Varchar2)
+FUNCTION WRITE_DATCOD (DC In Varchar2, NM In Varchar2,UN In Varchar2)
+
+FUNCTION GET_FIELDS (Pkt In Varchar2, Cod In Varchar2,Seq Out Varchar2,Fld Out Varchar2,Fln  Out Varchar2)
+FUNCTION WRITE_FIELDS    (Pkt In Varchar2, Cod In Varchar2,Seq In Number,Fld in Varchar2,Fln  in Varchar2)
+
+FUNCTION GET_PACKET(Pkt In Varchar2, NM Out Varchar2)
+FUNCTION WRITE_PACKET (PKT In Varchar2, NM In Varchar2)
+
+FUNCTION GET_USER ( uSR IN vARCHAR2,NM Out Varchar2,PWD OUT VARCHAR2,St Out Varchar2)
+FUNCTION WRITE_USER(uSR IN vARCHAR2,Nam in Varchar2,
+
+FUNCTION GET_CLNASS(Cod In Varchar2, DatCod In Varchar2,Ass Out Varchar2)
+FUNCTION WRITE_CLNASS(Cod In Varchar2, Dat In Varchar2,Agg In Varchar2)
+
+FUNCTION GET_EDGCLN  (COD In Varchar2, LOC Out Varchar2)
+FUNCTION WRITE_EDGCLN (COD In Varchar2, LOC In Varchar2)
+
+FUNCTION LIST_EDDAT  (COD In Varchar2,Dat in varchar2,
+FUNCTION WRITE_EDDAT(Cod In Varchar2, Dat In Varchar2,Tim In Varchar2,Val in Varchar2)
+
+FUNCTION WRITE_MESSAGE(Cod In Varchar2,Tim In Varchar2,Mess in Varchar2)
+FUNCTION LIST_MESSAGE(Cod In Varchar2, Tim in Varchar2)
+
+FUNCTION LAST_CLIENT_NO()
+FUNCTION LIST_EDGCLN  ()
+FUNCTION LIST_CLNASS(Cod In Varchar2, DatCod In Varchar2)

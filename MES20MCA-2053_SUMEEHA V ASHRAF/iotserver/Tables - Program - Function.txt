@@ -1,0 +1,125 @@
+Protocol
+----------------
+packet type 1B  
+                          D Data		length = 33 bytes
+                              Client to server
+                          M Message 		length = Variable
+                              This can be bothways between client and server
+
+Rest of the fields for Data
+    Data Type3 Byte
+    Time       14 Bytes YYYYMMDD HH MM SS  (if aggregate-time of last reading)
+    Reading  16 Bytes 
+
+
+Rest of the fields for Message
+   Message           
+    
+Tables
+-----------------------------
+Table of Packet Types - Now there are only 2 packet type
+On for sending data and the other for message
+
+CREATE Table IOTPACKET(
+PackType Varchar2(1),
+PackDesc Varchar2(30));
+
+
+Table of fields in each packet type
+CREATE Table IOTFIELDS(
+PackType Varchar2(1),
+FLDCODE Varchar2(2),
+FldNAME Varchar2(30),
+FLDLen Number(2));
+
+Table of data code ( ex: Temp , pressure etc)
+CREATE Table IOTDATCOD(
+DataCode Varchar2(3),
+CodeName Varchar2(20),
+Unit   Varchar2(4));
+
+
+Table of aggregate code ( ex: Average  , Mean, Mode etc)
+CREATE Table IOTAGGREG(
+AggrType Varchar2(3),
+AggrDesc Varchar2(30));
+
+Table of client code ( Code and IP)
+CREATE Table IOTEDGCLN(
+CLNCODE Varchar2(4),
+CLNLOC     Varchar2(20));
+
+Table of client assignemts ( for each client what data and what aggregation , 
+    can have more than entry for each client . But ONE data only one aggregation)
+CREATE Table IOTCLNASS(
+CLNCODE Varchar2(4),
+CLNDATCODE VARCHAR2(2),
+EDAGGR    VARCHAR2(3));
+
+Table of Data captured
+
+CREATE Table IOTEDDAT(
+CLNCODE Varchar2(4),
+CLNDATCODE VARCHAR2(2),
+CLNDATTIM   Varchar2(14),
+CLNDATVAL   Number(16,4));
+
+Table of users
+CREATE Table IOTUSER(
+USERID         VARCHAR2(10) 
+NAME           VARCHAR2(30) 
+PASSWORD       VARCHAR2(10) 
+STATUS         VARCHAR2(1) );  status will be either A ( administrator) N ( Normal)
+                                                       Only administrator can update or create user.
+
+Two separate programs are made to run at server and one at client.
+Server: One for File updation and the other for capture
+
+IOTTables.java  Main program for file updation. It only calls IOTMenu
+IOTMenu.java    For showing buttons and showing each screen on perssing a button
+IOTAwt.java     Support routine for creating screen objects, capturing input and
+                         calling database stored functions for Getting data and Writing.
+ 
+IOTDB.java      To read the parameters for connecting database from a file Called 
+                         IOTSERVER.CFG and to connect database. This is called by IOTMenu and IOTGrab.
+
+IOTServer.java  Main program which starts 2 Threads IOTCnt and IOTGrab. 
+                           Both threads will be running permanently.
+IOTCnt.java     IOTCnt  accepts network connection on TCP IP port . This is used for sending 
+                           and receiving messages. 
+IOTGrab.java    IOTGrab captures the data received and calls the thread IOTThrDb
+IOTThrDb.java   IOTThrDb is a short lived thread which writes the data to the table IOTEDDAT and terminate.
+
+Database Functions
+For each table there are two functions 1 for reading and one for writing. Writing will
+update if present or insert if new. Apart from this there is LOGIN function to check
+user login inputs.
+
+create or replace FUNCTION LOGIN ( USR IN vARCHAR2,PWD OUT VARCHAR2,St Out Varchar2)
+
+FUNCTION GET_AGGREG (AG In Varchar2, NM Out Varchar2)
+FUNCTION WRITE_AGGREG (AGG In Varchar2, NM In Varchar2)
+
+FUNCTION GET_CLNASS(Cod In Varchar2, DatCod In Varchar2,Ass Out Varchar2)
+FUNCTION WRITE_CLNASS(Cod In Varchar2, Dat In Varchar2,Agg In Varchar2)
+
+FUNCTION GET_DATCODE  (DC In Varchar2, NM Out Varchar2,UN Out Varchar2)
+FUNCTION WRITE_DATCOD (DC In Varchar2, NM In Varchar2,UN In Varchar2)
+
+FUNCTION GET_EDDAT  (COD In Varchar2,Dat in varchar2,
+FUNCTION WRITE_EDDAT(Cod In Varchar2, Dat In Varchar2,Tim In Varchar2,Val in Varchar2)
+
+FUNCTION GET_EDGCLN  (COD In Varchar2, LOC Out Varchar2)
+FUNCTION WRITE_EDGCLN (COD In Varchar2, LOC In Varchar2)
+
+FUNCTION GET_FIELDS (Pkt In Varchar2, Cod In Varchar2,Seq Out Varchar2,Fld Out Varchar2,Fln  Out Varchar2)
+FUNCTION WRITE_FIELDS    (Pkt In Varchar2, Cod In Varchar2,Seq In Number,Fld in Varchar2,Fln  in Varchar2)
+
+FUNCTION GET_PACKET(Pkt In Varchar2, NM Out Varchar2)
+FUNCTION WRITE_PACKET (PKT In Varchar2, NM In Varchar2)
+
+FUNCTION GET_USER (uSR IN vARCHAR2,NM Out Varchar2,PWD OUT VARCHAR2,St Out Varchar2)
+FUNCTION WRITE_USER(uSR IN vARCHAR2,Nam in Varchar2)
+
+
+Client.java          Not completed.

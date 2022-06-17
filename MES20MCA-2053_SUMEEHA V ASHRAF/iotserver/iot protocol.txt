@@ -1,0 +1,53 @@
+packet type 1B  
+                          D Data		length = 33 bytes
+                              Client to server
+                          M Message 		length = Variable
+                              This can be bothways between client and server
+
+Rest of the fields for Data
+    Data Type3 Byte
+    Time       14 Bytes YYYYMMDD HH MM SS  (if aggregate-time of last reading)
+    Reading  16 Bytes 
+
+
+Rest of the fields for Message
+   Message           
+    
+
+CREATE Table IOTPACKET(
+PackType Varchar2(1),
+PackDesc Varchar2(30));
+
+CREATE Table IOTFIELDS(
+PackType Varchar2(1),
+FLDCODE Varchar2(2),
+FldNAME Varchar2(30),
+FLDLen Number(2));
+
+CREATE Table IOTDATCOD(
+DataCode Varchar2(3),
+CodeName Varchar2(20),
+Unit   Varchar2(4));
+
+CREATE Table IOTAGGREG(
+AggrType Varchar2(3),
+AggrDesc Varchar2(30));
+
+
+CREATE Table IOTEDGCLN(
+CLNCODE Varchar2(4),
+CLNLOC     Varchar2(3));
+
+CREATE Table IOTCLNASS(
+CLNCODE Varchar2(4),
+CLNDATCODE VARCHAR2(2),
+EDAGGR    VARCHAR2(3));
+
+CREATE Table IOTEDDAT(
+CLNCODE Varchar2(4),
+CLNDATCODE VARCHAR2(2),
+CLNDATTIM   Varchar2(14),
+CLNDATVAL   Number(16,4));
+
+
+

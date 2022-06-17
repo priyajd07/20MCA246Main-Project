@@ -1,0 +1,1 @@
+javac -Xlint -classpath "./ojdbc6.jar;" IOTTables.java

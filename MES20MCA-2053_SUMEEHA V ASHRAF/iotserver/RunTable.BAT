@@ -1,0 +1,1 @@
+java -classpath "./ojdbc6.jar;" IOTTables

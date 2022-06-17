@@ -1,0 +1,105 @@
+CREATE Table IOTMESSAGE(
+CLNCODE Varchar2(4),
+CLNTIME  VARCHAR2(14),
+CLNMESSAGE   Varchar2(200));
+
+
+CREATE OR REPLACE FUNCTION LAST_CLIENT_NO RETURN VARCHAR2 AS 
+   LASTNO Number(4);
+BEGIN
+   Select To_number(Max(Nvl(CLNCODE,'1000'))) Into Lastno from IOTEDGCLN;
+   RETURN To_char(Lastno);
+END LAST_CLIENT_NO;
+
+CREATE OR REPLACE FUNCTION LIST_EDDAT (COD In Varchar2,Dat in varchar2,
+      Timf In Varchar2, Timt in Varchar2)
+   RETURN VARCHAR2 AS  
+   Dsc varchar2(20000) := '';
+   FrTim Varchar2(20);
+   ToTim Varchar2(20);
+BEGIN
+   Frtim := Timf;
+   ToTim := Timt;
+   
+   If FrTim is null then 
+      FrTim := '.';
+   End If;
+   
+   If ToTim is null then 
+      ToTim := '.';
+   End If;
+   
+   Declare
+      Cursor IOTDAT is select CLNCODE,CLNDATCODE  ,CLNDATTIM,CLNDATVAL from IOTEDDAT 
+        where CLNCODE = Nvl(Cod,CLNCODE) and CLNDATCODE = Nvl(Dat,CLNDATCODE) 
+        and CLNDATTIM between Timf and Timt;
+   Begin
+      For II In IOTDAT Loop
+         Dsc := Dsc||II.CLNCODE||CHR(9)||II.CLNDATCODE||CHR(9)||II.CLNDATTIM||CHR(9)||II.CLNDATVAL|| Chr(12);  
+      End Loop;
+   End;
+      
+   Return Dsc;      
+END LIST_EDDAT;
+CREATE OR REPLACE FUNCTION LIST_CLNASS (Cod In Varchar2, DatCod In Varchar2)
+   RETURN VARCHAR2 AS  
+   Dsc varchar2(20000) := '';
+   FrTim Varchar2(20);
+   ToTim Varchar2(20);
+BEGIN   
+   Declare
+      Cursor IOTASS is select CLNCODE,CLNDATCODE,EDAGGR  from IOTCLNASS 
+        where CLNCODE = Nvl(Cod,CLNCODE) and CLNDATCODE = Nvl(DatCod,CLNDATCODE) ;
+   Begin
+      For II In IOTASS Loop
+         Dsc := Dsc||II.CLNCODE||CHR(9)||II.CLNDATCODE||CHR(9)||II.EDAGGR||Chr(12);  
+      End Loop;
+   End;
+      
+   Return Dsc;            
+END LIST_CLNASS;
+
+CREATE OR REPLACE FUNCTION LIST_EDGCLN RETURN VARCHAR2 AS 
+   Dsc varchar2(20000) := '';
+BEGIN
+   Declare
+      Cursor IOTCLN is select CLNCODE,CLNLOC  from IOTEDGCLN
+        Order by CLNCODE; 
+   Begin
+      For II In IOTCLN Loop
+         Dsc := Dsc||II.CLNCODE||CHR(9)||II.CLNLOC|| Chr(12);  
+      End Loop;
+   End;
+   
+   
+   Return Dsc;      
+END LIST_EDGCLN;
+
+CREATE OR REPLACE FUNCTION LIST_MESSAGE (COD In Varchar2,Tm In Varchar2)
+   RETURN VARCHAR2 AS  
+   Dsc varchar2(20000) := '';
+BEGIN   
+   Declare
+      Cursor IOTMSS is select CLNCODE,CLNTIME  ,CLNMESSAGE from IOTMESSAGE 
+        where CLNCODE = Nvl(Cod,CLNCODE) and CLNTIME >= Nvl(Tm,CLNTime) order by CLNCODE,CLNTIME ;
+   Begin
+      For II In IOTMSS Loop
+         Dsc := Dsc||II.CLNCODE||CHR(9)||II.CLNTIME ||CHR(9)||II.CLNMESSAGE|| Chr(12);  
+      End Loop;
+   End;
+   Return Dsc;      
+END LIST_MESSAGE;
+
+CREATE OR REPLACE FUNCTION WRITE_MESSAGE  
+(Cod In Varchar2,Tim In Varchar2,Mess in Varchar2)   RETURN VARCHAR2 Is 
+   Mr Varchar2(20);
+BEGIN
+   insert into iotmessage (CLNCODE,CLNTIME  ,CLNMESSAGE) values 
+                (Cod,Tim,Mess);      
+   commit;
+   return 'OK';
+END WRITE_MESSAGE;
+
+IOTGRAB
+IOTCNT 
+update all the above on sumeehas comp
