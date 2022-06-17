@@ -195,5 +195,76 @@ def prediction():
     return jsonify({'task': 'normal'})
 
 
+
+
+
+@app.route('/predictblock',methods=['POST'])
+def predictblock():
+
+    # userid=request.form['uid']
+    # lati=request.form['lati']
+    # longi=request.form['longi']
+    fuserlist=[]
+    suserids=[]
+    snearnos=[]
+    tnearnos = []
+    latis=[]
+    longis=[]
+    userid=10
+    lati="11.348661"
+    longi="75.7388215"
+    con = pymysql.connect(host="localhost", user="root", password="", port=3306, db="road damage")
+    cmd = con.cursor()
+    cmd.execute("SELECT `location`.`latitude` ,`longitude`,`user`.*, (3959 * ACOS ( COS ( RADIANS('" + str(lati) + "') ) * COS( RADIANS(location.latitude) ) * COS( RADIANS(location.longitude ) - RADIANS('" + str(longi) + "') ) + SIN ( RADIANS('" + str(lati) + "') ) * SIN( RADIANS( location.latitude ) ))) AS user_distance FROM `user`  JOIN `location` ON `location`.`uid`=`user`.`uid`  AND `location`.`uid`!='"+str(userid)+"' HAVING user_distance  < 0.5")
+    s=cmd.fetchall()
+    if len(s)>0:
+        fnearnos=len(s)
+        print(s)
+    for i in s:
+        fuserlist.append(i[3])
+        latis.append(i[0])
+        longis.append(i[1])
+    for ii in range(len(fuserlist)):
+        cmd.execute("SELECT `location`.`latitude` ,`longitude`,`user`.*, (3959 * ACOS ( COS ( RADIANS('" + str(latis[ii]) + "') ) * COS( RADIANS(location.latitude) ) * COS( RADIANS(location.longitude ) - RADIANS('" + str(longis[ii]) + "') ) + SIN ( RADIANS('" + str(latis[ii]) + "') ) * SIN( RADIANS( location.latitude ) ))) AS user_distance FROM `user`  JOIN `location` ON `location`.`uid`=`user`.`uid`  AND `location`.`uid`!='"+str(fuserlist[ii])+"' HAVING user_distance  < 0.5")
+        s11 = cmd.fetchall()
+        print(s11)
+        if len(s11)>0:
+            snearnos.append(len(s11))
+            print(snearnos)
+        for iii in range(len(s11)):
+            # print(s11[0][0])
+            if(s11[iii][3] not  in fuserlist and s11[iii][3] !=userid):
+                print("out",s11[iii][3])
+
+                cmd.execute("SELECT `location`.`latitude` ,`longitude`,`user`.*, (3959 * ACOS ( COS ( RADIANS('" + str(s11[iii][0]) + "') ) * COS( RADIANS(location.latitude) ) * COS( RADIANS(location.longitude ) - RADIANS('" + str(
+                    s11[iii][1]) + "') ) + SIN ( RADIANS('" + str(s11[iii][0]) + "') ) * SIN( RADIANS( location.latitude ) ))) AS user_distance FROM `user`  JOIN `location` ON `location`.`uid`=`user`.`uid`  AND `location`.`uid`!='" + str(
+                    s11[iii][3]) + "' HAVING user_distance  < 0.5")
+                s112 = cmd.fetchall()
+                # print(s112)
+                if len(s112)>0:
+                    tnearnos.append(len(s112))
+    print(tnearnos)
+    maxsecond=0
+    if len(snearnos) > 0:
+        maxsecond=max(snearnos)
+    thrdno=0
+    if len(tnearnos)>0:
+        thrdno=max(tnearnos)
+    print("first"+str(fnearnos))
+    print("sec"+str(maxsecond))
+    print("third"+str(thrdno))
+    if maxsecond > fnearnos and thrdno >=maxsecond:
+        # return "cong"
+        return jsonify({"task": "traffic congestion ahead  take another route"})
+    else:
+        # return "not"
+        return jsonify({"task": "no issues"})
+
+
+
+
+
+
+
 if __name__=='__main__':
     app.run(host='0.0.0.0',port=5000)
