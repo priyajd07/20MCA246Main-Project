@@ -4,6 +4,9 @@ from werkzeug.utils import secure_filename
 from src.dbconnection import*
 app=Flask(__name__)
 app.secret_key="abc"
+
+
+
 import functools
 def login_required(func):
     @functools.wraps(func)
@@ -161,6 +164,14 @@ def updatestf():
 
 
 
+
+
+
+
+
+
+
+
 @app.route('/add_manage_staff')
 @login_required
 def add_manage_staff():
@@ -267,6 +278,11 @@ def add_staff():
 
 
 
+
+
+
+
+
 @app.route('/allocate_sub',methods=['post'])
 def allocate_sub():
     subject=request.form['select3']
@@ -289,6 +305,9 @@ def delete_alocatesub():
     v=(str(id))
     iud(q,v)
     return '''<script> alert("deleted successfully");window.location="/allocate_subject_to_staff"</script>'''
+
+
+
 
 
 
@@ -331,6 +350,18 @@ def timetable():
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 @app.route('/search_student')
 @login_required
 
@@ -363,8 +394,8 @@ def staff_home():
 @app.route('/add_manage_exam_notification',methods=['post'])
 @login_required
 def add_manage_exam_notification():
-    qry = "SELECT `subject_table`.*,`course_table`.`course` FROM  `subject_table`  JOIN `course_table` ON `course_table`.`id`=`subject_table`.`course_id` "
-    ress= selectall(qry)
+    qry = "SELECT `subject_table`.* FROM `subject_table` JOIN `allocation` ON `allocation`.`subid`=`subject_table`.`id` JOIN `staff` ON `staff`.`loginid`=`allocation`.`staffid` WHERE `allocation`.`staffid`=%s"
+    ress= selectall2(qry,session['lid'])
     return render_template("staff/add manage exam notification.html",vall=ress)
 
 @app.route('/upload_qpaper',methods=['post'])
@@ -374,14 +405,17 @@ def upload_qpaper():
     subject=request.form['select3']
     date=request.form['textfield']
     time=request.form['textfield2']
-    qpaper=request.files['file']
+    exam=request.form['textfield3']
     duration=request.form['select4']
-    fn=secure_filename(qpaper.filename)
-    qpaper.save(os.path.join('static/quespaper',fn))
+
     q="INSERT INTO `exam` VALUES (NULL,%s,%s,%s,%s,%s)"
-    v=(subject,date,time,fn,duration)
+    v=(subject,date,time,exam,duration)
     iud(q,v)
     return '''<script> alert("uploaded successfully");window.location="/staff_home"</script>'''
+
+
+
+
 @app.route('/update_qpaper',methods=['post'])
 @login_required
 
@@ -390,12 +424,10 @@ def update_qpaper():
         subject=request.form['select3']
         date=request.form['textfield']
         time=request.form['textfield2']
-        qpaper=request.files['file']
-        fn=secure_filename(qpaper.filename)
-        qpaper.save("static/quespaper/"+fn)
+        exam=request.form['textfield3']
         duration=request.form['select4']
-        q="update `exam` set  `sid`=%s,`date`=%s,`time`=%s,`duration`=%s,q_paper=%s WHERE `id`=%s"
-        v=(subject,date,time,duration,fn,session['edi'])
+        q="update `exam` set  `sid`=%s,`date`=%s,`time`=%s,`duration`=%s,exam_name=%s WHERE `id`=%s"
+        v=(subject,date,time,duration,exam,session['edi'])
         iud(q,v)
         return '''<script> alert("uploaded successfully");window.location="/manage_exam"</script>'''
 
@@ -698,8 +730,8 @@ def edit_exam_notification():
     q="SELECT `exam`.*,`subject_table`.`subject` FROM `exam` JOIN `subject_table` ON `subject_table`.`id`=`exam`.`sid` WHERE `exam`.`id`=%s"
     v=(str(id))
     res=selectone(q,v)
-    q1="SELECT *FROM`subject_table`"
-    res11=selectall(q1)
+    q1="SELECT `subject_table`.* FROM `subject_table` JOIN `allocation` ON `allocation`.`subid`=`subject_table`.`id` JOIN `staff` ON `staff`.`loginid`=`allocation`.`staffid` WHERE `allocation`.`staffid`=%s"
+    res11=selectall2(q1,session['lid'])
     return render_template("staff/edit exam notification.html",val=res,vals=res11)
 
 @app.route('/study_material')
@@ -724,6 +756,17 @@ def material_upload():
     iud(q,v)
     return '''<script> alert("uploaded successfully");window.location="/staff_home"</script>'''
 
+@app.route('/attendance_upload',methods=['post'])
+@login_required
+def attendance_upload():
+    stid=request.form['select']
+    attendance=request.files['file']
+    fn=secure_filename(attendance.filename)
+    attendance.save(os.path.join('static/attendance',fn))
+    q="INSERT INTO attendance VALUES (NULL,%s,%s,curdate())"
+    v=(stid,fn)
+    iud(q,v)
+    return '''<script> alert("uploaded successfully");window.location="/staff_home"</script>'''
 
 
 @app.route('/upload_video')
@@ -759,15 +802,14 @@ def video_upload():
 
 @app.route('/view_attendance')
 def view_attendance():
-    q="SELECT `student_table`.`first_name`,`student_table`.`middle_name`,`student_table`.`last_name`,`student_table`.`login_id`,ROUND((SUM(`attendance`)/COUNT(*))*100) AS attendance,COUNT(*) AS workingdays,floor((SUM(`attendance`)/COUNT(*))) AS presentdays FROM `attendance` JOIN `student_table` ON `student_table`.`login_id`=`attendance`.`id`  GROUP BY `attendance`.`id`"
+    q="SELECT * FROM student_table"
     res=selectall(q)
     print(res)
     ress=[]
     for i in res:
-        row=[i[0],i[1],i[2],i[3],int(i[4]),i[5],int(i[6])]
+        row=[i[0],i[1],i[2]]
         ress.append(row)
-
-    return render_template("staff/view attendance.html",val=ress)
+    return render_template("staff/view attendance.html",val=ress,b=res)
 
 
 @app.route('/view_time_schedule')
@@ -872,9 +914,104 @@ def view_answer():
     res=selectall(q)
     return render_template("staff/view answer.html",val=res)
 
+@app.route('/Add_and_Manage_exam')
+@login_required
+def Add_and_Manage_exam():
+    q = "SELECT `subject_table`.* FROM `subject_table` JOIN `allocation` ON `allocation`.`subid`=`subject_table`.`id` WHERE `allocation`.`staffid`=%s"
+    res = selectall2(q, session['lid'])
+    q1="SELECT *FROM exam"
+    res1=selectall(q1)
+    return render_template("staff/Add and Manage exam.html",v=res,v1=res1)
+@app.route('/searchexam',methods=['post'])
+@login_required
+def searchexam():
+    button=request.form['Submit']
+    subject=request.form['select']
+    exam=request.form['select2']
+    q = "SELECT `subject_table`.* FROM `subject_table` JOIN `allocation` ON `allocation`.`subid`=`subject_table`.`id` WHERE `allocation`.`staffid`=%s"
+    res = selectall2(q,session['lid'])
+    q1 = "SELECT *FROM exam"
+    res1 = selectall(q1)
+    if button=="Search":
+        qry="SELECT `exam`.`exam_name`,`questions`.* FROM `exam` JOIN `questions` ON `questions`.`exam_id`=`exam`.`id` WHERE `questions`.`exam_id`=%s AND `exam`.`sid`=%s"
+        v=(exam,subject)
+        s=selectall2(qry,v)
+        return render_template("staff/Add and Manage exam.html", v=res, v1=res1,val=s)
+    else:
+        q = "SELECT `subject_table`.* FROM `subject_table` JOIN `allocation` ON `allocation`.`subid`=`subject_table`.`id` WHERE `allocation`.`staffid`=%s"
+        res = selectall2(q, session['lid'])
+        q1 = "SELECT *FROM exam"
+        res1 = selectall(q1)
+        return render_template('staff/Add Questions.html', v=res, v1=res1)
 
 
+@app.route('/select_course_subject',methods=['get','post'])
+def select_course_subject():
+    sid = request.form['brand']
+    print(sid,"==============================")
+    # cmd.execute("SELECT `allot_id`,`course_id`,`subject` FROM `subjectmanagement` WHERE `course_id` IN (SELECT `course_id` FROM `coursemanagement` WHERE `coursemanagement`.`coursename`='"+company+"')")
+    # s=cmd.fetchall()
+    q="SELECT `exam`.* FROM `exam` JOIN `subject_table` ON `subject_table`.id=`exam`.sid WHERE `subject_table`.`subject`=%s"
+    # q="SELECT * FROM `exam` WHERE sid=%s"
+    s=selectall2(q,sid)
+    lis=[0,'select']
+    for r in s:
+        lis.append(r[0])
+        lis.append(r[4])
+    print(lis)
+    resp = make_response(jsonify(lis))
+    resp.status_code = 200
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    return resp
 
+@app.route('/Add_Questions',methods=['post'])
+@login_required
+def Add_Questions():
+    exam_name=request.form['select2']
+    questions=request.form['textfield']
+    option1=request.form['textfield2']
+    option2 = request.form['textfield3']
+    option3 = request.form['textfield4']
+    option4 = request.form['textfield5']
+    answer=request.form['textfield6']
+    qry="INSERT INTO questions values(null,%s,%s,%s,%s,%s,%s,%s)"
+    val=(exam_name,questions,option1,option2,option3,option4,answer)
+    iud(qry,val)
+    return '''<script> alert("success");window.location="Add_and_Manage_exam"</script>'''
+
+@app.route('/editQuestions')
+@login_required
+def editQuestions():
+    id=request.args.get('id')
+    session['id']=id
+    q = "SELECT `subject_table`.* FROM `subject_table` JOIN `allocation` ON `allocation`.`subid`=`subject_table`.`id` WHERE `allocation`.`staffid`=%s"
+    r = selectall2(q,session['lid'])
+    print(r,"====")
+    qry="SELECT *FROM questions WHERE Qid=%s"
+    res1=selectone(qry,id)
+    return render_template('staff/editQuestions.html',v=res1,subb=r)
+@app.route('/delq')
+@login_required
+def delq():
+    id=request.args.get('id')
+    q="DELETE FROM `questions` WHERE`Qid`=%s"
+    v=(str(id))
+    iud(q,v)
+    return '''<script> alert("deleted successfully");window.location="/Add_and_Manage_exam"</script>'''
+@app.route('/edit2Questions',methods=['post'])
+@login_required
+def edit2Questions():
+    exam_name = request.form['select2']
+    questions = request.form['textfield']
+    option1 = request.form['textfield2']
+    option2 = request.form['textfield3']
+    option3 = request.form['textfield4']
+    option4 = request.form['textfield5']
+    answer = request.form['textfield6']
+    qry="UPDATE questions SET question=%s,option1=%s,option2=%s,option3=%s,option4=%s,answer=%s WHERE Qid=%s "
+    val=(questions,option1,option2,option3,option4,answer,session['id'])
+    iud(qry,val)
+    return '''<script> alert("updated");window.location="Add_and_Manage_exam"</script>'''
 
 app.run(debug=True)
 
