@@ -1,0 +1,29 @@
+
+{% extends 'indexadmin.html' %}
+{% block body %}
+
+
+<body>
+<form id="form1" name="form1" method="post" action="/addroute">
+  <table width="200" border="1">
+    <tr>
+      <th scope="row">From</th>
+      <th>To</th>
+      <th>Route</th>
+      <th>&nbsp;</th>
+    </tr>
+    {%for i in val%}
+    <tr>
+      <th scope="row">&nbsp;{{i[1]}}</th>
+      <td>&nbsp;{{i[2]}}</td>
+      <td>{{i[3]}}&nbsp;</td>
+      <td><a href="/delt?id={{i[0]}}">delete</a></td>
+    </tr>
+    {%endfor%}
+  </table>
+  <p>
+    <input type="submit" name="button" id="button" value="Add" />
+  </p>
+</form>
+</body>
+{% endblock %}
