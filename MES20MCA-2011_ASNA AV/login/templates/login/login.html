@@ -1,0 +1,32 @@
+{% extends 'temp/home.html' %}
+{% block base %}
+<center>
+            <form method="post">
+                {% csrf_token %}
+              <div class="contact_form-container">
+                <div>
+                  <div>
+                    <input type="text" name="name" placeholder="Name">
+                  </div>
+                  <div>
+                    <input type="password" name="pass" placeholder="Password">
+                  </div>
+{#                    <div class="">#}
+{#                    <input type="text" name="adds" placeholder="Address" class="message_input">#}
+{#                  </div>#}
+{#                  <div>#}
+{#                    <input type="text" name="phone" placeholder="Phone Number">#}
+{#                  </div>#}
+{#                  <div class="">#}
+{#                    <input type="email" name="mail" placeholder="E-Mail">#}
+{#                  </div>#}
+                  <div class="mt-5">
+                    <button type="submit">
+                      LOGIN
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+</center>
+{% endblock %}

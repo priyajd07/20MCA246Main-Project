@@ -1,0 +1,54 @@
+{% extends 'temp/user.html' %}
+{% block base %}
+	<form method="post">
+        {% csrf_token %}
+    <div class="contact_form-container">
+    <h2 align="center" style="background-color: #fddd33; color: white; font-family: 'Times New Roman'">MUSIC PLAYER</h2>
+        <table class="table">
+            <tr>
+                <td><input type="Submit" name="play" value="PLAY"></td>
+            </tr>
+            <tr>
+                <td align="center"><input type="text" name="emp" readonly value="{{ ok }}"></td>
+            </tr>
+            <tr>
+                <td>
+                    {% if fname %}
+                    <audio controls autoplay>
+
+                          <source src="/static/{{ fname }}" type="audio/ogg">
+
+{#                          <source src="/static/Sunday%20Holi.mpeg" type="audio/mpeg">#}
+{#                    Your browser does not support the audio element.#}
+                    </audio>
+{#                    <video src="/static/Sunday%20Holi.mpeg" autoplay>#}
+{##}
+{#                    </video>#}
+                </td>
+            </tr>
+            <tr>
+
+            <td>
+                <a href="{% url 'like' idd=fid %}" class="btn btn-info btn-lg">
+                  <span class="glyphicon glyphicon-thumbs-up"></span> Like
+                </a>
+{#                <a href="#" class="btn btn-info btn-lg">#}
+{#                  <span class="glyphicon glyphicon-pencil"></span> Comm#}
+{#                </a>#}
+            </td>
+
+{#                <td><a href="#" class="bi bi-heart-fill"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">#}
+{#  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>#}
+{#</svg></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="bi bi-chat-left-dots"></a><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left-dots" viewBox="0 0 16 16">#}
+{#  <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>#}
+{#  <path d="M5 6a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>#}
+{#</svg>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="bi bi-share-fill"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share-fill" viewBox="0 0 16 16">#}
+{#                    <path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z"/>#}
+{#                        </svg></a></td>#}
+
+            </tr>
+            {% endif %}
+        </table>
+    </div>
+    </form>
+{% endblock %}
