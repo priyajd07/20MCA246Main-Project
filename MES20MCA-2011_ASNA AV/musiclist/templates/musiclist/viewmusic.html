@@ -1,0 +1,20 @@
+{% extends 'temp/user.html' %}
+{% block base %}
+    <table class="table">
+        <tr class="btn-primary"><td colspan="4"><center>View Music</center></td></tr>
+		<tr class="btn-primary">
+            <th>TITLE</th>
+			<th>CATEGORY</th>
+            <th>MUSIC</th>
+            <th>LIKE</th>
+		</tr>
+        {% for i in obval %}
+            <tr class="alert-light">
+			<td>{{ i.title }}</td>
+			<td>{{ i.type }}</td>
+			<td>{{ i.filename }}</td>
+            <td>{{ i.likees }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
