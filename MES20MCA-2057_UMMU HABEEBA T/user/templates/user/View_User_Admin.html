@@ -1,0 +1,35 @@
+{% extends 'temp/admin_form.html' %}
+{% block base %}
+<body>
+<center>
+	<h2>View User</h2>
+	<table class="table table-bordered text-center">
+		<tr>
+			<th>User ID</th>
+			<th>Name</th>
+			<th>Mobile No</th>
+			<th>Email</th>
+			<th>Gender</th>
+			<th>DOB</th>
+			<th>Location</th>
+			<th>Profile Pic</th>
+            <th>Status</th>
+			<th>Username</th>
+		</tr>
+		 {% for i in details %}
+		<tr>
+			<td>{{ i.u_id }}</td>
+			<td>{{ i.u_name }}</td>
+			<td>{{ i.u_mobile }}</td>
+			<td>{{ i.u_mail }}</td>
+			<td>{{ i.u_gender }}</td>
+			<td>{{ i.u_dob }}</td>
+			<td>{{ i.u_location }}</td>
+			<td><img src="/static/{{ i.u_profile_pic }}" width="70" height="70"></td>
+            <td>{{ i.u_status }}</td>
+			<td>{{ i.u_uname }}</td>
+		</tr>
+        {% endfor %}
+	</table>
+</center>
+{% endblock %}

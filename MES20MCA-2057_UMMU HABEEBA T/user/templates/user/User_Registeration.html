@@ -1,0 +1,82 @@
+{% extends 'temp/homeform.html' %}
+{% block base %}
+<body>
+	<center>
+		<h2>User Registeration</h2>
+	<form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+		<table>
+			<tr>
+				<td>Name : </td>
+				<td><input type="text" name="uname" required></td>
+			</tr>
+			<tr>
+				<td>Mobile No : </td>
+				<td><input type="text" name="umob" required></td>
+			</tr>
+			<tr>
+				<td>Email : </td>
+				<td><input type="email" name="umail" required></td>
+			</tr>
+			<tr>
+				<td>Gender : </td>
+				<td>
+					<input type="radio" name="ugen" value="Male">Male<br>
+					<input type="radio" name="ugen" value="Female">Female<br>
+					<input type="radio" name="ugen" value="Others">Others
+				</td>
+			</tr>
+			<tr>
+				<td>DOB : </td>
+				<td><input type="date" name="udob" height="30" min="mm-dd-yyyy" required></td>
+			</tr>
+			<tr>
+				<td>Location : </td>
+				<td><input type="text" name="uloc" required></td>
+			</tr>
+			<tr>
+				<td>Profile Photo : </td>
+				<td><input type="file" name="u_pic" required></td>
+			</tr>
+			<tr>
+				<td>Username : </td>
+				<td><input type="text" name="uuname" required></td>
+			</tr>
+			<tr>
+				<td>Password : </td>
+				<td><input type="password" id="upass" name="upass"  required onKeyUp='check();'></td>
+			</tr>
+			<tr>
+				<td>Confirm Password : </td>
+				<td>
+                    <input type="password" id="ucpass" name="ucpass" required  onKeyUp='check();'>
+                    <label> <span id='message'></span></label>
+                </td>
+
+			</tr>
+
+			<tr>
+				<td align="center"><input type="reset" name="reset" value="RESET" class="btn btn-primary"></td>
+				<td align="center"><input type="submit" name="submit" value="SUBMIT" class="btn btn-primary"></td>
+			</tr>
+		</table>
+	</form>
+	</center>
+
+    <script>
+     {%  if mmm %}
+        alert("{{ mmm }}")
+        {% endif %}
+     function check() {
+        if (document.getElementById('upass').value === document.getElementById('ucpass').value) {
+        document.getElementById('message').style.color = 'green';
+        document.getElementById('message').innerHTML = 'Matching';
+        } else {
+            document.getElementById('message').style.color = 'red';
+            document.getElementById('message').innerHTML = 'Not Matching';
+     }
+}
+    </script>
+{% endblock %}
+
+
