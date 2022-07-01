@@ -1,0 +1,30 @@
+{% extends 'temp/user_form.html' %}
+{% block base %}
+<body>
+<center>
+	<h2>View Post</h2>
+	<table class="table table-bordered text-center">
+		<tr>
+			<th>Profile Pic</th>
+			<th>Name</th>
+			<th>Post</th>
+			<th>Post Pic</th>
+            <th>Date</th>
+            <th>Time</th>
+		</tr>
+        {% for i in details %}
+		<tr>
+			<td><img src="/static/{{ i.u.u_profile_pic }}" width="40" height="50"></td>
+			<td>{{ i.u.u_name }}</td>
+			<td>{{ i.p_content }}</td>
+			<td><img src="/static/{{ i.p_pic }}" width="70" height="70"></td>
+            <td>{{ i.p_date }}</td>
+            <td>{{ i.p_time }}</td>
+			<td><a href="{% url 'viewCuser' i.p_id %}">View Comments</a></td>
+			<td><a href="{% url 'postComment' i.p_id %}">Create Comment</a></td>
+
+		</tr>
+        {% endfor %}
+	</table>
+</center>
+{% endblock %}

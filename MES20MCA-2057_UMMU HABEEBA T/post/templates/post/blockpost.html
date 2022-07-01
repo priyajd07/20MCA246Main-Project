@@ -1,0 +1,30 @@
+{% extends 'temp/admin_form.html' %}
+{% block base %}
+<body>
+<center>
+	<h2>Remove Post</h2>
+	<table border="1">
+		<tr>
+			<th>User ID</th>
+			<th>Name</th>
+			<th>Profile Pic</th>
+			<th>Post</th>
+			<th>Post Pic</th>
+            <th>Date</th>
+            <th>Time</th>
+		</tr>
+        {% for i in details %}
+		<tr>
+			<td>{{ i.u_id }}</td>
+			<td></td>
+			<td></td>
+			<td>{{ i.p_content }}</td>
+			<td>{{ i.p_pic }}</td>
+            <td>{{ i.p_date }}</td>
+            <td>{{ i.p_time }}</td>
+			<td><a href="">Remove</a></td>
+		</tr>
+        {% endfor %}
+	</table>
+</center>
+{% endblock %}
