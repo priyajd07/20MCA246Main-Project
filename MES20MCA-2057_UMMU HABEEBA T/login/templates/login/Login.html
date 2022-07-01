@@ -1,0 +1,36 @@
+{% extends 'temp/homeform.html' %}
+{% block base %}
+<body>
+	<center>
+		<h2>LOGIN</h2>
+		<form  method="post">
+        {% csrf_token %}
+			<table>
+				<tr>
+				<td>Username : </td>
+				<td><input type="text" name="luname"></td>
+			</tr>
+			<tr>
+				<td>Password : </td>
+				<td><input type="text" name="lpass"></td>
+			</tr>
+             <tr><td></td></tr>
+             <tr><td></td></tr>
+              <tr><td></td></tr>
+			<tr>
+                <td></td>
+				<td colspan="2" align="center"><input type="submit" name="submit" value="LOGIN" class="btn btn-outline-primary" ></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">New Here? <a href="">Register</a></td>
+			</tr>
+			</table>
+            {% if msg %}
+    <script>
+        alert("{{ msg }}")
+    </script>
+{% endif %}
+		</form>
+	</center>
+
+{% endblock %}
