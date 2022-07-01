@@ -1,0 +1,70 @@
+{% extends 'staff/staffindex.html' %}
+{% block body %}
+<body>
+<form id="form1" name="form1" method="post" action="">
+
+  <div align="center">
+    <img src="{{fn}}"/>
+  </div>
+  <table width="281" border="1" class="table table-hover">
+    <tr>
+      <td class="info" width="158"><b>#</b></td>
+      <td class="info" width="158"><b>Exam</b></td>
+      <td class="info" width="158"><b>Subject</b></td>
+      <td class="info" width="158"><b>Mark</b> </td>
+      <td class="info" width="158"><b>Grade</b></td>
+      <!--<td class="info" width="158"><b>Option4</b></td>-->
+      <!--<td class="info" width="158"><b>Answer</b></td>-->
+      <td class="info" width="158">&nbsp;</td>
+    </tr>
+    {% for i in val%}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{i[1]}}</td>
+      <td>{{i[2]}}</td>
+      <td>{{i[0]}}</td>
+
+      {% if i[0] >= 90 %}
+      <td>A+</td>
+
+      {% elif i[0] >= 80  %}
+      <td>B+</td>
+
+      {% elif i[0] >= 70  %}
+      <td>B</td>
+
+      {% elif i[0] >= 50 %}
+      <td>C+</td>
+
+      {% elif i[0] >= 40  %}
+      <td>C</td>
+
+      {% elif i[0] >= 35  %}
+      <td>D</td>
+
+      {% else %}
+      <td>Failed</td>
+
+      {% endif %}
+
+      <!--<td>{{i[7]}}</td>-->
+      <!--<td>{{i[8]}}</td>-->
+      <!--<td><p><a href="editQuestions?id={{i[1]}}">Edit</a></p>-->
+      <!--<p><a href="delq?id={{i[1]}}">Delete</a></p></td>-->
+    </tr>
+    {% endfor%}
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <!--<td><input type="submit" name="Submit" value="Add" class="btn btn-info" /></td>-->
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td><a href="#"></a></td>
+    </tr>
+  </>
+</form>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+</head>
+
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+<div id="printdivcontent" style="border: 1px dotted black; text-align: center;">
+
+      <table width="200" border="1" cellspacing="4" cellpadding="4">
+        <tr>
+          <td>Name</td>
+          <td>Subject</td>
+          <td>Marks</td>
+        </tr>
+        {% for i in val %}
+        <tr>
+          <td>{{i[0]}}</td>
+          <td>{{i[1]}}</td>
+          <td>{{i[2]}}</td>
+        </tr>
+        {% endfor %}
+      </table>
+     </div>
+      <input type="submit" name="Submit" value="Download" onclick="PrintDiv()"/>
+
+
+</form>
+</body>
+</html>
+
+<script type="text/javascript">
+        function PrintDiv() {
+            var divContents = document.getElementById("printdivcontent").innerHTML;
+            var printWindow = window.open('', '', 'height=200,width=400');
+            printWindow.document.write('<html><head><title>Print DIV Content</title>');
+            printWindow.document.write('</head><body >');
+            printWindow.document.write(divContents);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.print();
+        }
+    </script>
