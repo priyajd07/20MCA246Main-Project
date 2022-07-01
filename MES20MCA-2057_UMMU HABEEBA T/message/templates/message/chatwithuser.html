@@ -1,0 +1,34 @@
+{% extends 'temp/user_form.html' %}
+{% block base %}
+<body>
+<center>
+	<h2>Inbox</h2>
+	<table class="table table-bordered text-center">
+		<tr>
+            <th>Sender</th>
+{#			<th>Name</th>#}
+			<th>Message</th>
+            <th>Date & Time</th>
+		</tr>
+        {% for i in details %}
+		<tr>
+        <td>{{ i.sendby }}</td>
+
+			<td>{{ i.m_content }}</td>
+{#            <th><img src="/static/{{ i.m_pic }}" width="40" height="50"></th>#}
+            <td>{{ i.m_date }}<br>{{ i.m_time }}</td>
+			<td><a href="{% url 'replyU' i.m_id %}">Chat</a></td>
+		</tr>
+        {% endfor %}
+	</table>
+</center>
+
+    <script>
+        function loadSend() {
+
+        }
+        function loadReceived() {
+
+        }
+        </script>
+{% endblock %}

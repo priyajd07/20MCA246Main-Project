@@ -1,0 +1,19 @@
+{% extends 'temp/user_form.html' %}
+{% block base %}
+<body>
+<center>
+	<h2>View User Messages</h2>
+	<table class="table table-bordered text-center">
+		<tr>
+			<th>Name</th>
+			<th>Gender</th>
+		</tr>
+        {% for i in details %}
+		<tr>
+            <td><a href={% url 'chatU' idd=i.u_id %}>{{ i.u_uname }}<p>({{ i.u_id }})</p></a></td>
+			<td>{{ i.u_gender}}</td>
+		</tr>
+        {% endfor %}
+	</table>
+</center>
+{% endblock %}

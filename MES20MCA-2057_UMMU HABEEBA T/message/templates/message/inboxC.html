@@ -1,0 +1,22 @@
+{% extends 'temp/user_form.html' %}
+{% block base %}
+<body>
+<center>
+	<h2>View Counsellor Messages</h2>
+<a href="{% url 'createnewC'   %}">
+    <input type="button" name="but" value="start a new chat">
+</a>
+	<table class="table table-bordered text-center">
+		<tr>
+			<th>Name</th>
+			<th>Gender</th>
+		</tr>
+        {% for i in details %}
+		<tr>
+            <td><a href={% url 'chatC' idd=i.c_id %}>{{ i.c_name }}<p>({{ i.c_id }})</p></a></td>
+			<td>{{ i.c_gender}}</td>
+		</tr>
+        {% endfor %}
+	</table>
+</center>
+{% endblock %}

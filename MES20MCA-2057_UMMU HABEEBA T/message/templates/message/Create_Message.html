@@ -1,0 +1,34 @@
+{% extends 'temp/user_form.html' %}
+{% block base %}
+<body>
+	<center>
+		<H2>Chat</H2>
+		<form  method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+			<table>
+				<tr>
+					<td>To : </td>
+					<td>{{ details.u.u_name}}</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="left">Type your message : </td>
+				</tr>
+				<tr>
+					<td colspan="2" align="left">
+						<textarea name="mcontent" rows="7" cols="30"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2"  align="center">
+						<input type="file" name="mfile" value="Upload photo">
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2"  align="center">
+						<input type="submit" name="post" value="SEND" class="btn btn-primary">
+					</td>
+				</tr>
+			</table>
+		</form>
+	</center>
+{% endblock %}
