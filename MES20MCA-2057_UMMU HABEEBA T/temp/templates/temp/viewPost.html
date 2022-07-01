@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta name="description" content="Mobile Application HTML5 Template">
+
+  <meta name="copyright" content="MACode ID, https://www.macodeid.com/">
+
+  <title>Mobster - One page app template</title>
+
+  <link rel="shortcut icon" href="/static/assets/favicon.png" type="image/x-icon">
+
+  <link rel="stylesheet" href="/static/assets/css/maicons.css">
+
+  <link rel="stylesheet" href="/static/assets/vendor/animate/animate.css">
+
+  <link rel="stylesheet" href="/static/assets/vendor/owl-carousel/css/owl.carousel.min.css">
+
+  <link rel="stylesheet" href="/static/assets/css/bootstrap.css">
+
+  <link rel="stylesheet" href="/static/assets/css/mobster.css">
+</head>
+<body>
+{##}
+{#<nav class="navbar navbar-expand-lg navbar-dark navbar-floating">#}
+{#  <div class="container">#}
+{#    <a class="navbar-brand" href="index.html">#}
+{#      <img src="/static/assets/img/icons/mental-health.png" alt="" width="40">#}
+{#    </a>#}
+{#    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">#}
+{#      <span class="navbar-toggler-icon"></span>#}
+{#    </button>#}
+{#  #}
+{#    <div class="collapse navbar-collapse" id="navbarToggler">#}
+{#      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">#}
+{#        <li class="nav-item dropdown">#}
+{#          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>#}
+{#          <div class="dropdown-menu" aria-labelledby="navbarDropdown">#}
+{#            <a class="dropdown-item" href="index.html">Homepage 1</a>#}
+{#            <a class="dropdown-item" href="index-2.html">Homepage 2</a>#}
+{#          </div>#}
+{#        </li>#}
+{#        <li class="nav-item">#}
+{#          <a class="nav-link" href="about.html">About</a>#}
+{#        </li>#}
+{#        <li class="nav-item active">#}
+{#          <a class="nav-link" href="blog.html">Blog</a>#}
+{#        </li>#}
+{#        <li class="nav-item">#}
+{#          <a class="nav-link" href="updates.html">What's New</a>#}
+{#        </li>#}
+{#        <li class="nav-item">#}
+{#          <a class="nav-link" href="contact.html">Contact</a>#}
+{#        </li>#}
+{#      </ul>#}
+{#      <div class="ml-auto my-2 my-lg-0">#}
+{#        <button class="btn btn-primary rounded-pill">Download Now</button>#}
+{#      </div>#}
+{#    </div>#}
+{#  </div>#}
+{#</nav>#}
+
+<main>
+  <div class="page-hero-section bg-image hero-mini" style="background-image: url(/static/assets/img/hero_mini.svg);">
+    <div class="hero-caption">
+      <div class="container fg-white h-100">
+        <div class="row justify-content-center align-items-center text-center h-100">
+          <div class="col-lg-6">
+            <h3 class="mb-4 fw-medium">Blog</h3>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb breadcrumb-dark justify-content-center bg-transparent">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Blog</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 py-3">
+            {%  for i in details %}
+          <article class="blog-entry">
+            <div class="entry-header">
+              <div class="post-thumbnail">
+                <img src="/static/{{ i.p_pic }}" alt="">
+              </div>
+              <div class="post-date">
+                <h6>{{ i.p_date }}</h6>
+                  <h6>{{ i.p_time }}</h6>
+              </div>
+            </div>
+            <div class="post-title">{{ i.u.u_name }}</div>
+              <div class="meta-item">
+                <a href={% url 'viewc' i.p_id %}>Comments</a>
+              </div>
+            <div class="entry-content">
+              <p>{{ i.p_content }}</p>
+            </div>
+          </article>
+            {% endfor %}
+{#          <article class="blog-entry">#}
+{#            <div class="entry-header">#}
+{#              <div class="post-thumbnail">#}
+{#                <img src="/static/assets/img/blogs/blog_5.jpg" alt="">#}
+{#              </div>#}
+{#              <div class="post-date">#}
+{#                <h3>20</h3>#}
+{#                <span>Feb</span>#}
+{#              </div>#}
+{#            </div>#}
+{#            <div class="post-title"><a href="blog-details.html">Duis feugiat neque sed dolor cursus, sed lacinia nisl pretium</a></div>#}
+{#            <div class="entry-meta mb-2">#}
+{#              <div class="meta-item entry-author">#}
+{#                <div class="icon">#}
+{#                  <span class="mai-person"></span>  #}
+{#                </div>#}
+{#                by <a href="#">Admin</a>#}
+{#              </div>#}
+{#              <div class="meta-item">#}
+{#                <div class="icon">#}
+{#                  <span class="mai-pricetags"></span>#}
+{#                </div>#}
+{#                Category: #}
+{#                <a href="#">Business</a>, #}
+{#                <a href="#">Finances</a>#}
+{#              </div>#}
+{#              <div class="meta-item">#}
+{#                <div class="icon">#}
+{#                  <span class="mai-chatbubble-ellipses"></span>#}
+{#                </div>#}
+{#                <a href="#">24 Comments</a>#}
+{#              </div>#}
+{#            </div>#}
+{#            <div class="entry-content">#}
+{#              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima quo officia tenetur hic facere animi doloremque adipisci, fugiat ratione corrupti eius amet exercitationem dolorem inventore eum et placeat, sunt ducimus.</p>#}
+{#            </div>#}
+{#            <a href="#" class="btn btn-primary">Continue Reading</a>#}
+{#          </article>#}
+{##}
+{#          <article class="blog-entry">#}
+{#            <div class="entry-header">#}
+{#              <div class="post-thumbnail">#}
+{#                <img src="/static/assets/img/blogs/blog_6.jpg" alt="">#}
+{#              </div>#}
+{#              <div class="post-date">#}
+{#                <h3>06</h3>#}
+{#                <span>Jan</span>#}
+{#              </div>#}
+{#            </div>#}
+{#            <div class="post-title"><a href="blog-details.html">Duis feugiat neque sed dolor cursus, sed lacinia nisl pretium</a></div>#}
+{#            <div class="entry-meta mb-2">#}
+{#              <div class="meta-item entry-author">#}
+{#                <div class="icon">#}
+{#                  <span class="mai-person"></span>  #}
+{#                </div>#}
+{#                by <a href="#">Admin</a>#}
+{#              </div>#}
+{#              <div class="meta-item">#}
+{#                <div class="icon">#}
+{#                  <span class="mai-pricetags"></span>#}
+{#                </div>#}
+{#                Category: #}
+{#                <a href="#">Business</a>, #}
+{#                <a href="#">Finances</a>#}
+{#              </div>#}
+{#              <div class="meta-item">#}
+{#                <div class="icon">#}
+{#                  <span class="mai-chatbubble-ellipses"></span>#}
+{#                </div>#}
+{#                <a href="#">0 Comments</a>#}
+{#              </div>#}
+{#            </div>#}
+{#            <div class="entry-content">#}
+{#              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima quo officia tenetur hic facere animi doloremque adipisci, fugiat ratione corrupti eius amet exercitationem dolorem inventore eum et placeat, sunt ducimus.</p>#}
+{#            </div>#}
+{#            <a href="#" class="btn btn-primary">Continue Reading</a>#}
+{#          </article>#}
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</main>
+
+
+
+<script src="/static/assets/js/jquery-3.5.1.min.js"></script>
+
+<script src="/static/assets/js/bootstrap.bundle.min.js"></script>
+
+<script src="/static/assets/vendor/owl-carousel/js/owl.carousel.min.js"></script>
+
+<script src="/static/assets/vendor/wow/wow.min.js"></script>
+
+<script src="/static/assets/js/mobster.js"></script>
+
+</body>
+</html>
