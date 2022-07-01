@@ -798,40 +798,23 @@ def video_upload():
     return '''<script> alert("success");window.location="/staff_home"</script>'''
 
 
-
+# add_attendance
 
 @app.route('/view_attendance')
 def view_attendance():
     q="SELECT * FROM student_table"
     res=selectall(q)
     print(res)
+
+    res1 = selectall("select attendance.*,student_table.first_name from attendance,student_table where attendance.sid = student_table.id")
     ress=[]
     for i in res:
         row=[i[0],i[1],i[2]]
         ress.append(row)
-    return render_template("staff/view attendance.html",val=ress,b=res)
+    return render_template("staff/view attendance.html",val=ress,b=res,data = res1)
 
 
-@app.route('/view_time_schedule')
-@login_required
 
-def view_time_schedule():
-    lid=session['ln']
-    qry="SELECT `allocation`.`subid`,`subject_table`.* FROM `subject_table` JOIN `allocation` ON `allocation`.`subid`=`subject_table`.`id` WHERE `allocation`.`staffid`=%s"
-    val=str(lid)
-    print(val)
-    v=selectone(qry,val)
-    sem=v[3]
-    q="SELECT * FROM `timetable` WHERE sem=%s"
-    val=sem
-    res=selectall2(q,val)
-    # qry=""
-    # day=selectall(qry)
-    # if day=="1":
-    #     day="monday"
-    # elif day=="2":
-    #     day=
-    return render_template("staff/view time schedule.html",val=res)
 
 
 
@@ -906,13 +889,7 @@ def allocate_tt():
 
 
 
-@app.route('/view_answer')
-@login_required
 
-def view_answer():
-    q="SELECT `student_table`.*,`subject_table`.*,`allocation`.*,`answer`.*,`exam`.`id` FROM `exam` JOIN `answer` ON `answer`.`exam_id`=`exam`.`id` JOIN `allocate` ON `allocation`.`tea_id`=`exam`.`staffid` INNER JOIN `subject_table` ON `subject_table`.`id`=`exam`.`sid` JOIN `student_table` ON `student_table`.`login_id`=`answer`.`student_id`"
-    res=selectall(q)
-    return render_template("staff/view answer.html",val=res)
 
 @app.route('/Add_and_Manage_exam')
 @login_required
@@ -1012,6 +989,72 @@ def edit2Questions():
     val=(questions,option1,option2,option3,option4,answer,session['id'])
     iud(qry,val)
     return '''<script> alert("updated");window.location="Add_and_Manage_exam"</script>'''
+
+
+
+
+@app.route('/view_answer')
+@login_required
+
+def view_answer():
+
+    qry="SELECT student_table.first_name,subject_table.subject,exam.exam_name,exam.date,marks.`marks` FROM student_table,subject_table,`exam`,`marks` WHERE `marks`.lid=student_table.login_id AND `subject_table`.`id` = `exam`.`sid` AND `marks`.lid = `student_table`.`login_id`"
+
+    # q="SELECT `student_table`.*,`subject_table`.*,`allocation`.*,`answer`.*,`exam`.`id` FROM `exam` JOIN `answer` ON `answer`.`exam_id`=`exam`.`id` JOIN `allocate` ON `allocation`.`tea_id`=`exam`.`staffid` INNER JOIN `subject_table` ON `subject_table`.`id`=`exam`.`sid` JOIN `student_table` ON `student_table`.`login_id`=`answer`.`student_id`"
+    res=selectall(qry)
+    print(res)
+    return render_template("staff/view answer.html",val=res)
+
+
+
+#view attendance
+
+
+@app.route('/view_time_schedule')
+@login_required
+def view_time_schedule():
+    lid=session['ln']
+    q="SELECT `timetable`.*,`course_table`.`course` FROM `timetable` JOIN `course_table` ON `course_table`.`id`=`timetable`.`courseid`"
+    res=selectall(q)
+
+    # qry=""
+    # day=selectall(qry)
+    # if day=="1":
+    #     day="monday"
+    # elif day=="2":
+    #     day=
+    return render_template("staff/view time schedule.html",val=res)
+
+
+
+@app.route('/view_student_performance')
+@login_required
+def view_student_performance():
+    id = request.args.get('id')
+    res=selectall("select  marks.marks, exam.exam_name , subject_table.subject from marks,exam,subject_table where marks.eid = exam.id and exam.sid = subject_table.id and marks.lid = '"+str(id)+"'")
+    x=[]
+    y=[]
+    for i in range(0,len(res)):
+        x.append(i+1)
+        y.append(res[i][0])
+    import matplotlib.pyplot as plt
+    import numpy as np
+
+    # Define X and Y variable data
+
+
+    plt.plot(x, y)
+    plt.xlabel("Sl. No")  # add X-axis label
+    plt.ylabel("Mark")  # add Y-axis label
+    plt.title("Student Perfomance")  # add title
+    from datetime import datetime
+    fn=datetime.now().strftime("%Y%m%d%H%M%S")+".png"
+    plt.savefig("static/graph/"+fn)
+    plt.close()
+
+    return render_template("staff/view_performance.html", val=res,fn="../static/graph/"+fn)
+
+
 
 app.run(debug=True)
 
