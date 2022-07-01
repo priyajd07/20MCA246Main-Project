@@ -1,0 +1,28 @@
+{% extends 'temp/user_form.html' %}
+{% block base %}
+<body>
+<center>
+	<h2>Add Friends</h2>
+	<table class="table table-bordered text-center">
+		<tr>
+{#            <th>Profile Pic</th>#}
+			<th>Name</th>
+			<th>Gender</th>
+			<th>DOB</th>
+			<th>Location</th>
+
+		</tr>
+        {% for i in details %}
+		<tr>
+{#            <td><a href={% url 'viewProfile' idd=i.u_id %}><img src="/static/{{ i.f_profile_pic }}" width="70" height="70"></a></td>#}
+{#            <td><a href={% url 'viewProfile' idd=i.u_id %}>{{ i.f_name }}</a></td>#}
+			<td>{{ i.u_name }}</td>
+            <td>{{ i.u_gender }}</td>
+			<td>{{ i.u_dob}}</td>
+			<td>{{ i.u_location }}</td>
+			<td><a href="{% url 'fReequest' idd=i.u_id %}">Add Friend</a></td>
+		</tr>
+        {% endfor %}
+	</table>
+</center>
+{% endblock %}

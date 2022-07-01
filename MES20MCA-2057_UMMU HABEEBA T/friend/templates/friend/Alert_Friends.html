@@ -1,0 +1,30 @@
+{% extends 'temp/admin_form.html' %}
+{% block base %}
+<body>
+<center>
+	<h2>Alert Friends</h2>
+	<table class="table table-bordered text-center">
+		<tr>
+			<th>User ID</th>
+            <th>Profile Pic</th>
+			<th>Name</th>
+            <th>Mobile Number</th>
+			<th>Gender</th>
+
+		</tr>
+        {% for k in details %}
+		<tr>
+			<td>{{ k.u_id }}</td>
+            <td><img src="/static/{{ k.u_profile_pic }}" width="70" height="70"></td>
+			<td>{{ k.u_name }}</td>
+            <td>{{ k.u_mobile }}</td>
+			<td>{{ k.u_gender }}</td>
+            {% for i in fr %}
+            <td><a href="{% url 'alertmessage' idd=k.u_id isd=i.f_name %}">Alert</a></td>
+        {% endfor %}
+		</tr>
+        {% endfor %}
+	</table>
+</center>
+</body>
+{% endblock %}

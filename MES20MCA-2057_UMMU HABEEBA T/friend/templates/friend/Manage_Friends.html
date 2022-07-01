@@ -1,0 +1,32 @@
+{% extends 'temp/user_form.html' %}
+{% block base %}
+<body>
+<center>
+	<h2>Manage Friends</h2>
+	<table class="table table-bordered text-center">
+		<tr>
+            <th>Profile Pic</th>
+			<th>Name</th>
+			<th>Gender</th>
+			<th>DOB</th>
+			<th>Location</th>
+
+		</tr>
+        {% for i in details %}
+		<tr>
+            <td><img src="/static/{{ i.u.u_profile_pic }}" width="70" height="70"></td>
+			<td>{{ i.u.u_uname }}</td>
+			<td>{{ i.u.u_gender }}</td>
+			<td>{{ i.u.u_dob }}</td>
+			<td>{{ i.u.u_location }}</td>
+			<td>
+				<a href="{% url 'fAccept' i.req_id %}">Accept</a>
+            </td>
+            <td>
+				<a href="{% url 'fReject' i.req_id %}">Reject</a>
+			</td>
+		</tr>
+        {% endfor %}
+	</table>
+</center>
+{% endblock %}
