@@ -1,0 +1,13 @@
+{% load static watermark %}
+<html>
+  <head></head>
+  <body>
+    <h2 align="center">DIGITAL WATERMARKING </h2>
+    {% with "/media/img.JPG" as url_path %}
+      <img src="{{ url_path|watermark:"sample,scale=R78%,tile=1,greyscale=0,position=tr,opacity=50" }}" />
+
+
+    {% endwith %}
+
+  </body>
+</html>

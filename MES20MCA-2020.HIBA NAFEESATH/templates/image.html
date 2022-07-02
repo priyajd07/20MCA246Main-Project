@@ -1,0 +1,39 @@
+{% block content %}
+{% load static %}
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <h1 align="center" style="color:rgba(6, 6, 6, 0.769) ;">UPLOAD IMAGE</h1>
+</head>
+    <body align="center" background="{% static 'Upl.png' %}" style="color:rgb(7, 7, 7);font-size: 25px;">
+  <br><br><br>      
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+   <input type="file" name="myfile">
+   <br><br>
+   <button type="submit" >UPLOAD</button>
+</form>
+
+{% if uploaded %}
+<p> DOWNLOAD DECRYPTED FILE<a href="{{ uploaded }}">{{ uploaded }}</a></p>
+<html>
+<head>
+    <title>Download Files</title>
+</head>
+<body>
+    {% for i in context %}
+    <p>DOWNLOAD ENCRYPTED<a href="media/{{uploaded}}" download>downl</a></p>
+    <p>see water mark<a href="index1/">download</a></p>
+    {% endfor %}
+    <p>DOWNLOAD ENCRYPTED FILE<a href="index1/">click here</a></p>
+
+</body>
+</html>
+
+{% endif %}
+<p><a  style="color:rgb(12, 3, 3);font-size: 20px;" href="{% url 'home' %}">BACK</a></p>
+
+
+{% endblock %}
+
+</body>
+</html>

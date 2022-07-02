@@ -1,0 +1,101 @@
+{% load static %}
+<html>
+<head>
+<title>registration form</title>
+<style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      
+    }
+    
+    .topnav {
+      overflow: hidden;
+      background-color: #333;
+    }
+    
+    .topnav a {
+      float: left;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+    }
+    
+    .topnav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+    
+    .topnav a.active {
+      background-color: #04AA6D;
+      color: white;
+    }
+    </style>
+</head>
+<body background="{% static 'watermark-ocean.jpg' %}" class="layout-default">
+    <div class="topnav">
+        <a class="active" href="/index">HOME</a>
+        
+      </div>
+<label>
+
+<h1 ALIGN="CENTER" style="color:rgb(5, 4, 4);font-size: 40px;position: relative;top: 100px;">Registration form</h1>
+<br>
+<br>
+<br>
+<br>
+<form action="" method="POST">
+{% csrf_token %}
+<table border="0" align="center">
+<tbody style="color:rgb(8, 8, 10);font-size: 25px;">
+
+
+
+<tr>
+<td><label for="firstname">First Name: </label></td>
+<td><input id="firstname" maxlength="50" name="firstname" type="text" /></td>
+</tr>
+
+<tr>
+    <td><label for="lastname">Last Name: </label></td>
+    <td><input id="lastname" maxlength="50" name="lastname" type="text" /></td>
+</tr>
+    
+
+
+<tr>
+<td><label for="email">Email:</label></td>
+<td><input id="email" maxlength="50" name="email" type="text" /></td>
+</tr>
+
+<tr>
+<td><label for="username">UserName:</label></td>
+<td><input id="username" maxlength="50" name="username" type="text" /></td>
+</tr>
+
+
+<tr>
+<td><label for="password">Password:</label></td>
+<td><input id="password" maxlength="50" name="password"
+type="password" /></td>
+</tr>
+<tr>
+<td><label for="phone">phone:</label></td>
+<td><input id="phone" maxlength="50" name="phone"
+type="phone" /></td>
+</tr>
+ <br>
+ <br>
+
+<tr>
+<td align="right"><input name="Submit" type="Submit" value="REGISTER" style="color:rgb(8, 8, 8);font-size: 20px;" /></td>
+</tr>
+
+</tbody>
+</table>
+</form>
+</label>
+</body>
+</html>
