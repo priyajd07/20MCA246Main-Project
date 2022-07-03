@@ -25,7 +25,7 @@ CREATE TABLE `allocation` (
   `subid` int(11) DEFAULT NULL,
   `staffid` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Data for the table `allocation` */
 
@@ -33,7 +33,8 @@ insert  into `allocation`(`id`,`subid`,`staffid`) values
 (2,0,30),
 (4,1,30),
 (5,11,32),
-(6,2,30);
+(6,2,30),
+(7,13,30);
 
 /*Table structure for table `answer` */
 
@@ -96,7 +97,7 @@ CREATE TABLE `chat` (
   `msg` varchar(40) DEFAULT NULL,
   `date` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 /*Data for the table `chat` */
 
@@ -105,7 +106,10 @@ insert  into `chat`(`id`,`fromid`,`toid`,`msg`,`date`) values
 (2,30,9,'anjana','2022-05-27'),
 (3,30,9,'anjana','2022-05-27'),
 (4,30,9,'submit it','2022-05-27'),
-(5,30,9,'hai','2022-05-27');
+(5,30,9,'hai','2022-05-27'),
+(6,9,30,'Haa hello','2022-06-27'),
+(7,9,30,'hi varsha','2022-06-27'),
+(8,9,30,'hai surya','2022-06-27');
 
 /*Table structure for table `course_table` */
 
@@ -136,12 +140,13 @@ CREATE TABLE `exam` (
   `exam_name` varchar(100) DEFAULT NULL,
   `duration` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `exam` */
 
 insert  into `exam`(`id`,`sid`,`date`,`time`,`exam_name`,`duration`) values 
-(1,1,'2022-06-07','14:55','second series','1 hr');
+(2,13,'2022-06-26','21:30','First series','1 hr'),
+(4,13,'2022-06-27','19:55','second series','1 hr');
 
 /*Table structure for table `examnotification` */
 
@@ -169,7 +174,7 @@ CREATE TABLE `login` (
   `type` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 
 /*Data for the table `login` */
 
@@ -181,7 +186,8 @@ insert  into `login`(`id`,`username`,`password`,`type`) values
 (23,'amirtha','amirtha','student'),
 (30,'vasudevan','vasu','staff'),
 (31,'aswathy','aswathy','student'),
-(32,'jalaja','jalaja','staff');
+(32,'jalaja','jalaja','staff'),
+(33,'varsha','varsha','student');
 
 /*Table structure for table `marks` */
 
@@ -193,9 +199,18 @@ CREATE TABLE `marks` (
   `eid` int(11) DEFAULT NULL,
   `marks` int(11) DEFAULT NULL,
   PRIMARY KEY (`Markid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Data for the table `marks` */
+
+insert  into `marks`(`Markid`,`lid`,`eid`,`marks`) values 
+(1,9,2,1),
+(2,9,2,0),
+(3,9,2,0),
+(4,9,2,0),
+(5,9,2,0),
+(6,9,2,0),
+(7,9,2,1);
 
 /*Table structure for table `pics` */
 
@@ -206,17 +221,13 @@ CREATE TABLE `pics` (
   `stud_id` int(11) DEFAULT NULL,
   `pic` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 /*Data for the table `pics` */
 
 insert  into `pics`(`id`,`stud_id`,`pic`) values 
-(1,6,'aa.jpg'),
-(2,7,'user.jpg'),
-(4,9,'2022-01-25-16-52-08-700.jpg'),
-(8,22,'MAnikandan.jpg'),
-(9,23,'2022-01-25-16-52-08-700.jpg'),
-(10,31,'2022-01-25-16-52-08-700.jpg');
+(10,9,'anjana.jpg'),
+(11,33,'varsha.jpg');
 
 /*Table structure for table `questions` */
 
@@ -232,14 +243,21 @@ CREATE TABLE `questions` (
   `option4` text,
   `answer` text,
   PRIMARY KEY (`Qid`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 /*Data for the table `questions` */
 
 insert  into `questions`(`Qid`,`exam_id`,`question`,`option1`,`option2`,`option3`,`option4`,`answer`) values 
-(1,1,'Which of the following is generally used for performing tasks like creating the structure of the relations, deleting relation?','DML(Data Manipulation Language)','Query','Relational Schema','DDL(Data Definition Language)','DDL(Data Definition Language)'),
-(3,1,'A Database Management System is a type of _________software?','It is a type of system software','It is a kind of application software','It is a kind of general software','Both A and C','It is a type of system software'),
-(4,1,'What do you mean by one to many relationships?','One class may have many teachers','One teacher can have many classes','Many classes may have many teachers','Many teachers may have many classes','One teacher can have many classes');
+(1,4,'Dijkstraâ€™s algorithm is used to solve __________  problems?','Network lock','Single source shortest path','All pair shortest path','Sorting','Single source shortest path'),
+(2,4,'The Bellmann Ford Algorithm returns __________  value?','String','Boolean','Double','Integer','Boolean'),
+(3,4,'Which of the following is used for solving the N Queens Problem?','Greedy Algorithm','Dynamic Programming','Backtracking','Sorting','Backtracking'),
+(4,4,' Representation of data structure in memory is known as?','Storage structure','File Structure','Recursive','Abstract Data Type','Abstract Data Type'),
+(5,4,'Which of the following sorting algorithms provide the best time complexity in the worst-case scenario?','Merge Sort','Quick Sort','Bubble Sort','Selection Sort','Merge Sort'),
+(6,4,'Which of the following data structure is used to perform recursion?','Linked List','Array','Queue','Stack','Queue'),
+(7,4,'In what time complexity can we find the diameter of a binary tree optimally?','O(V+E)','O(V)','O(E)','O(V*logE)','O(V+E)'),
+(8,4,'The worst-case time complexity of Quicksort is?','O(n)','O(1)','O(log2n)','O(n^2)','O(n^2)'),
+(9,4,'Which of the following is the efficient data structure for searching words in dictionaries?','BST','Linked List','Balanced BST','Trie','Trie'),
+(10,4,'A dictionary has a set of ------- and each key has a single associated value.?','Keys','Index','Both keys and index','None of the above','Keys');
 
 /*Table structure for table `staff` */
 
@@ -289,15 +307,13 @@ CREATE TABLE `student_table` (
   `semester` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`,`phone`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 /*Data for the table `student_table` */
 
 insert  into `student_table`(`id`,`login_id`,`first_name`,`middle_name`,`last_name`,`dob`,`gender`,`course`,`place`,`post`,`pin`,`phone`,`email`,`date_of_admision`,`semester`) values 
-(4,9,'anjana','m','s','2019-12-10','female',5,'vattamkulam','vattamkulam',679578,7902613267,'anjanamsmangarath@gmail.com','2022-03-02','3'),
-(11,22,'Manikandan','M','S','2000-01-01','male',6,'ponnani','ponnani',679578,9856762310,'manikandanman@gmail.com','2022-02-19','1'),
-(12,23,'amirtha','m','c','2019-12-03','female',2,'kozhikod','kozhikod',678745,9567048450,'amirtha@gmail.com','2022-05-09','1'),
-(13,31,'aswathy','m','d','2019-12-03','female',2,'velliyancode','velliyancode',675432,9656784519,'aswathy@gmail.com','2022-05-25','6');
+(4,9,'anjana','m','s','2019-12-10','female',5,'vattamkulam','vattamkulam',679578,7902613267,'anjanamsmangarath@gmail.com','2022-03-02','4'),
+(14,33,'Varsha','priyesh','c','2019-12-03','female',5,'ponnani','ponnani',679456,7867453678,'varshapriyesh2000@gmail.com','2020-02-22','4');
 
 /*Table structure for table `study_material` */
 
@@ -341,18 +357,16 @@ CREATE TABLE `subject_table` (
   `subject` varchar(20) NOT NULL,
   `description` varchar(40) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 /*Data for the table `subject_table` */
 
 insert  into `subject_table`(`id`,`course_id`,`semester`,`subject`,`description`) values 
 (1,1,'1','Descrete Maths','1st Semester BCA subject'),
-(2,1,'1','HTML','first sem subject'),
-(7,3,'5','Statistics','bcom'),
-(8,6,'1','finance','Mcom'),
-(9,4,'2','zeitgiest','english'),
-(11,5,'1','Data Structure','First sem subject'),
-(12,5,'1','software engineering','First sem subject');
+(2,1,'1','HTML','first sem BCA subject'),
+(11,5,'1','Data Structure','First sem MCA subject'),
+(12,5,'1','software engineering','First sem MCA subject'),
+(13,5,'4','DAA','Third sem MCA subject');
 
 /*Table structure for table `timetable` */
 
@@ -364,13 +378,14 @@ CREATE TABLE `timetable` (
   `courseid` int(11) DEFAULT NULL,
   `sem` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `timetable` */
 
 insert  into `timetable`(`timetable`,`id`,`courseid`,`sem`) values 
 ('09-ANJANA_MS.pdf',1,1,'2'),
-('20191026_195054.jpg',2,5,'2');
+('20191026_195054.jpg',2,5,'2'),
+('Receipt_500.pdf',3,5,'2');
 
 /*Table structure for table `video` */
 
@@ -383,13 +398,12 @@ CREATE TABLE `video` (
   `Topic` varchar(30) DEFAULT NULL,
   `video` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `video` */
 
 insert  into `video`(`id`,`staffid`,`subid`,`Topic`,`video`) values 
-(1,30,4,'scalarmatrix','video_1548940386000.mp4'),
-(2,30,4,'scalarmatrix','video_1548940386000.mp4');
+(3,30,13,'FirstVideo','video_1548940386000.mp4');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
