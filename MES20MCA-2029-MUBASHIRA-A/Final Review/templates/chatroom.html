@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chat Room</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+</head>
+<body>
+<style>
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            padding-top: 50px;
+            display: flex;
+            height: 100vh;
+            background: rgb(234, 221, 221);
+            flex-direction: column;
+        }
+
+        .header {
+            padding: 10px 5%;
+            background: green;
+            color: rgb(240, 236, 236);
+        }
+
+        .messages-area {
+            height: 100%;
+            min-height: 70vh;
+            overflow-y: auto;
+            padding: 4%;
+            background: wheat;
+            color: blue;
+            padding-bottom: 10px;
+        }
+
+        .input-area {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        #message-input {
+            padding: 20px;
+            width: 100%;
+        }
+
+        #send-btn {
+            padding: 20px 40px;
+            background: green;
+            color: white;
+        }
+        .message.left{
+            text-align: left;
+            color: black;
+        }
+        .message.right {
+            text-align: right;
+            color: black;
+        }
+        .message .content{
+            background: white;
+            padding: 5px 10px;
+            border-radius: 10px;
+            max-width: 80%;
+            display: inline-block;
+        }
+
+    </style>
+
+
+<body>
+    {% if user.is_authenticated %}
+    <div class="container-fluid">
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-8">
+            <div class="header"><b>{{ other_user.username }}</b></div>
+    <div class="messages-area">
+        {% for message in messages %}
+        <div class="message 
+        {% if message.sender == request.user %}right{% else %}left{% endif %}
+        ">
+            <div class="sent-by">{{ message.sender.username }}</div>
+            <div class="content">{{ message.message }}</div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="input-area">
+        <input type="text" id="message-input" placeholder="Typing...">
+        <button id="send-btn"><b> Send</b></button>
+    </div>
+        </div>
+    </div>
+    {% else %}
+    <center style="padding-top: 250px;">
+    <h2>You need to login to View this content. Please <b><a href="{% url 'login'%}">Login</a></h2>
+    </center>
+    {% endif %}
+    </body>
+    
+<script>
+    let message_send_btn = document.getElementById("send-btn");
+    let message_input = document.getElementById("message-input");
+    function send_message() {
+        let message = message_input.value;
+        if (message === "") {
+            return;
+        }
+        message_input.value = "";
+        fetch("{% url 'chatroom-ajax' other_user.id %}",
+            {
+                method: "POST",
+                credentials: 'same-origin',
+                headers: {
+                    "Content-Type": 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify(message)
+            }
+        ).then(e => e.json()).then(messages => {
+            for (message of messages) {
+                construct_message(message);
+            }
+        });
+    }
+
+    function load_messages() {
+        fetch("{% url 'chatroom-ajax' other_user.id %}")
+            .then(e => e.json())
+            .then(messages => {
+                console.log(messages)
+                for (message of messages) {
+                    construct_message(message);
+                }
+            })
+    }
+
+    function construct_message(message){
+        let messages_container = document.querySelector(".messages-area");
+        let class_name = "left"
+        if (message.sent){
+            class_name = "right"
+        }
+        let div = document.createElement("div");
+        div.classList.add("message", class_name);
+        div.innerHTML = `
+        <div class="sent-by">${ message.sender }</div>
+            <div class="content">${ message.message }</div>
+        `
+        messages_container.appendChild(div);
+        div.scrollIntoView()
+    }
+    document.addEventListener('change', send_message);
+    setInterval(load_messages, 2000);
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+</html>

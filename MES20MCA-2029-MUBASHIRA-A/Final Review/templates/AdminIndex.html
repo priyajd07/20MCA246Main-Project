@@ -1,0 +1,199 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Admin Panel</title>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<link href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all">
+<!-- Custom Theme files -->
+<link href="{% static 'assets/css/style.css' %}" rel="stylesheet" type="text/css" media="all"/>
+<!--js-->
+<script src="{% static 'assets/js/jquery-2.1.1.min.js' %}"></script> 
+
+</head>
+<body>	
+{% if request.user.is_superuser %}
+	<div class="page-container">	
+   		<div class="left-content">
+	   		<div class="mother-grid-inner">
+            <!--header start here-->
+				<div class="header-main">
+					<div class="header-left">
+							<div class="logo-name">
+									 <a href=""> <h1>Admin Panel</h1>  </a> 								
+							</div>
+							<!--search-box-->
+							<div class="search-box">
+								<form>
+									<input type="text" placeholder="Search..." required="">	
+									<input type="submit" value="">					
+								</form>
+								</div><!--//end-search-box-->
+					</div>
+						 <!-- <div class="mt-5"> <h3> <a href="#"><i class="fa fa-sign-out"></i> LOGOUT</a> </h3></div> -->
+						 
+							<!--notification menu end -->
+					<div class="profile_details">		
+						<ul>
+							<li class="dropdown profile_details_drop">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+									<div class="profile_img">	
+										<span class="prfil-img"><img src="{% static 'assets/images/p1.png' %}" alt=""> </span> 
+											<div class="user-name">
+												<p>{{request.user}}</p>
+												<span>Administrator</span>
+												</div>
+												<i class="fa fa-angle-down lnr"></i>
+												<i class="fa fa-angle-up lnr"></i>
+												<div class="clearfix"></div>	
+											</div>	
+										</a>
+										<ul class="dropdown-menu drp-mnu">
+											<li> <a href="#"><i class="fa fa-cog"></i> Settings</a> </li> 
+											<li> <a href="#"><i class="fa fa-user"></i> Profile</a> </li> 
+											<li> <a href="{% url 'logout' %}"><i class="fa fa-sign-out"></i> Logout</a> </li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+							<div class="clearfix"> </div>				
+						</div>
+				     <div class="clearfix"> </div>	
+				</div>
+<!--heder end here-->
+<!-- script-for sticky-nav -->
+
+		<!-- /script-for sticky-nav -->
+<!--inner block start here-->
+<div class="inner-block">
+<!--market updates updates-->
+	 <div class="market-updates">
+			<div class="col-md-4 market-update-gd">
+				<div class="market-update-block clr-block-1">
+					<div class="col-md-8 market-update-left">
+						<h3>{{user}}</h3>
+						<a href="{% url 'userlist' %}"><h4>Registered User</h4></a>
+						
+					</div>
+					<div class="col-md-4 market-update-right">
+						<i class="fa fa-file-text-o"> </i>
+					</div>
+				  <div class="clearfix"> </div>
+				</div>
+			</div>
+			<div class="col-md-4 market-update-gd">
+				<div class="market-update-block clr-block-2">
+				 <div class="col-md-8 market-update-left">
+					<h3>{{qns}}</h3>
+					<a href="{% url 'qnlist' %}"><h4>Total Questions</h4></a>
+				  </div>
+					<div class="col-md-4 market-update-right">
+						<i class="fa fa-eye"> </i>
+					</div>
+				  <div class="clearfix"> </div>
+				</div>
+			</div>
+			<div class="col-md-4 market-update-gd">
+				<div class="market-update-block clr-block-3">
+					<div class="col-md-8 market-update-left">
+						<h3>{{pending}}</h3>
+						<a href="{% url 'pendinglist' %}"><h4>Pending Answers</h4></a>
+					</div>
+					<div class="col-md-4 market-update-right">
+						<i class="fa fa-envelope-o"> </i>
+					</div>
+				  <div class="clearfix"> </div>
+				</div>
+			</div>
+		   <div class="clearfix"> </div>
+		</div>
+<!--market updates end here-->
+<!--mainpage chit-chating-->
+<div class="chit-chat-layer1">
+	<div class="col-md-6 chit-chat-layer1-left">
+               
+             </div>
+      </div>
+      
+</div>
+
+
+</div>
+<!--inner block end here-->
+
+</div>
+</div>
+<!--slider menu-->
+    <div class="sidebar-menu">
+		  	<div class="logo"> <a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span> </a> <a href="#"> <span id="logo" ></span> 
+			      <!--<img id="logo" src="" alt="Logo"/>--> 
+			  </a> </div>		  
+		    <div class="menu">
+		      <ul id="menu" >
+		        <li id="menu-home" ><a href="{% url 'dash' %}"><i class="fa fa-tachometer"></i><span>Dashboard</span></a></li>
+		      
+		          <li><a href="{% url 'addcategory' %}"><i class="fa fa-map-marker"></i><span>Add Categories</span></a></li>
+		        <li id="menu-academico" ><a href="#"><i class="fa fa-file-text"></i><span>Pages</span><span class="fa fa-angle-right" style="float: right"></span></a>
+		          <ul id="menu-academico-sub" >
+		          	 <li id="menu-academico-boletim" ><a href="{% url 'login' %}">Login</a></li>
+		            <li id="menu-academico-avaliacoes" ><a href="{% url 'register' %}">Sign Up</a></li>		           
+		          </ul>
+		        </li>		        
+		         <li><a href="#"><i class="fa fa-cog"></i><span>System</span><span class="fa fa-angle-right" style="float: right"></span></a>
+		         	 <ul id="menu-academico-sub" >
+			            <li id="menu-academico-avaliacoes" ><a href="404.html">404</a></li>
+			            <li id="menu-academico-boletim" ><a href="blank.html">Blank</a></li>
+		             </ul>
+		         </li>
+				 <li><a href="{% url 'logout' %}"><i class="fa fa-bar-chart"></i><span>Logout</span></a></li>
+
+		      </ul>
+		    </div>
+	 </div>
+	<div class="clearfix"> </div>
+</div>
+{% else %}
+<center style="padding-top: 250px;">
+    <h2><b> You are not Authourized</b></h2>
+  </center>
+{% endif %}
+<!--slide bar menu end here-->
+<script>
+	$(document).ready(function() {
+			 var navoffeset=$(".header-main").offset().top;
+			 $(window).scroll(function(){
+				var scrollpos=$(window).scrollTop(); 
+				if(scrollpos >=navoffeset){
+					$(".header-main").addClass("fixed");
+				}else{
+					$(".header-main").removeClass("fixed");
+				}
+			 });
+			 
+		});
+var toggle = true;
+            
+$(".sidebar-icon").click(function() {                
+  if (toggle)
+  {
+    $(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
+    $("#menu span").css({"position":"absolute"});
+  }
+  else
+  {
+    $(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
+    setTimeout(function() {
+      $("#menu span").css({"position":"relative"});
+    }, 400);
+  }               
+                toggle = !toggle;
+            });
+</script>
+<!--scrolling js-->
+		<script src="{% static 'assets/js/jquery.nicescroll.js' %}"></script>
+		<script src="{% static 'assets/js/scripts.js' %}"></script>
+		<!--//scrolling js-->
+<script src="{% static 'assets/js/bootstrap.js' %}"> </script>
+<!-- mother grid end here-->
+</body>
+</html>                     

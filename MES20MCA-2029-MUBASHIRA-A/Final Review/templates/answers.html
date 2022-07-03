@@ -1,0 +1,318 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>UNO</title>
+
+    <link href="//fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/26c7990586.js" crossorigin="anonymous"></script>
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/style-starter.css' %}">
+</head>
+
+<body>
+    <!-- header -->
+    <header class="w3l-header">
+        <div class="container">
+            <!--/nav-->
+            <nav class="navbar navbar-expand-lg navbar-light fill px-lg-0 py-0 px-sm-3 px-0">
+                <a class="navbar-brand" href="index.html">
+                    <span class="fa fa-newspaper-o"></span> UNO</a>
+              
+                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <!-- <span class="navbar-toggler-icon"></span> -->
+                    <span class="fa icon-expand fa-bars"></span>
+                    <span class="fa icon-close fa-times"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <nav class="mx-auto">
+                        <div class="search-bar">
+                        
+                        </div>
+                    </nav>
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                       
+                        {% if user.is_authenticated %}
+                        <li class="nav-item active">
+                            <a class="nav-link" href=" ">Welcome , {{request.user}}</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{% url 'addqn'%}">Add Question</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{% url 'logout'%}">Logout</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{% url 'register' %}">Register</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{% url 'login' %}">Login</a>
+                        </li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="mobile-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+        </div>
+        </nav>
+        <!--//nav-->
+    </header>
+    <!-- //header -->
+      
+    {% if user.is_authenticated %}
+
+    <!-- Question listing -->
+    <div class="w3l-homeblock2 py-5" style="background-color: rgb(205, 232, 232);">
+        <div class="container py-lg-5 py-md-4">
+            <!-- block -->
+            <h3>Q : {{data.qn}}</h3><br>
+            <h3 class="section-title-left mb-4">Answers</h3>
+            <div class="row justify-content-center">
+                <div class="col-6 mb-3 item">
+                  {% for answer in answerdata %}
+                    <div class="card mb-3">
+                        <div class="card-header p-0 position-relative">
+                          
+                          <div class="card-body blog-details">
+                            <h5>{{ answer|linebreaks }}</h5>
+                            <div class="row">
+                                <div class="col-1">
+                                  <div class="upvote">
+                                    <strong class="upvote-count-{{answer.id}}">{{answer.upvote_set.count}}</strong><br/>
+                                        <span class="text-dark">
+                                           <i class="fa-solid fa-thumbs-up fa-2x upvote-click" data-answer="{{answer.id}}"></i>
+                                        </span>
+                                  </div>
+                                </div>
+                                <div class="col-1">
+                                  <div class="downvote">
+                                    <strong class="downvote-count-{{answer.id}}">{{answer.downvote_set.count}}</strong>
+                                    <span class="text-dark">
+                                        <i class="fa-solid fa-thumbs-down fa-2x downvote-click" data-answer="{{answer.id}}"></i>
+                                    </span><br/> 
+                                  </div>
+                                </div>
+                            </div>
+
+                            <div class="author align-items-center mt-3 mb-1">
+                                <img src="{% static 'assets\images\avatar.png '%}" alt="" class="img-fluid rounded-circle" />
+                                <ul class="blog-meta">
+                                    <li>
+                                        <a href="{% url 'chatroom' answer.user.id %}">{{answer.user}}</a>
+                                    </li>
+                                    <li class="meta-item blog-lesson">
+                                        <span class="meta-value"> {{answer.created_on.date}}</span>.<span
+                                            class="meta-value ml-2"><span class="fa fa-clock-o"></span>{{answer.created_on.time}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- Comments -->
+                            <span class="mr-3"><span class="comment-count-{{answer.id}}">{{answer.comment_set.count}}</span> comments</span>
+                        </div>
+                        <button class="btn btn-success m-4 my-3 float-right toggle">Show Comments</button>
+                        <h4 class="my-2">Comment</h4>
+                        <div class="comment-wrapper-{{answer.id}}">
+                    {% for comment in answer.comment_set.all %}
+                            <div class="card mb-0">
+                                <div class="card-body new" style="display: None;">
+                                    <p>
+                                        <b><a href="{% url 'chatroom' comment.user.id %}">{{comment.user.username}} : </a></b>
+                                        {{comment.comment}}
+                                    </p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                          </div>
+                      </div>
+                      {% if user.is_authenticated %}
+                        <!-- Comment Form -->
+                        <div class="card my-2">
+                            <h6 class="card-header">Add Comment</h6>
+                            <div class="card-body">
+                                <textarea class="form-control comment-text-{{answer.id}}"></textarea>
+                                <button type="button" data-answer="{{answer.id}}" class="btn btn-dark my-3 float-right save-comment">Submit</button>
+                            </div>
+                        </div>
+                    {% endif %}       
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <script>
+       
+        $(document).ready(function(){
+            $(".toggle").click(function(){
+                $(".new").toggle();
+                
+            });
+            $(".toggle").click(function () {
+                $(this).text(function(i, text){
+            return text === "Show Comments" ? "Hide Comments" : "Show Comments";
+            });
+        });
+        });
+   
+        $(document).ready(function(){
+            $(".upvote-click").on("click",function(){
+          var answerid=$(this).data('answer');
+             $.ajax({
+                  url:"/save-upvote",
+                  type:"post",
+                  data:{
+                      answerid:answerid,
+                      csrfmiddlewaretoken:"{{csrf_token}}"
+                  },
+                  dataType:'json',
+                  success:function(res){
+                    var _prevupvote=$(".upvote-count-"+answerid).text();
+                      if(res.bool==true){
+                          $(".upvote-count-"+answerid).text(parseInt(_prevupvote)+1);
+                      }
+                      
+                  }
+              });
+          });
+  
+           $(".downvote-click").on('click',function(){
+              var answerid=$(this).data('answer');
+              // Ajax
+              $.ajax({
+                  url:"/save-downvote",
+                  type:"post",
+                  data:{
+                      answerid:answerid,
+                      csrfmiddlewaretoken:"{{csrf_token}}"
+                  },
+                  dataType:'json',
+                  success:function(res){
+                      var _prevupvote=$(".downvote-count-"+answerid).text();
+                      if(res.bool==true){
+                          $(".downvote-count-"+answerid).text(parseInt(_prevupvote)+1);
+                      }
+                  }
+              });
+          });
+
+           $(".save-comment").on('click',function(){
+                var answerid=$(this).data('answer');
+                var comment=$(".comment-text-"+answerid).val();
+            // Ajax
+              $.ajax({
+                 url:"/save-comment",
+                 type:"post",
+                 data:{
+                     comment:comment,
+                     answerid:answerid,
+                     csrfmiddlewaretoken:"{{csrf_token}}"
+                 },
+                 dataType:'json',
+                 beforeSend:function(){
+                     $(".save-comment").addClass('disabled').text('saving...');
+                 },
+                 success:function(res){
+                     if(res.bool==true){
+                        $(".comment-text-"+answerid).val('');
+                         // Append Element
+                         
+                         var html='<div class="card mb-2 ">\
+                         <div class="card-body">\
+                             <a href="">{{request.user}}</a>\
+                             <p>\
+                                <p>'+comment+'</p>\
+                             </p>\
+                         </div>\
+                     </div>';
+                     $(".comment-wrapper-"+answerid).append(html);
+                     var prevCount=$(".comment-count-"+answerid).text();
+                     $(".comment-count-"+answerid).text(parseInt(prevCount)+1);
+                     }
+                     $(".save-comment").removeClass('disabled').text('Submit');
+                 }
+             });
+         });
+
+      });
+              
+  </script>
+   
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">
+            <span class="fa fa-angle-up"></span>
+        </button>
+        <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function () {
+                scrollFunction()
+            };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("movetop").style.display = "block";
+                } else {
+                    document.getElementById("movetop").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+        </script>
+        <!-- /move top -->
+    </section>
+    <!-- //footer-28 block -->
+
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+        $(function () {
+            $('.navbar-toggler').click(function () {
+                $('body').toggleClass('noscroll');
+            })
+        });
+    </script>
+{% else %}
+<center style="padding-top: 250px;">
+<h2>You need to login to View this content. Please <b><a href="{% url 'login'%}">Login</a></h2>
+</center>
+{% endif %}
+    
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>user list</title>
+  <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.1/css/mdb.min.css">
+    <link rel="stylesheet" href='{% static "style.css" %}'>
+
+<body style="background-color: antiquewhite;">
+    <main>
+        <!--MDB Cards-->
+        <div class="container">
+            <h3><b>Users</b></h3>
+            <div class="justify-content-md-center">
+                {% for i in data %}  
+                    <div class="card mt-2">
+                        <div class="card-body">
+                            <h4 class="card-title">{{i.username}}</h4>
+                        </div>
+                    </div>
+                {% endfor %}  
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+
+
