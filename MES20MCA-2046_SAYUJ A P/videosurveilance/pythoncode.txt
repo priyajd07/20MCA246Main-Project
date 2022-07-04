@@ -1,0 +1,331 @@
+
+# coding: utf-8
+
+# In[1]:
+
+
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'facecnt.ui'
+#
+# Created by: PyQt5 UI code generator 5.9.2
+#
+# WARNING! All changes made in this file will be lost!
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QPixmap
+import os
+import math
+import time
+import cv2 
+import pymysql
+
+from skimage.metrics import structural_similarity as ssim
+
+from datetime import datetime
+
+
+class Ui_Dialog(object):
+    # as smaller size significantly speeds up processing almost without affecting quality.
+    width = 480
+    height = 340
+    height_orig=0
+    width_orig=0
+    camstatus=0
+    count=0
+    
+    sx=0
+    sy=0
+    ex=0
+    ey=0
+    
+    tm1=None
+    tm2=None
+    
+    
+    
+    cap=None
+    img=None
+    
+    
+    def process(self):
+        
+        self.tm1=datetime.now()
+        self.camstatus=1
+        
+        f=open('cord.txt','r')
+        fd=f.read()
+        f.close()
+        cord=fd.split("#")
+        
+
+        
+        self.cap = cv2.VideoCapture(0)
+        width = 320
+        height = 240
+        self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
+        self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
+        crop2 = cv2.imread('crop.bmp', 1) 
+        while True:
+            ret, img_bgr = self.cap.read()
+            if ret is False:
+                print ("Error grabbing frame from camera")
+                break
+            cv2.imshow('img_rgb', img_bgr)
+            
+            
+            cv2.rectangle(img_bgr, (int(cord[2]), int(cord[0])), (int(cord[3]), int(cord[1])), color=(0, 255, 0), thickness=3, lineType=8)
+            crop1= img_bgr[int(cord[0]):int(cord[1]), int(cord[2]):int(cord[3])]
+            
+            
+            cv2.imshow('c1', crop1)
+            cv2.imshow('c2', crop2)
+            
+            # convert the images to grayscale
+            grayA = cv2.cvtColor(crop1, cv2.COLOR_BGR2GRAY)
+            grayB = cv2.cvtColor(crop2, cv2.COLOR_BGR2GRAY)
+            
+            (score, diff) = ssim(grayA, grayB, full=True)
+            diff = (diff * 255).astype("uint8")
+#            print("SSIM: {}".format(score))
+            
+            if score<.5:
+#                print('change')
+                self.tm2=self.tm1
+                self.tm1=datetime.now()
+                print('alert')
+                import winsound
+                frequency=2500
+                duration=2000
+                winsound.Beep(frequency,duration)
+                
+                cv2.imwrite('C:\\Users\\dell\\Desktop\\CCTV\\videosurveilance\\static\\img.jpg',img_bgr)
+                imgg=cv2.imwrite('C:\\Users\\dell\\Desktop\\CCTV\\videosurveilance\\static\\img.jpg',img_bgr)
+                db = pymysql.connect(host='localhost',user='root',password='',database='video_surveilance')
+                c = db.cursor()
+                  
+                sql="INSERT INTO `alert`(  `alert`) VALUES ('movement detected')"
+                c.execute(sql)
+                db.commit()
+                c.close()
+                db.close()
+#                 try:
+
+#                     tdiff=self.tm1-self.tm2
+# #                    print(tdiff.total_seconds())
+#                     print(tdiff.total_seconds())
+#                     if tdiff.total_seconds()>7:
+#                         print('alert')
+#                         import winsound
+#                         frequency=2500
+#                         duration=2000
+#                         winsound.Beep(frequency,duration)
+                        
+                   
+                       
+                        
+
+                
+                
+            
+#            difference = cv2.subtract(grayA, grayB)
+#            
+#            ret, mask = cv2.threshold(difference, 0, 255,cv2.THRESH_BINARY_INV)
+#            
+#            cv2.imshow('thresh', mask)
+            
+            key = cv2.waitKey(1)
+            if key & 0xFF == 27:
+                self.camstatus=0
+                break
+            elif self.camstatus==0:
+#               self.camstatus=0
+                break
+                    
+        self.cap.release()
+        cv2.destroyAllWindows()
+        
+    def close(self):
+        self.camstatus=0
+        
+    
+    
+    def startcam(self):
+        self.camstatus=1
+        self.cap = cv2.VideoCapture(0)
+        width = 320
+        height = 240
+        self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
+        self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
+        while True:
+            ret, img_bgr = self.cap.read()
+            if ret is False:
+                print ("Error grabbing frame from camera")
+                break
+            cv2.imshow('img_rgb', img_bgr)
+            key = cv2.waitKey(1)
+            if key & 0xFF == 27:
+                self.camstatus=0
+                break
+            elif self.camstatus==0:
+#               self.camstatus=0
+                break
+                    
+        #     if camstatus==0:
+        #         break;
+        
+        self.cap.release()
+        cv2.destroyAllWindows()
+    
+    def capbase(self):
+        ret, img_bgr = self.cap.read()
+        if ret is False:
+            print ("Error grabbing frame from camera")
+        else:
+            cv2.imwrite("back.bmp", img_bgr)
+            self.camstatus=0
+            self.img = cv2.imread('back.bmp', 1) 
+            # displaying the image 
+            cv2.imshow('image', self.img) 
+            # setting mouse hadler for the image 
+            # and calling the click_event() function 
+            cv2.setMouseCallback('image', self.click_event) 
+            # wait for a key to be pressed to exit 
+            cv2.waitKey(0) 
+            # close the window 
+            cv2.destroyAllWindows()
+        
+        
+            
+            
+        
+        
+        
+    def click_event(self,event, x, y, flags, params): 
+        self.count+=1
+        # checking for left mouse clicks 
+        if event == cv2.EVENT_LBUTTONDOWN: 
+      
+            # displaying the coordinates 
+            # on the Shell 
+            print(x, ' ', y) 
+            
+            self.ex=x
+            self.ey=y
+            
+            cv2.rectangle(self.img, (self.sx, self.sy), (self.ex, self.ey), color=(0, 255, 0), thickness=3, lineType=8)
+            
+            w=self.ex-self.sx
+            h=self.ey-self.sy
+            
+            f=open('cord.txt','w+')
+            f.write(str(self.sy)+"#"+str(self.ey)+"#"+str(self.sx)+"#"+str(self.ex))
+            f.close()
+#           crop_img = self.img[y:y+h, x:x+w]
+            crop_img = self.img[self.sy:self.ey, self.sx:self.ex]
+            
+            cv2.imwrite("crop.bmp", crop_img)
+            
+            cv2.destroyAllWindows()
+        
+               
+      
+            # displaying the coordinates 
+            # on the image window 
+#            font = cv2.FONT_HERSHEY_SIMPLEX 
+#            cv2.putText(self.img, str(x) + ',' +
+#                        str(y), (x,y), font, 
+#                        1, (255, 0, 0), 2) 
+            cv2.imshow('image', self.img) 
+  
+        # checking for right mouse clicks      
+        if event==cv2.EVENT_RBUTTONDOWN: 
+      
+            # displaying the coordinates 
+            # on the Shell 
+#            print('right')
+            print(x, ' ', y) 
+            
+            
+            self.sx=x
+            self.sy=y
+      
+            # displaying the coordinates 
+            # on the image window 
+#            font = cv2.FONT_HERSHEY_SIMPLEX 
+#            b = self.img[y, x, 0] 
+#            g = self.img[y, x, 1] 
+#            r = self.img[y, x, 2] 
+#            cv2.putText(self.img, str(b) + ',' +
+#                        str(g) + ',' + str(r), 
+#                        (x,y), font, 1, 
+#                        (255, 255, 0), 2) 
+            cv2.imshow('image', self.img) 
+        
+        
+
+    
+    def setupUi(self, Dialog):
+        Dialog.setObjectName("Dialog")
+        Dialog.resize(929, 572)
+        self.frame = QtWidgets.QFrame(Dialog)
+        self.frame.setGeometry(QtCore.QRect(10, 10, 151, 551))
+        self.frame.setStyleSheet("background-color: rgb(194, 194, 194);")
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.pushButton = QtWidgets.QPushButton(self.frame)
+        self.pushButton.setGeometry(QtCore.QRect(10, 10, 131, 41))
+        self.pushButton.setObjectName("pushButton")
+        self.pushButton_2 = QtWidgets.QPushButton(self.frame)
+        self.pushButton_2.setGeometry(QtCore.QRect(10, 50, 131, 41))
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.pushButton_3 = QtWidgets.QPushButton(self.frame)
+        self.pushButton_3.setGeometry(QtCore.QRect(10, 90, 131, 41))
+        self.pushButton_3.setObjectName("pushButton_3")
+        self.pushButton_4 = QtWidgets.QPushButton(self.frame)
+        self.pushButton_4.setGeometry(QtCore.QRect(10, 130, 131, 51))
+        self.pushButton_4.setObjectName("pushButton_4")
+#        self.pushButton_5 = QtWidgets.QPushButton(self.frame)
+#        self.pushButton_5.setGeometry(QtCore.QRect(10, 180, 131, 41))
+#        self.pushButton_5.setObjectName("pushButton_5")
+        self.frame_2 = QtWidgets.QFrame(Dialog)
+        self.frame_2.setGeometry(QtCore.QRect(170, 9, 751, 551))
+        self.frame_2.setStyleSheet("background-color: rgb(198, 198, 198);")
+        self.frame_2.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_2.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_2.setObjectName("frame_2")
+
+
+        
+        self.pushButton.clicked.connect(self.startcam)
+        self.pushButton_2.clicked.connect(self.capbase)
+        self.pushButton_3.clicked.connect(self.process)
+        self.pushButton_4.clicked.connect(self.close)
+        
+
+        self.retranslateUi(Dialog)
+        QtCore.QMetaObject.connectSlotsByName(Dialog)
+
+    def retranslateUi(self, Dialog):
+        _translate = QtCore.QCoreApplication.translate
+        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        self.pushButton.setText(_translate("Dialog", "Start Cam"))
+        self.pushButton_2.setText(_translate("Dialog", "Mark Object"))
+        self.pushButton_3.setText(_translate("Dialog", "Process"))
+        self.pushButton_4.setText(_translate("Dialog", "Exit"))
+#        self.pushButton_5.setText(_translate("Dialog", "Exit"))
+        #self.label_4.setText(_translate("Dialog", "Total Face Detected"))
+        #self.label_6.setText(_translate("Dialog", "Total Male Faces"))
+        #self.label_7.setText(_translate("Dialog", "Total Female Faces"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    Dialog = QtWidgets.QDialog()
+    ui = Ui_Dialog()
+    ui.setupUi(Dialog)
+    Dialog.show()
+    sys.exit(app.exec_())
+
