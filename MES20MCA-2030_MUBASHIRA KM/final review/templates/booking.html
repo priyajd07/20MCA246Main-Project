@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="icon" href='{% static "images/fevicon.png" type="image/gif" %}'/>
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>ZERO WASTE</title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href='{% static "css/bootstrap.css" %}'/>
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" >
+  <!--owl slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href= "https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+  <!-- font awesome style -->
+  <link href='{% static "css/font-awesome.min.css" rel="stylesheet"%}' />
+
+  <!-- Custom styles for this template -->
+  <link href='{% static "css/style.css" %}' rel="stylesheet" />
+  <!-- responsive style -->
+  <link href='{% static "css/responsive.css" %}' rel="stylesheet" />
+</head>
+
+<body>
+<section class="contact_section ">
+  <div class="container">
+    <div class="heading_container heading_center">
+      <h2>ADD <span>foods</span></h2>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-6 px-0">
+        <div class="form_container">
+          <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            
+            <div class="form-row">
+              <div class="form-group col">
+                <input type="text" class=" form-control" placeholder="location"  name="location"/>
+              </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col">
+                  <input type="date" class="form-control" placeholder="date"  name="date"/>
+                </div>
+              </div>
+           
+            <div class="btn_box">
+              <button>
+                submit
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+      
+</section>
+</body></html>
+

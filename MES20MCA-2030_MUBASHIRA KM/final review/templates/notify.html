@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Bootstrap Cards - Material Design &amp; Bootstrap 4</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.1/css/mdb.min.css'>
+<link rel="stylesheet" href='{% static "./style.css" %}'>
+
+</head>
+<!-- partial:index.partial.html -->
+<body>
+    
+    
+              
+    <main>    
+        <form style="float: center;background: rgb(238, 202, 202);
+        padding: 6px 10px;
+        margin-top: 8px;
+        margin-right: 16px;
+        
+       font-size: 17px;
+       border: none;
+       cursor: pointer;" method="post" action="{% url 'search' %}">
+            {% csrf_token %}
+            
+            <div class="topnav">
+                <div class="search-container">
+                  <input type="text" placeholder="Search.." name="search">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                  </form>
+                </div>
+              </div>
+              
+        <!--MDB Cards-->
+        <form style="float: center;background: rgb(228, 231, 216);">
+        <div class="container">
+            
+            <!-- Grid row -->
+            <div class="row">
+                    {% for i in list %}
+                       <!-- Grid column -->
+                <div class="col-sm-2"></div>
+                    <!--Card-->
+                    <div class="card mt-5">
+                        <!--Card image-->
+                        <div class="view overlay hm-white-slight">
+                            <img src="{{i.image.url}}" height="250px" width="250px" class="img-fluid" alt="photo">
+                        </div>
+                        <!--Card content-->
+                        <div class="card-body">
+                            <!--Title-->
+                            <h4 class="card-title">{{i.foodtype}}</h4>
+                            <!--Text-->
+                            <p class="card-text">Description:{{i.description}}</p>
+                            <p class="card-text">quantity:{{i.quantity}}</p>
+                            <p class="card-text">Date Of Manufacture:{{i.dateofmanufacture}}</p>
+                            <p class="card-text">Expiry Date:{{i.expiry_date}}</p>
+                            <button  type="submit" class="btn-success"><a href="{% url 'book' i.id %}">Book Now</a></button>
+                            <!-- <a href="#" class="btn btn-deep-orange btn-md">Read more</a> -->
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <!--/.Card-->
+        </div>
+        <!--MDB Cards-->
+    
+
+</form> 
+</main>
+</body>
+</html>
+<!-- partial -->
+  <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js'></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.1/js/mdb.min.js'></script>
+</body> -->

@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- styles -->
+    <link rel="stylesheet" href="{% static 'files/leaflet.css' %}">
+    <script src="{% static 'files/leaflet.js' %}"></script>
+    
+    <link rel="stylesheet" href="{% static 'files/geosearch.css' %}">
+    <script src="{% static 'files/geosearch.umd.js' %}"></script>
+
+    <link rel="stylesheet" href="{% static 'files/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'files/style.css' %}">
+  
+    <title>{{title}}</title>
+</head>
+<div class="container py-3">
+    <div class="row h-100 align-items-center">
+        <div class="col">
+            <div id="map" class="mb-2"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="input-group mb-3">
+                <input type="text" id="locationSearchInput" name="query" class="form-control"
+                    placeholder="Enter location name" aria-label="Enter location name"
+                    aria-describedby="locationSearchBtn">
+                <button class="btn btn-outline-secondary" type="button" id="locationSearchBtn">Search</button>
+            </div>
+            <select class="form-select mb-3" id="locationSelect" aria-label="Locations">
+                <option selected>-------select-------</option>
+
+            </select>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <form action="" method="post" id="locationForm">
+                        {% csrf_token %}
+                        <table class="table table-borderless align-middle">
+                            {{form.as_table}}
+                        </table>
+                        <button class="btn btn-primary" type="submit">Create</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script>
+    map.setView([9.938078, 76.282711], 13);
+    var marker = L.marker([9.938078, 76.282711]).addTo(map);
+
+</script>
+   
+  <script src="{% static 'files/bootstrap.bundle.js' %}"></script>
+    <script src="{% static 'files/script.js' %}"></script>
+    <script src="{% static 'files/map.js' %}"></script>
+    
+</html>

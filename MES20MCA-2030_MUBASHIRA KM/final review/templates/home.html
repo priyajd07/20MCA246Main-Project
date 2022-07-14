@@ -1,0 +1,658 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="icon" href='{% static "images/fevicon.png" type="image/gif" %}'/>
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>ZERO WASTE</title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href='{% static "css/bootstrap.css" %}'/>
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" >
+  <!--owl slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href= "https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+  <!-- font awesome style -->
+  <link href='{% static "css/font-awesome.min.css" rel="stylesheet"%}' />
+
+  <!-- Custom styles for this template -->
+  <link href='{% static "css/style.css" %}' rel="stylesheet" />
+  <!-- responsive style -->
+  <link href='{% static "css/responsive.css" %}' rel="stylesheet" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <div class="hero_area">
+    <!-- header section strats -->
+    <div class="hero_bg_box">
+      <img src='{% static "images/slider-bg.jpg" %}' alt="">
+    </div>
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand " href="index.html"> FEED INDIA</a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""> </span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav  "> 
+              
+          
+             {% if user.is_authenticated %}
+
+             <li class="nav-item">
+             <a class="nav-link" href="#">{{request.user}}</a>
+             </li>
+             <li class="nav-item">
+              <a class="nav-link" href="{% url 'products' %}">Add Food</a>
+           </li>
+           <li class="nav-item">
+            <a class="nav-link" href="{% url 'list' %}">View Food</a>
+         </li>
+         <li class="nav-item">
+          <a class="nav-link" href="{% url 'donate' %}">Donate fund</a>
+         </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'request' %}">Request Food</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'viewrequest' %}">View Request</a>
+          </li>
+             <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">logout</a>
+             </li>
+            <li>
+             <a href="{% url 'notify' %}" class="notification">
+              <span class="glyphicon glyphicon-bell">notify</span>
+              <span class="badge">{{list}}</span>
+            </a>
+          </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href= "{% url 'login' %}"> login</a>
+             
+            </li>
+            
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'reg' %}">register</a>
+            </li>
+           
+            {% endif %}
+             
+            <!-- <li class="nav-item">
+              <a class="nav-link" >notify</a>
+              <p>{{list}}</p> -->
+              
+             
+
+            </li>
+            
+            
+              <form class="form-inline">
+                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+              </form>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+    
+    <!-- slider section -->
+    <section class="slider_section ">
+      <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="container ">
+              <div class="detail-box">
+                <h1>
+                Food For Life <br>
+              
+                </h1>
+                <p>Help Us To Put Food On Their Plates And Smiles On Their Faces</p>
+               
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="container ">
+              <div class="detail-box">
+                <h1>
+                  ZERO WASTE <br>
+                
+                </h1>
+                <div class="btn-box">
+                  <a href='' class="btn1">
+                    Read More
+                  </a>
+                  <a href='' class="btn2">
+                    Contact Us
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="container ">
+              <div class="detail-box">
+                <h1>
+                  ZERO WASTE <br>
+                  
+                </h1>
+                <div class="btn-box">
+                  
+                 
+                  <a href='' class="btn1">
+                    Contact Us
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel_btn-box">
+          <a class="carousel-control-prev" href='{% static "#customCarousel1" %}' role="button" data-slide="prev">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href= '{% static "#customCarousel1"  %}'role="button" data-slide="next">
+            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    </section-->
+    <!-- end slider section -->
+  </div>
+
+
+  <!-- dish section -->
+
+  <section class="dish_section layout_padding-top">
+    <div class="container-fluid">
+      <div class="heading_container heading_center">
+        <h2>
+          Our <span>Dishes</span>
+        </h2>
+      </div>
+      <div class="owl-carousel dish_carousel">
+        <div class="item ">
+          <div class="box">
+            <div class="img-box">
+              <img src='{% static "images/d1.jpg"  %}'alt="" />
+              <div class="btn_overlay">
+                <a href='#' class="">
+                  See Detail
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="item ">
+          <div class="box">
+            <div class="img-box">
+              <img src='{% static "images/d2.jpg" %}'alt="" />
+              <div class="btn_overlay">
+                <a href='' class="">
+                  See Detail
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="item perforated ">
+          <div class="box">
+            <div class="img-box">
+              <img src='{% static "images/d3.jpg" %}' alt="" />
+              <div class="btn_overlay">
+                <a href="" class="">
+                  See Detail
+                </a>
+              </div>
+            </div!-->
+          </div>
+        </div>
+        <div class="item ">
+          <div class="box">
+            <div class="img-box">
+              <img src='{% static "images/d4.jpg" %}' alt="" />
+              <div class="btn_overlay">
+                <a href="" class="">
+                  See Detail
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <end dish section -->
+
+
+  <!-- about section -->
+
+  <section class="about_section layout_padding">
+    <div class="container  ">
+      <div class="row">
+        <div class="col-md-6 ">
+          <div class="img-box">
+            <img src='{% static "images/about-img.png" %}' alt="" />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="detail-box">
+            <div class="heading_container">
+              <h2> About Us </h2>
+            </div>
+            <p>
+              Wasting food is a common problem in our society. Food waste management is crucial since it can improve our environmental and economic sustainability. 
+              
+            </p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <end about section -->
+
+  <!--section class="reservation_section layout_padding">
+    <div class="reservation_bg_box">
+      <img src='{% static "images/res-bg.jpg" %}' alt="">
+    </div>
+    <div class="container">
+      <div class="col-md-6 col-lg-5 offset-md-1">
+        <div class="res_box">
+          <h3 class="res_heading">
+            RESERVATIONS
+          </h3>
+          <div class="res_detail_box">
+            <h4 class="res_detail_heading">
+              Opening Hours
+            </h4>
+            <div class="res_detail_container">
+              <div class="res_time">
+                <h6>
+                  Friday to Sunday
+                </h6>
+                <h5>
+                  10.00 – 17:00
+
+                </h5>
+              </div>
+              <div class="res_time">
+                <h6>
+                  Monday to Thursday
+                </h6>
+                <h5>
+                  9.00 – 18:0
+                </h5>
+              </div>
+            </div>
+            <a href="" class="res_call">
+              <i class="fa fa-phone" aria-hidden="true"></i>
+              +12 123456789
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section-->
+
+  <!--blog section-->
+
+  <section class="blog_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          Our Recipe <span>Blog</span>
+        </h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-lg-4 mx-auto">
+          <div class="box">
+            <div class="img-box">
+              <img src='{% static "images/b1.jpg"%}' alt="">
+            </div>
+            <div class="detail-box">
+              <h5>
+                Look even slightly believable. If you are
+              </h5>
+              <p>
+                alteration in some form,by injected humour, or randomised words which don't look even slightly believable.
+              </p>
+              <a href="" >
+                Read More
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 mx-auto">
+          <div class="box">
+            <div class="img-box">
+              <img src='{% static "images/b2.jpg" %}' alt="">
+            </div>
+            <div class="detail-box">
+              <h5>
+                Anything embarrassing hidden in the middle
+              </h5>
+              <p>
+                alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
+              </p>
+              <a href="" >
+                Read More
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 mx-auto">
+          <div class="box">
+            <div class="img-box">
+              <img src='{% static "images/b3.jpg" %}' alt="">
+            </div>
+            <div class="detail-box">
+              <h5>
+                Molestias magni natus dolores odio commodi.
+              </h5>
+              <p>
+                alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
+              </p>
+              <a href=>'{% static "" %}'
+                Read More
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--end blog section --!>
+
+  <!-- contact section -->
+  <section class="contact_section ">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>Get In <span>Touch</span></h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6 px-0">
+          <div class="form_container">
+            <form action="">
+              <div class="form-row">
+                <div class="form-group col">
+                  <input type="text" class="form-control" placeholder="Your Name" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col">
+                  <input type="text" class="form-control" placeholder="Phone Number" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col">
+                  <input type="email" class="form-control" placeholder="Email" />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col">
+                  <input type="text" class="message-box form-control" placeholder="Message" />
+                </div>
+              </div>
+              <div class="btn_box">
+                <button>
+                  SEND
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-6 px-0">
+          <div class="map_container">
+            <div class="map">
+              <div id="googleMap"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <end contact section -->
+
+  <!-- client section -->
+  <section class="client_section layout_padding">
+    <div class="container">
+      <!--div class="heading_container heading_center">
+        <h2>
+          Testimonial
+        </h2>
+      </div-->
+    </div>
+    <div class="container">
+      <div class="owl-carousel client_carousel">
+        <div class="item ">
+          <div class="client_box b-1">
+            <div class="client-id">
+              <div class="img-box">
+                <img src='{% static "images/client1.jpg" %}' alt="" />
+              </div>
+              <div class="name">
+                <h5>
+                  Magna
+                </h5>
+                <p>
+                  Consectetur adipiscing
+                </p>
+              </div>
+            </div>
+            <div class="detail">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrudLorem ipsum
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="item ">
+          <div class="client_box b-2">
+            <div class="client-id">
+              <div class="img-box">
+                <img src='{% static "images/client2.jpg" %}' alt=""/>
+              </div>
+              <div class="name">
+                <h5>
+                  Aliqua
+                </h5>
+                <p>
+                  Consectetur adipiscing
+                </p>
+
+              </div>
+            </div>
+            <div class="detail">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrudLorem ipsum
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="item ">
+          <div class="client_box b-1">
+            <div class="client-id">
+              <div class="img-box">
+                <img src= '{% static "images/client1.jpg" %} ' alt="" />
+              </div>
+              <div class="name">
+                <h5>
+                  Magna
+                </h5>
+                <p>
+                  Consectetur adipiscing
+                </p>
+              </div>
+            </div>
+            <div class="detail">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrudLorem ipsum
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="item ">
+          <div class="client_box b-2">
+            <div class="client-id">
+              <div class="img-box">
+                <img src= '{% static "images/client2.jpg" %} ' alt="" />
+              </div>
+              <div class="name">
+                <h5>
+                  Aliqua
+                </h5>
+                <p>
+                  Consectetur adipiscing
+                </p>
+
+              </div>
+            </div>
+            <div class="detail">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrudLorem ipsum
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--end client section --!>
+
+  <!-- info section -->
+
+  <!--section class="info_section ">
+    <div class="info_container ">
+      <div class="container">
+        <div class="info_link-box">
+          <h5>
+            Useful Links
+          </h5>
+          <ul>
+            <li class="">
+              <a class="" href= "index.html">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="">
+              <a class="" href="about.html">About </a>
+            </li>
+            <li class="">
+              <a class="" href="dish.html" >Dishes </a>
+            </li>
+            <li class="">
+              <a class="" href="blog.html"> Blog </a>
+            </li>
+            <li class="">
+              <a class="" href="contact.html" > Contact Us </a>
+            </li>
+          </ul>
+        </div>
+        <div class="info_bottom">
+          <div class="row">
+            <div class="col-lg-9">
+              <div class="info_contact ">
+                <div class="row">
+                  <div class="col-md-3">
+                    <a href="#"  class="link-box">
+                      <i class="fa fa-map-marker" aria-hidden="true"></i>
+                      <span>
+                        Location
+                      </span>
+                    </a>
+                  </div>
+                  <div class="col-md-5">
+                    <a href= "#"  class="link-box">
+                      <i class="fa fa-phone" aria-hidden="true"></i>
+                      <span>
+                        Call +01 1234567890
+                      </span>
+                    </a>
+                  </div>
+                  <div class="col-md-4">
+                    <a href="#"  class="link-box">
+                      <i class="fa fa-envelope" aria-hidden="true"></i>
+                      <span>
+                        demo@gmail.com
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="info_form ">
+                <form action="">
+                  <input type="email" placeholder="Enter Your Email" />
+                  <button>
+                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section--!>
+
+  <end info section -->
+
+  <!-- footer section -->
+  <!--footer class="footer_section">
+    <div class="container">
+      <p>
+        &copy; <span id="displayYear"></span> All Rights Reserved By
+        <a href= '{% static "https://html.design/" %}'>Free Html Templates</a>
+      </p>
+    </div>
+  </footer>
+  <footer section -->
+
+  <!-- jQery -->
+  <script type='{% static "text/javascript" src="js/jquery-3.4.1.min.js" %}'></script>
+  <!-- popper js -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <!-- bootstrap js -->
+  <script src='{% static"js/bootstrap.js"></script>
+  <!-- owl slider -->
+  <script src= "https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" ></script>
+  <!-- custom js -->
+  <script src='{% static "js/custom.js" %}'></script>
+  <!-- Google Map -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap" ></script>
+  <!-- End Google Map -->
+</body>
+
+</html>

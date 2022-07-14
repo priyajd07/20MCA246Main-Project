@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Bootstrap Cards - Material Design &amp; Bootstrap 4</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.1/css/mdb.min.css'>
+<link rel="stylesheet" href='{% static "./style.css" %}'>
+
+</head>
+<!-- partial:index.partial.html -->
+<body>
+    <main>        
+        <!--MDB Cards-->
+        <div class="container">
+            
+            <!-- Grid row -->
+            <div class="row">
+                    {% for i in list %}
+                       <!-- Grid column -->
+                <div class="col-sm-2"></div>
+                    <!--Card-->
+                    <div class="card mt-5">
+                        <!-- Card image
+                        <div class="view overlay hm-white-slight">
+                            <img src="{{i.image.url}}" height="250px" width="250px" class="img-fluid" alt="photo">
+                        </div> -->
+                        <!--Card content-->
+                        <div class="card-body">
+                            <!--Title-->
+                            <h4 class="card-title">{{i.foodtype}}</h4>
+                            <!--Text-->
+                            <p class="card-text">Description:{{i.description}}</p>
+                            <p class="card-text">Quantity:{{i.quantity}}</p>
+                            <p class="card-text">Address:{{i.address}}</p>
+                            <p class="card-text">Mobile:{{i.mobile}}</p>
+                            <button type="submit" class="btn-success"><a href="{% url 'accept' i.id %}">Accept</a></button>
+                            <!-- <a href="#" class="btn btn-deep-orange btn-md">Read more</a> -->
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <!--/.Card-->
+        </div>
+        <!--MDB Cards-->
+    </main>
+  
+</body>
+</html>
