@@ -1,0 +1,105 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Login</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+  {{data.username}}</td>
+  {{data.first_name}}</td>
+  {{data.last_name}}</td>
+  {{data.email}}</td>
+
+  
+
+
+</body>
+</html> -->
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Online Job Portal System</title>
+
+
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href='{% static "css/bootstrap.css" %}' />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Roboto:400,700&display=swap" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href='{% static "css/style.css" %}' rel="stylesheet"/>
+  <!-- responsive style -->
+  <link href='{% static "css/responsive.css" %}' rel="stylesheet" />
+</head>
+
+<body>
+<section class="feature_section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-5 offset-md-1">
+        <div class="detail-box">
+          <h2>
+            My Profile
+          </h2>
+          <div>
+              <div >
+                <img src="{{data.image.url}}">
+              </div>
+           <label style="color:black;">First Name:</label>
+              {{profile.first_name}}<br>
+              <label style="color:black;">Last Name:</label>
+            {{profile.last_name}}<br>
+            <label style="color:black;">Email:</label>
+            {{profile.email}}<br>
+            <label style="color:black;">Address:</label>
+            {{data.address}}<br>
+            <label style="color:black;">Date of Birth:</label>
+            {{data.dob}}<br>
+            <label style="color:black;">Gender:</label>
+            {{data.gender}}<br>
+            <label style="color:black;">Mobile:</label>
+            {{data.contact}}<br>
+            
+          <!-- <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+          <div >
+            <label style="color:black;">Resume:</label>
+            <input type="file" name="resume" id="resume" />
+        </div>
+        <div >
+           <button>Submit</button>
+      </div>
+      </form> -->
+        </div>
+      </div>
+      <!-- <div class="col-md-6 px-0">
+        <div class="img-box">
+          <img src='{% static "images/feature-img.jpg" %}' alt="">
+        </div>
+      </div> -->
+    </div>
+  </div>
+</section>
+</boby>
+</html>

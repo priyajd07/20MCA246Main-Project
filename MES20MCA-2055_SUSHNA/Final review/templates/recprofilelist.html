@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Online Job Portal System</title>
+
+
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href='{% static "css/bootstrap.css" %}' />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Roboto:400,700&display=swap" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href='{% static "css/style.css" %}' rel="stylesheet"/>
+  <!-- responsive style -->
+  <link href='{% static "css/responsive.css" %}' rel="stylesheet" />
+</head>
+
+<body>
+<section class="feature_section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-5 offset-md-1">
+        <div class="detail-box">
+          <h2>
+            My Profile
+          </h2>
+          <div>
+              <div >
+                <img src="{{data.logo.url}}">
+              </div>
+           <label style="color:black;">First Name:</label>
+              {{profile.first_name}}<br>
+              <label style="color:black;">Last Name:</label>
+            {{profile.last_name}}<br>
+            <label style="color:black;">Email:</label>
+            {{profile.email}}<br>
+            <label style="color:black;">Company Name:</label>
+            {{data.co_name}}<br>
+            <label style="color:black;">Company Address:</label>
+            {{data.co_address}}<br>
+            <label style="color:black;">Mobile:</label>
+            {{data.contact}}<br>
+            
+          
+        </div>
+      </div>
+      <!-- <div class="col-md-6 px-0">
+        <div class="img-box">
+          <img src='{% static "images/feature-img.jpg" %}' alt="">
+        </div>
+      </div> -->
+    </div>
+  </div>
+</section>
+</boby>
+</html>

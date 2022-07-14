@@ -1,0 +1,98 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h2>Applied jobs</h2>
+  </div>
+  {% for i in data %}
+  <hr>
+
+  {{i.co_name}}<br><br>
+  {{i.job_title}}
+
+  {% endfor %}
+  
+
+
+</div>
+
+</body>
+</html> -->
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Online Job Portal System</title>
+
+
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href='{% static "css/bootstrap.css" %}' />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Roboto:400,700&display=swap" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href='{% static "css/style.css" %}' rel="stylesheet"/>
+  <!-- responsive style -->
+  <link href='{% static "css/responsive.css" %}' rel="stylesheet" />
+</head>
+
+<body>
+    <section class="job_section layout_padding-bottom">
+        <div class="container">
+          <div class="heading_container">
+            <h2>
+              <span>
+                Applied Jobs 
+              </span>
+            </h2>
+          </div>
+          <div class="tab-content" id="myTabContent">
+            <div class="row">
+              <div class="row">
+            {% for i in data %}
+            <div class=" job_board tab-pane fade show active" id="jb-1" role="tabpanel" aria-labelledby="jb-1-tab">
+              <div class=" content-box">
+                <div class="content layout_padding2-top">
+                  <div class="box">
+                    <h3 class="card-text">
+                        {{i.co_name}}<br>
+                      </h3>
+                      <h3>
+                        {{i.job_title}}
+                    </h3>
+                  </div>  
+              </div> 
+            </div>
+            </div>
+            {% endfor%}
+          </div>
+          
+          </div>
+        </div>
+      </section> 
+    </body>
+    </html>
+    

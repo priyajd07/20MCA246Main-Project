@@ -1,0 +1,137 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>profile</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h2>Add Job</h2>
+  </div>
+  <hr>
+  
+<div class="container">
+  
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button class="btn btn-success">submit</button> 
+  </form>
+</div>
+
+</body>
+</html> -->
+
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Online Job Portal System</title>
+
+
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href='{% static "css/bootstrap.css" %}' />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Roboto:400,700&display=swap" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href='{% static "css/style.css" %}' rel="stylesheet"/>
+  <!-- responsive style -->
+  <link href='{% static "css/responsive.css" %}' rel="stylesheet" />
+</head>
+
+<body>
+
+<section class="info_section layout_padding2-bottom layout_padding-top">
+  <div class="container info_content">
+
+    <div>
+      <div class="row" style="text-align:center ;">
+        <div class="col-md-3 about_links">
+          <div class="d-flex">
+            <h5 >
+              Add Jobs
+            </h5>
+          </div>
+          <div class="signup-form">
+            <form method="POST" class="register-form" id="register-form">
+              {% csrf_token %}
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Company Name :</label>
+                        <input type="text" name="co_name" id="co_name"  required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="job_title">Job Title :</label>
+                        <input type="text" name="job_title" id="job_title"  required/>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="vacc_s_date">Start Date:</label>
+                    <input type="text" name="vacc_s_date" id="vacc_s_date" required/>
+                </div>
+                <div class="form-group">
+                  <label for="vacc_e_date">End Date :</label>
+                  <input type="text" name="vacc_e_date" id="vacc_e_date" required/>
+              </div>
+              <div class="form-group">
+                <label for="salary">Salary :</label>
+                <input type="text" name="salary" id="salary" required/>
+            </div>
+            <div class="form-group">
+              <label for="exp">Experience :</label>
+              <input type="text" name="exp" id="exp" required/>
+          </div>
+          <div class="form-group">
+            <label for="tec_skills">Technical Skills:</label>
+            <input type="text" name="tec_skills" id="tec_skills" required/>
+        </div>
+              <div class="form-group">
+                    <label for="choice">Category:</label>
+                    <div class="form-select">
+                        <select name="category" id="course">
+                            <option value=""></option>
+                            <option value="full_time">Full Time</option>
+                            <option value="part_time">Part Time</option>
+                            <option value="freelancer">Freelancer</option>
+                        </select>
+                        <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="desc">Description:</label>
+                    <input type="text" name="desc" id="contact" />
+                </div>
+                <div class="form-submit">
+                    <!-- <input type="submit" value="Reset All" class="submit" name="reset" id="reset" /> -->
+                    <input type="submit" value="Submit " class="submit" name="submit" id="submit" />
+                </div>
+            </form>
+        </div>
+       
+    </div>
+  </div>
+
+</section> 
+</body>
+</html>

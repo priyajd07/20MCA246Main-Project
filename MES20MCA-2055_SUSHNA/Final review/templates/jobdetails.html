@@ -1,0 +1,106 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  {{co_name}}<br>
+  {{job_title}}<br>
+  {{vacc_s_date}}<br>
+  {{vacc_e_date}}<br>
+  {{salary}}<br>
+  {{exp}}<br>
+  {{tec_skills}}<br>
+  {{desc}}
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button>Submit</button>
+  </form>
+  
+</body>
+</html>  -->
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Online Job Portal System</title>
+
+
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href='{% static "css/bootstrap.css" %}' />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Roboto:400,700&display=swap" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href='{% static "css/style.css" %}' rel="stylesheet"/>
+  <!-- responsive style -->
+  <link href='{% static "css/responsive.css" %}' rel="stylesheet" />
+</head>
+
+<body>
+<section class="feature_section">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-5 offset-md-1">
+        <div class="detail-box">
+          <h2>
+            Job Details
+          </h2>
+          <div>
+           <label style="color:black;">Company Name:</label>
+              {{co_name}}<br>
+              <label style="color:black;">JJob Title:</label>
+            {{job_title}}<br>
+            <label style="color:black;">Start Date:</label>
+            {{vacc_s_date}}<br>
+            <label style="color:black;">End Dte:</label>
+            {{vacc_e_date}}<br>
+            <label style="color:black;">Salary:</label>
+            {{salary}}<br>
+            <label style="color:black;">Experience:</label>
+            {{exp}}<br>
+            <label style="color:black;">Technical Skill:</label>
+            {{tec_skills}}<br>
+            <label style="color:black;">Description:</label>
+            {{desc}}
+          </div>
+          <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+          <div >
+            <label style="color:black;">Resume:</label>
+            <input type="file" name="resume" id="resume" />
+        </div>
+        <div >
+           <button>Submit</button>
+      </div>
+      </form>
+        </div>
+      </div>
+      <div class="col-md-6 px-0">
+        <div class="img-box">
+          <img src='{% static "images/feature-img.jpg" %}' alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</boby>
+</html>

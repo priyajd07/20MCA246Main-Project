@@ -1,0 +1,203 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>profile</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h2>Recruiter Profile</h2>
+  </div>
+  <hr>
+  
+<div class="container">
+  <div>
+   <b>Username : </b> <p>{{username}}</p>
+    <p>{{first_name}}</p>
+    <p>{{last_name}}</p>
+    <p>{{email}}</p>
+  </div>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button class="btn btn-success">submit</button> 
+  </form>
+</div>
+
+</body>
+</html> -->
+
+<!-- {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>USER PROFILE</title>-->
+
+    <!-- Font Icon -->
+    <!-- <link rel="stylesheet" href='{% static "fonts3/material-icon/css/material-design-iconic-font.min.css" %}'> -->
+
+    <!-- Main css -->
+    <!-- <link rel="stylesheet" href='{% static "css3/style.css" %}'>
+</head>
+<body>
+
+    <div class="main">
+        <div class="container">
+            <div class="signup-content">
+                <div class="signup-img">
+                    <img src='{% static "images3/signup-img.jpg" alt="" %}'>
+                </div>
+                <div class="signup-form">
+                    <form method="POST" class="register-form" id="register-form">
+                        <h2>Create your Profile</h2>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">First Name :</label>
+                                <input type="text" name="first_name" id="name"  required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="father_name">Last Name :</label>
+                                <input type="text" name="last_name" id="last_name"  required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="address">Email :</label>
+                          <input type="text" name="email" id="email"  required/>
+                      </div>
+                        <div class="form-group">
+                            <label for="co_name">Company Name:</label>
+                            <input type="text" name="co_name" id="co_name" required/>
+                        </div>
+                        <div class="form-group">
+                          <label for="co_address">Company Address:</label>
+                          <input type="text" name="co_address" id="co_address" required/>
+                      </div> -->
+                        <!-- <div class="form-group">
+                            <label for="choice">Course :</label>
+                            <div class="form-select">
+                                <select name="category" id="course">
+                                    <option value=""></option>
+                                    <option value="full_time">Full Time</option>
+                                    <option value="part_time">Part Time</option>
+                                    <option value="freelancer">Freelancer</option>
+                                </select>
+                                <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
+                            </div>
+                        </div> -->
+                        <!-- <div class="form-group">
+                            <label for="contact">Mobile No:</label>
+                            <input type="text" name="contact" id="contact" />
+                        </div>
+                        <div class="form-group">
+                          <label for="image">Logo:</label>
+                          <input type="file" name="image" id="image" />
+                      </div>
+
+                        <div class="form-submit">-->
+                            <!-- <input type="submit" value="Reset All" class="submit" name="reset" id="reset" /> -->
+                            <!-- <input type="submit" value="Submit " class="submit" name="submit" id="submit" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div> --> 
+
+    <!-- JS -->
+    <!-- <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/main.js"></script> -->
+<!--</body> This templates was made by Colorlib (https://colorlib.com) 
+</html> -->
+
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href='{% static "fonts1/material-icon/css1/material-design-iconic-font.min.css" %}'>
+
+    <!-- Main css -->
+    <link rel="stylesheet" href='{% static "css1/style.css" %}'>
+</head>
+<body>
+
+    <div class="main">
+
+        <!-- Sign up form -->
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">CREATE A PROFILE</h2>
+                        <form method="POST" enctype="multipart/form-data" class="register-form" id="register-form">
+                          {% csrf_token %}
+                            <div class="form-group">
+                                <label for="firstname"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="first_name" id="fname" placeholder="First Name"/>
+                            </div>
+                            <div class="form-group">
+                              <label for="lastname"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                              <input type="text" name="last_name" id="lname" placeholder="Last Name"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="email"><i class="zmdi zmdi-email"></i></label>
+                                <input type="email" name="email" id="email" placeholder="Your Email"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="co_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="co_name" id="co_name" placeholder="Company Name"/>
+                              </div>
+                              <div class="form-group">
+                                <label for="co_address"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="co_address" id="co_address" placeholder="Company Address"/>
+                              </div>
+                            <div class="form-group">
+                                <label for="contact"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="text" name="contact" id="contact" placeholder="Mobile Number"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="image"><i class="zmdi zmdi-lock-outline"></i>
+                                    Logo:
+                                </label>
+                                <input type="file" name="logo" id="image" placeholder="Upload your logo"/>
+                            </div>
+                            <!-- <div class="form-group">
+                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                                <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+                            </div> -->
+                            <!-- <div class="form-group form-button">
+                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+                            </div> -->
+                            <div>
+                              <button>SUBMIT</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="signup-image">
+                        <figure><img src='{% static "images1/signup-image.jpg" %}' alt="sing up image"></figure>
+                        <!-- <a href="#" class="signup-image-link">I am already member</a> -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+    <!-- JS -->
+    <script src='{% static "vendor1/jquery/jquery.min.js" %}'></script>
+    <script src='{% static "js1/main.js" %}'></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

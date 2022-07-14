@@ -1,0 +1,87 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {{first_name}}<br>
+    {{last_name}}<br>
+    {{email}}<br>
+    {{address}}<br>
+    {{gender}}<br>
+    {{dob}}<br>
+    {{contact}}<br>
+    <img src="{{image.url}}"><br>
+    <a href="{{resume.url}}">Download Resume</a>   
+</body>
+</html> -->
+ 
+
+  {% load static %}
+<!DOCTYPE html>
+<html>
+
+<head></head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Online Job Portal System</title>
+
+
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href='{% static "css/bootstrap.css" %}' />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Roboto:400,700&display=swap" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href='{% static "css/style.css" %}' rel="stylesheet"/>
+  <!-- responsive style -->
+  <link href='{% static "css/responsive.css" %}' rel="stylesheet" />
+</head>
+
+<body>
+ <section class="client_section ">
+    <div class="container layout_padding">
+      <div class="heading_container">
+        <h2>
+          Applied Details
+        </h2>
+      </div>
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="box">
+              <div class="img-box">
+                <img src="{{image.url}}">
+              </div>
+              <div class="detail-box">
+                <h5>
+                    {{first_name}}&nbsp;{{last_name}}<br>
+                    {{email}}<br>
+                    {{address}}<br>
+                    {{gender}}<br>
+                    {{dob}}<br>
+                    {{contact}}
+                </h5>
+                    <a href="{{resume.url}}">Download Resume</a>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </section>
+  </body>
+  </html>
+

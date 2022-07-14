@@ -1,0 +1,76 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Online Job Portal System</title>
+
+
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href='{% static "css/bootstrap.css" %}' />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Roboto:400,700&display=swap" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href='{% static "css/style.css" %}' rel="stylesheet"/>
+  <!-- responsive style -->
+  <link href='{% static "css/responsive.css" %}' rel="stylesheet" />
+</head>
+
+<body>
+
+
+ <!-- job section -->
+
+ <section class="job_section layout_padding-bottom">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          <span>
+            Available Jobs 
+          </span>
+        </h2>
+      </div>
+      <div class="tab-content" id="myTabContent">
+        <div class="row">
+        {% for i in data %}
+        <div class=" job_board tab-pane fade show active" id="jb-1" role="tabpanel" aria-labelledby="jb-1-tab">
+          <div class=" content-box">
+            <div class="content layout_padding2-top">
+              <div class="box">
+                <h3 class="card-text">
+                  {{i.job_title}}
+                </h3>
+                {% if user.is_authenticated %}
+                {% if not user.is_staff %}
+                  <a href='{% url "jobdetails" i.id %}'>
+                  Apply Now</a>
+                  {% endif %}
+                {% else %}
+                  <a href='{% url "login" %}'>Login to Apply</a></td>
+                {% endif %}
+                
+                </a>
+              </div>  
+          </div> 
+        </div>
+      </div>
+      {% endfor%}
+      </div>
+    </div>
+  </section> 
+</body>
+</html>
