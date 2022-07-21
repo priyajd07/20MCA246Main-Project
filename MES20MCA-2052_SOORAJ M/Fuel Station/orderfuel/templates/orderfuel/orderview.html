@@ -1,0 +1,31 @@
+{% extends 'temp/fuelstation.html' %}
+{% block base %}
+    <div class="points group">
+	<h1 align="center"> FUEL ORDER</h1>
+	<table align="center" border="2">
+		<tr>
+            <th>User</th>
+			<th>Fuel</th>
+			<th>Qty</th>
+			<th>Date</th>
+			<th>Phone No</th>
+            <th>Status</th>
+{#            <th></th>#}
+{#            <th></th>#}
+
+		</tr>
+        {% for i in obval %}
+		<tr>
+			<td>{{ i.u_id }}</td>
+			<td>{{ i.fuel }}</td>
+			<td>{{ i.qty }}</td>
+			<td>{{ i.date }}</td>
+			<td>{{ i.phone }}</td>
+            <td>{{ i.status }}</td>
+            <td><a href="{% url 'delb' idd=i.order_id %}" class="btn btn-primary">Assign</a></td>
+{#			<td><a href="{% url 'reject' idd=i.fs_id %}" class="btn btn-danger">Reject</a></td>#}
+		</tr>
+        {% endfor %}
+    </table>
+    </div>
+{% endblock %}
