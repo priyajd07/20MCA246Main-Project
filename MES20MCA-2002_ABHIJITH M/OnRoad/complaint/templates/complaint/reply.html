@@ -1,0 +1,21 @@
+{% extends 'temp/admin.html' %}
+{% block base %}
+<center><h1>POST REPLY</h1><br></center>
+<form  method="post">
+        {% csrf_token %}
+		<center>
+			<table>
+				<tr>
+					<td>Reply</td>
+					<td><input type="text" name="reply"></td>
+				</tr>
+				<tr><td><br></td></tr>
+{#				#}
+				<tr>
+					<td></td>
+					<td><input type="Submit" name="Submit"></td>
+				</tr>
+			</table>
+		</center>
+	</form>
+{% endblock %}

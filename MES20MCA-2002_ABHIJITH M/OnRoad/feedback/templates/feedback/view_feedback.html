@@ -1,0 +1,25 @@
+{% extends 'temp/admin.html' %}
+{% block base %}
+<h1 align="center"><u>VIEW FEEDBACK</u></h1><br>
+    {% csrf_token %}
+	<center><table align="center" border="2" style="border-color: black">
+
+		<tr style="border: solid">
+			<td style="border: solid">Feedback</td>
+			<td style="border: solid">date</td>
+			<td style="border: solid">time</td>
+			<td style="border: solid">username</td>
+		</tr>
+        {% for i in obj %}
+		<tr style="border: solid">
+
+			<td style="border: solid">{{ i.feedback }}</td>
+			<td style="border: solid">{{ i.date }}</td>
+			<td style="border: solid">{{ i.time }}</td>
+			<td style="border: solid">{{ i.user_id }}</td>
+
+		</tr>
+        {% endfor %}
+	</table>
+    </center>
+{% endblock %}

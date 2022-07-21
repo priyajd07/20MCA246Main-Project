@@ -1,0 +1,26 @@
+{% extends 'temp/admin.html' %}
+{% block base %}
+<h1 align="center"><u>VIEW COMPLAINT</u></h1><br>
+    {% csrf_token %}
+	<center><table border="10px">
+
+		<tr style="border: solid">
+			<td style="border: solid">complaint</td>
+			<td style="border: solid">date</td>
+			<td style="border: solid">time</td>
+			<td style="border: solid">user id</td>
+            <td style="border: solid">reply</td>
+		</tr>
+        {% for i in obj%}
+		<tr style="border: solid">
+			<td style="border: solid">{{ i.complaint }}</td>
+			<td style="border: solid">{{ i.date }}</td>
+			<td style="border: solid">{{ i.time }}</td>
+			<td style="border: solid">{{ i.user_id }}</td>
+			<td style="border: solid"><a href="{% url 'reply' idd=i.c_id %}">reply</a></td>
+
+		</tr>
+        {% endfor %}
+	</table>
+    </center>
+{% endblock %}
