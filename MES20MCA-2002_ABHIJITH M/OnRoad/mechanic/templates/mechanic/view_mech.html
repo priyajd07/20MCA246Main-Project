@@ -1,0 +1,29 @@
+{% extends 'temp/admin.html' %}
+{% block base %}<br>
+<h1 align="center"><u>VIEW MECHANIC</u></h1><br>
+	<center><table align="center" border="2" style="border-color: #0b0b0b">
+		<tr style="border: solid">
+			<td style="border: solid">NAME</td>
+			<td style="border: solid">PHONE</td>
+			<td style="border: solid">ADDRESS</td>
+            <td style="border: solid">EMAIL</td>
+            <td style="border: solid">specialization</td>
+            <td style="border: solid">STATUS</td>
+		</tr>
+        {% for i in obj%}
+		<tr style="border: solid">
+
+			<td style="border: solid">{{ i.username }}</td>
+			<td style="border: solid">{{ i.phone_no }}</td>
+			<td style="border: solid">{{ i.address }}</td>
+                <td style="border: solid">{{ i.email }}</td>
+            <td style="border: solid">{{ i.specilization }}</td>
+            <td style="border: solid"><a href="{% url 'aprv' idd=i.mech_id %}#hh" class="btn btn-primary">Approve</a></td>
+			<td style="border: solid"><a href="{% url 'reject' idd=i.mech_id %}" class="btn btn-danger">reject</a></td>
+		</tr>
+
+		</tr>
+        {% endfor %}
+	</table>
+    </center>
+{% endblock %}
