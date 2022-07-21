@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>FUELREG</title>
+</head>
+<body>
+    <h1 align="center">REGISTER</h1>
+    <form method="POST">
+        {% csrf_token %}
+	<table align="center">
+	<tr>
+		<td>USERNAME</td>
+		<td><input type="text" name="name"  required=""></td>
+	</tr>
+        <tr>
+		<td>PASSWORD</td>
+		<td><input type="password" name="pass" required=""></td>
+	</tr>
+	<tr>
+		<td>ADDRESS</td>
+		<td><input type="textarea" name="adds" required=""></td>
+	</tr>
+	<tr>
+		<td>PHONE NO</td>
+		<td><input type="text" pattern="[0-9]{10}" name="phone" required=""></td>
+	</tr>
+	<tr>
+		<td>EMAIL</td>
+		<td><input type="email" name="mail" required=""></td>
+	</tr>
+        <tr>
+	<td align="center" colspan="2"><input type="submit" class="btn btn-primary" name="reg" value="REGISTER"></td>
+        </tr>
+</table>
+        </form>
+</body>
+</html>

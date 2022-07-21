@@ -1,0 +1,33 @@
+{% extends 'temp/admin.html' %}
+{% block base %}
+    <div class="points group">
+	<h1 align="center">Delivary</h1>
+	<table align="center" border="2">
+		<tr>
+            <th>d_id</th>
+			<th>Username</th>
+			<th>Address</th>
+			<th>Mail Id</th>
+			<th>Phone No</th>
+            <th>Status</th>
+            <th>Document</th>
+            <th></th>
+            <th></th>
+
+		</tr>   `
+        {% for i in obval %}
+		<tr>
+			<td>{{ i.d_id }}</td>
+			<td>{{ i.username }}</td>
+			<td>{{ i.address }}</td>
+			<td>{{ i.email }}</td>
+			<td>{{ i.phone }}</td>
+            <td>{{ i.status }}</td>
+            <td><a href="/static/{{ i.img }}" download=""><input type="button" class="btn btn-primary" value="Download"></a></td>
+            <td><a href="{% url 'approved' idd=i.d_id%}" class="btn btn-primary">Approve</a></td>
+			<td><a href="{% url 'rejected' idd=i.d_id%}" class="btn btn-danger" >Rejected</a></td>
+		</tr>
+        {% endfor %}
+    </table>
+    </div>
+{% endblock %}
