@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "868401555901",
+    "project_id": "movieflix-baeb9",
+    "storage_bucket": "movieflix-baeb9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:868401555901:android:f821b0ea60e9dc9ffa0ad4",
+        "android_client_info": {
+          "package_name": "com.firstlogicinfolab.movieflix_admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "868401555901-jssdsc1jfh1kj2la1esf84hnobgr3tav.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.firstlogicinfolab.movieflix_admin",
+            "certificate_hash": "e41146f2c7e5eefee18b14cd2c2ac291f19c55fe"
+          }
+        },
+        {
+          "client_id": "868401555901-r8qlifegcp6e8ooik5ha3k20b3e5pt32.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_jtGSAKRuto9ukgE7o_ulSaDlzDvoBY4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "868401555901-r8qlifegcp6e8ooik5ha3k20b3e5pt32.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

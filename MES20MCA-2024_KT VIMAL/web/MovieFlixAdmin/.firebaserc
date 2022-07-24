@@ -1,0 +1,24 @@
+{
+  "projects": {
+    "default": "posmoa-732ea"
+  },
+  "targets": {
+    "posmoa-732ea": {
+      "hosting": {
+        "moasales": [
+          "moasales"
+        ],
+        "movieflixadmin": [
+          "movieflixadmin"
+        ]
+      }
+    },
+    "movieflix-baeb9": {
+      "hosting": {
+        "movieflixadmin": [
+          "movieflixadmin"
+        ]
+      }
+    }
+  }
+}
