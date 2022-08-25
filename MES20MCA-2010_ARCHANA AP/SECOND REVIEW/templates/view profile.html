@@ -1,0 +1,51 @@
+{% extends 'indexpolice.html' %}
+{% block body %}
+
+<form id="form1" name="form1" method="post" action="updateprofile">
+  <div align="center">
+    <table width="200" border="1">
+      <tr>
+        <th scope="row">firstname</th>
+        <td><label>
+          <input type="text" name="textfield" value="{{val[1]}}" />
+        </label></td>
+      </tr>
+      <tr>
+        <th scope="row">lastname</th>
+        <td><label>
+          <input type="text" name="textfield2" value="{{val[2]}}"/>
+        </label></td>
+      </tr>
+      <tr>
+        <th scope="row">email</th>
+        <td><label>
+          <input type="text" name="textfield3" value="{{val[4]}}" />
+        </label></td>
+      </tr>
+      <tr>
+        <th scope="row">phone</th>
+        <td><label>
+          <input type="text" name="textfield4" value="{{val[5]}}" />
+        </label></td>
+      </tr>
+      <tr>
+        <th scope="row">DOB</th>
+        <td><label>
+          <input type="text" name="textfield5" value="{{val[6]}}" />
+        </label></td>
+      </tr>
+      <tr>
+        <th scope="row">rank</th>
+        <td><label>
+          <input type="text" name="textfield6" value="{{val[7]}}" />
+        </label></td>
+      </tr>
+      <tr>
+        <th colspan="2" scope="row"><label>
+          <input type="submit" name="Submit" value="update" />
+        </label></th>
+      </tr>
+    </table>
+  </div>
+</form>
+{% endblock %}

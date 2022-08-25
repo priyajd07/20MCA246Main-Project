@@ -1,0 +1,25 @@
+{% extends 'indexforensic.html' %}
+{% block body %}
+
+<body>
+<table border="1" id="customers">
+  <tr>
+    <th width="52" scope="col">Case</th>
+    <th width="81" scope="col">Request</th>
+    <th width="48" scope="col">Date</th>
+    <th width="119" scope="col">Police name </th>
+    <th width="45" scope="col">&nbsp;</th>
+  </tr>
+{% for i in v %}
+  <tr>
+    <td><font color="black">{{i[3]}}</font></td>
+    <td><font color="black">{{i[6]}}</font></td>
+    <td><font color="black">{{i[7]}}</font></td>
+    <td><font color="black">{{i[5]}}</font></td>
+    <td><p><a href="statusupdate?id={{i[8]}}">Update status</a></p>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+</body>
+{% endblock %}

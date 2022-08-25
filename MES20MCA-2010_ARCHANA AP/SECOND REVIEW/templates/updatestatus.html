@@ -1,0 +1,24 @@
+{% extends 'indexpolice.html' %}
+{% block body %}
+
+<form id="form1" name="form1" method="post" action="/updatestatus1">
+  <div align="center">
+    <table width="200" border="1" id="customers">
+      <tr>
+        <td>Status</td>
+        <td><label>
+          <input type="text" name="textfield" />
+        </label></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td><div align="center">
+          <label>
+          <input type="submit" name="update" value="update" />
+          </label>
+        </div></td>
+      </tr>
+      </table>
+  </div>
+</form>
+{% endblock %}

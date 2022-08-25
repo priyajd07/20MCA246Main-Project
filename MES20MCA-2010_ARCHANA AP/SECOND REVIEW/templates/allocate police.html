@@ -1,0 +1,27 @@
+{% extends 'indexadmin.html' %}
+{% block body %}
+<body>
+<form id="form1" name="form1" method="post" action="add_allocate_police">
+  <table width="200" border="1">
+    <tr>
+      <th scope="col">Police</th>
+      <th scope="col"><label>
+        <select name="select">
+          {% for i in val %}
+          <option value="{{i[6]}}">{{i[1]}}</option>
+          {% endfor %}
+        </select>
+      </label></th>
+    </tr>
+    <tr>
+      <td colspan="2"><div align="center">
+        <label>
+        <input type="submit" name="Submit" value="Allocate" />
+        </label>
+      </div></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>
+{% endblock %}

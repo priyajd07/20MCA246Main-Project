@@ -1,0 +1,67 @@
+{% extends 'indexadmin.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/police_station_reg" >
+  <div align="center">
+    <table width="200" border="1" id="customers">
+      <tr>
+        <th>type</th>
+        <td><label>
+          <select name="select">
+            <option>police station</option>
+            <option>forensic</option>
+          </select>
+        </label></td>
+      </tr>
+      <tr>
+        <th>name</th>
+        <td><label>
+          <font color="black"><input type="text" name="textfield"required pattern="[A-Z a-z.]{3,25}" /></font>
+        </label></td>
+      </tr>
+      <tr>
+        <th>email</th>
+        <td><label>
+          <font color="black"> <input type="text" name="textfield2"required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" /></font>
+        </label></td>
+      </tr>
+      <tr>
+        <th>phone      </th>
+        <td><label>
+          <font color="black"> <input type="text" name="textfield3"required pattern="[6789][0-9]{9}" /></font>
+        </label></td>
+      </tr>
+      <tr>
+        <th>place</th>
+        <td><label>
+          <font color="black"><input type="text" name="textfield4"pattern="[A-Z a-z.]{3,25}" /></font>
+        </label></td>
+      </tr>
+      <tr>
+        <th>pincode</th>
+        <td><label>
+          <font color="black"> <input type="text" name="textfield5" required/></font>
+        </label></td>
+      </tr>
+      <tr>
+        <th>username</th>
+        <td><label>
+          <font color="black"><input type="text" name="textfield6"required /></font>
+        </label></td>
+      </tr>
+      <tr>
+        <th>password</th>
+        <td><label>
+          <font color="black"><input type="password" name="textfield7"required /></font>
+        </label></td>
+      </tr>
+      <tr>
+        <td colspan="2" align="center"><label>
+          <div align="center">
+            <input type="submit" name="Submit" value="register" class="btn btn-info" />
+          </div>
+        </label></td>
+      </tr>
+    </table>
+  </div>
+</form>
+{% endblock %}

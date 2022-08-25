@@ -1,0 +1,66 @@
+{% extends 'indexpolice.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/addcriminaldetails1" enctype="multipart/form-data">
+  <div align="center">
+    <table width="200" border="1" id="customers">
+      <tr>
+        <th>name</th>
+        <td><label>
+         <font color="black"> <input type="text" name="textfield"required pattern="[A-Z a-z.]{3,25}" /></font>
+        </label></td>
+      </tr>
+
+      <tr>
+        <th>add photo </th>
+        <td><label>
+          <font color="black"> <input type="file" name="file"required /></font>
+        </label></td>
+      </tr>
+      <tr>
+        <th>address</th>
+        <td><label>
+          <font color="black"> <input type="text" name="textfield4"pattern="[A-Z a-z.]{3,200}" /></font>
+        </label></td>
+      </tr>
+      <tr>
+        <th>phone no. </th>
+         <td><label>
+           <font color="black"> <input type="text" name="phone"required pattern="[6789][0-9]{9}" /></font>
+        </label></td>
+        <td><div align="center"></div></td>
+      </tr>
+      <tr>
+        <th>crime</th>
+        <td><label>
+        <select name="select">
+          {% for i in val %}
+          <option value="{{i[0]}}">{{i[1]}}</option>
+          {% endfor %}
+        </select>
+        </label></td>
+      </tr>
+
+       <tr>
+        <th>pattern</th>
+        <td><label>
+          <input type="text" name="textfield6"required />
+        </label></td>
+      </tr>
+      <tr>
+        <th>date of registration </th>
+        <td><label>
+          <input type="date" name="textfield6"min="1990-01-01" max="2021-12-31" required  />
+        </label></td>
+      </tr>
+      <tr>
+        <td colspan="2"><div align="center">
+          <label>
+          <input type="submit" name="Submit" value="ADD" class="btn btn-info" />
+          </label>
+        </div></td>
+      </tr>
+      </table>  
+  </div>
+  <div align="center"></div>
+</form>
+{% endblock %}

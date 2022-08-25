@@ -1,0 +1,27 @@
+{% extends 'indexpolice.html' %}
+{% block body %}
+
+<form action="upld_evidence1" method="post" enctype="multipart/form-data" name="form1" id="form1">
+  <table id="customers" border="1">
+    <tr>
+      <th width="174" scope="col">upload evidence </th>
+      <th width="115" scope="col"><label>
+        <input type="file" name="file" />
+      </label></th>
+    </tr>
+    <tr>
+      <td><strong>description</strong></td>
+      <td><label>
+        <textarea name="textarea"></textarea>
+      </label></td>
+    </tr>
+    <tr>
+      <td colspan="2"><label>
+        <div align="center">
+          <input type="submit" name="Submit" value="upload" />
+        </div>
+      </label></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

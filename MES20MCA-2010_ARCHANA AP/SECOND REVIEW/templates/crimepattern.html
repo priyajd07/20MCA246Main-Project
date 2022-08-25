@@ -1,0 +1,21 @@
+
+{% extends 'indexpolice.html' %}
+{% block body %}
+
+
+<form id="form1" name="form1" method="post" action="/crime_pattern#about">
+  <table width="342" border="1" align="center" id="customers">
+    <tr>
+      <td width="332" height="52"><label>Pattern of crime
+          <select name="select">
+             {% for i in p %}
+          <option>{{i[0]}}</option>
+          {% endfor %}
+        </select>
+          <input type="submit" name="Submit" value="Search" class="btn btn-info" />
+      </label></td>
+    </tr>
+  </table>
+  <div align="center"></div>
+</form>
+{% endblock %}

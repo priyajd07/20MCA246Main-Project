@@ -1,0 +1,73 @@
+{% extends 'indexpolicestation.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="addpolice">
+  <div align="center">
+    <table width="200" border="1">
+
+      <tr>
+        <td>first name </td>
+        <td><label>
+          <input type="text" name="textfield2" required pattern="[A-Z a-z.]{3,25}" />
+        </label></td>
+      </tr>
+      <tr>
+        <td>last name </td>
+        <td><label>
+          <input type="text" name="textfield3" required pattern="[A-Z a-z.]{3,25}" />
+        </label></td>
+      </tr>
+      <tr>
+        <td>gender</td>
+        <td><label>
+          <input name="radiobutton" type="radio" value="radiobutton"checked />
+        male 
+        <input name="radiobutton" type="radio" value="radiobutton" />
+        female</label></td>
+      </tr>
+      <tr>
+        <td>e-mail</td>
+        <td><label>
+          <input type="text" name="textfield4"required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" />
+        </label></td>
+      </tr>
+      <tr>
+        <td>phone</td>
+        <td><label>
+          <input type="text" name="textfield5"required pattern="[6789][0-9]{9}" />
+        </label></td>
+      </tr>
+      <tr>
+        <td>D.O.B</td>
+        <td><label>
+          <input type="date" name="textfield6" min="1990-01-01" max="2021-12-31" required />
+        </label></td>
+      </tr>
+      <tr>
+        <td>rank</td>
+        <td><label>
+          <input type="text" name="textfield7"required />
+        </label></td>
+      </tr>
+      <tr>
+        <td>username</td>
+        <td><label>
+          <input type="text" name="textfield8"required />
+        </label></td>
+      </tr>
+      <tr>
+        <td>password</td>
+        <td><label>
+          <input type="password" name="textarea"required />
+        </label></td>
+      </tr>
+      <tr>
+        <td><label>
+          <input type="submit" name="Submit" value="Register" />
+        </label></td>
+        <td>&nbsp;</td>
+      </tr>
+      </table>  
+  </div>
+  <div align="center"></div>
+</form>
+{% endblock %}

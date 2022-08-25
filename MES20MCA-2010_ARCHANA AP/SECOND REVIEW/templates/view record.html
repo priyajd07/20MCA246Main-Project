@@ -1,0 +1,35 @@
+{% extends 'indexadmin.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="">
+  <div align="center">
+    <table width="200" border="1">
+      <tr>
+        <td>criminal name </td>
+        <td>phone</td>
+        <td>address</td>
+        <td>photo</td>
+        <td>offence</td>
+        <td></td>
+                <td></td>
+                <td></td>
+
+
+      </tr>
+      {% for i in val %}
+      <tr>
+        <td>{{i[4]}}</td>
+        <td>{{i[5]}}</td>
+        <td>{{i[6]}}</td>
+        <td>{{i[7]}}</td>
+        <td>{{i[1]}}</td>
+        <td><div align="center"></div></td>
+        <td><a href="#"></a></td>
+        <td><img src="static/criminalpic/{{i[7]}}" height="200" width="200">{{i[7]}}</td>
+
+      </tr>
+      {% endfor %}
+      </table>  
+  </div>
+  <div align="center"></div>
+</form>
+{% endblock %}

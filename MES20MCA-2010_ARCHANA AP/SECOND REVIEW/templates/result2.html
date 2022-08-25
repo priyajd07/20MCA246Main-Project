@@ -1,0 +1,44 @@
+
+{% extends 'indexpolice.html' %}
+{% block body %}
+<head>
+<style>
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 75%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4d4d4d;
+  color: white;
+}
+</style>
+</head>
+<br>
+<br>
+<form id="form1" name="form1" method="post" action="/">
+  <table width="390" border="1" align="center" id="customers">
+    <tr>
+      <td><font color="black">Frequent Criminal pattern</font></td>
+    </tr>
+    {% for i in val %}
+    <tr>
+      <td width="380">&nbsp;<font color="black">{{i}}</font></td>
+    </tr>
+    {% endfor %}
+  </table>
+</form>
+{% endblock %}

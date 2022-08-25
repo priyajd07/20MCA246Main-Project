@@ -1,0 +1,25 @@
+{% extends 'indexpolice.html' %}
+{% block body %}
+
+<table  border="1" id="customers">
+  <tr>
+    <th width="121" scope="col"> user details</th>
+    <th width="95" scope="col">case</th>
+    <th width="76" scope="col">date</th>
+    <th width="110" scope="col">status</th>
+    <th width="144" scope="col">&nbsp;</th>
+  </tr>
+  {%for i in val%}
+  <tr>
+    <td height="257">{{i[5]}} {{i[6]}} <br> 
+    phone : {{i[7]}}</td>
+    <td>&nbsp;{{i[3]}}</td>
+    <td>&nbsp;{{i[2]}}</td>
+    <td>&nbsp;{{i[4]}}</td>
+    <td>{% if i[4] == 'pending' %}<p><a href="assign_forensic?id={{i[0]}}">request to forensic</a></p>{% endif %}
+      <p><a href="upld_evidence?id={{i[0]}}">upload evidence</a></p>
+    <p>&nbsp;</p></td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

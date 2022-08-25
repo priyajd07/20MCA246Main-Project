@@ -1,0 +1,29 @@
+
+{% extends 'indexpolice.html' %}
+{% block body %}
+<form action="sendreportnew" method="post" enctype="multipart/form-data" name="form1" id="form1">
+  <table width="200" border="1">
+    <tr>
+      <th scope="row">work</th>
+      <td><label>
+        <select name="select">
+          {% for i in val %}
+          <option value="{{i[0]}}">{{i[2]}}</option>
+           {% endfor %}
+        </select>
+      </label></td>
+    </tr>
+    <tr>
+      <th scope="row">report</th>
+      <td><label>
+        <input type="file" name="file" />
+      </label></td>
+    </tr>
+    <tr>
+      <th colspan="2" scope="row"><label>
+        <input type="submit" name="Submit" value="Submit" />
+      </label></th>
+    </tr>
+  </table>
+</form>
+{% endblock %}

@@ -1,0 +1,23 @@
+
+{% extends 'indexpolice.html' %}
+{% block body %}
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <div align="center">
+    <table width="200" border="1">
+      <tr>
+        <td>date</td>
+        <td>task</td>
+        <td>&nbsp;</td>
+      </tr>
+      {% for i in val %}
+      <tr>
+        <td>{{i[3]}}</td>
+        <td>{{i[2]}}</td>
+        <td><a href="{{url_for('updatestatus',id=i[0])}}">update status</a></td>
+      </tr>
+      {% endfor %}
+      </table>
+  </div>
+</form>
+{% endblock %}

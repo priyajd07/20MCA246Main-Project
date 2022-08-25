@@ -1,0 +1,25 @@
+{% extends 'indexforensic.html' %}
+{% block body %}
+
+<body>
+<table width="402" height="82" border="1">
+  <tr>
+    <td>Case</td>
+    <td>Request</td>
+    <td>Police</td>
+    <td>Date</td>
+    <td>Report</td>
+  </tr>
+  {% for i in val %}
+  <tr>
+    <td>&nbsp;{{i[0]}}</td>
+    <td>{{i[1]}}</td>
+    <td>{{i[2]}}</td>
+    <td>{{i[3]}}</td>
+    <td>{{i[4]}}</td>
+    <td><a href="static/report/{{i[5]}}">Download</a></td>
+  </tr>
+  {% endfor %}
+</table>
+</body>
+{% endblock %}

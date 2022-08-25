@@ -1,0 +1,46 @@
+{% extends 'indexadmin.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="searchmanagepolicestation#about">
+  <div align="center">
+    <table width="281" border="1" id="customers">
+      <tr>
+        <th width="80" scope="col">Type</th>
+        <th width="185" scope="col"><label>
+          <select name="select" class="form-control">
+		   <option {% if type=="police station" %} selected {% endif %}>police station</option>
+            <option {% if type=="forensic" %} selected {% endif %}>forensic</option>
+          </select>
+        </label></th>
+      </tr>
+      <tr>
+        <td colspan="2"><label>
+          <div align="center">
+            <input type="submit" name="Submit" value="Search" />
+            </div>
+        </label></td>
+      </tr>
+    </table>
+    <table width="200" border="1" id="customers">
+      <tr>
+        <th>name</th>
+        <th>email</th>
+        <th><div align="center">phone</div></th>
+        <th>place</th>
+        <th>pin code </th>
+        <th>&nbsp;</th>
+      </tr>
+      {% for i in val %}
+      <tr>
+        <td><font color="black">{{i[1]}}</font></td>
+        <td><font color="black">{{i[3]}}</font></td>
+        <td><font color="black">{{i[2]}}</font></td>
+        <td><font color="black">{{i[4]}}</font></td>
+        <td><font color="black">{{i[5]}}</font></td>
+        <td><p><a href="{{url_for('editpolice_statiion',id=i[0])}}#about">edit</a></p>
+        <p><a href="{{url_for('deletestation',id=i[0])}}">delete</a></p></td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</form>
+{% endblock %}

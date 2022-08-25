@@ -1,0 +1,39 @@
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />-->
+<!--<title>Untitled Document</title>-->
+<!--</head>-->
+{% extends 'indexpolice.html' %}
+{% block body %}
+
+<body>
+<form id="form1" name="form1" method="post" action="add_crime_typee#about">
+  <table width="200" border="1" id="customers">
+    <tr>
+      <th>type</th>
+      <th>description</th>
+      <th>&nbsp;</th>
+    </tr>
+    {% for i in val %}
+    <tr>
+      <td>&nbsp;<font color="black">{{i[1]}}</font></td>
+      <td>&nbsp;<font color="black">{{i[2]}}</font></td>
+      <td>
+      <p><a href="dlttype?id={{i[0]}}">delete</a></p></td>
+    </tr>
+    {% endfor %}
+    <tr>
+      <td colspan="3" align="center"><label>
+        <div align="center">
+          <input type="submit" name="Submit" value="add" class="btn btn-info" />
+          </div>
+      </label></td>
+    </tr>
+  </table>
+</form>
+</body>
+
+
+{% endblock %}
+<!--</html>-->

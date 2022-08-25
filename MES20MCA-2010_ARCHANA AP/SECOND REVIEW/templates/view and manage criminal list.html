@@ -1,0 +1,26 @@
+{% extends 'indexpolice.html' %}
+{% block body %}
+<div align="center">
+  <form id="form1" name="form1" method="post" action="">
+    <table width="200" border="1" id="customers">
+      <tr>
+        <th>NAME</th>
+        <th>PHONE NO </th>
+        <th>ADDRESS</th>
+        <th>IMAGE</th>
+        <th></th>
+      </tr>
+      {% for i in val %}
+      <tr>
+        <td><font color="black">{{i[1]}}</font></td>
+        <td><font color="black">{{i[2]}}</font></td>
+        <td><font color="black">{{i[3]}} </font></td>
+        <td><img src="static\criminalpic\{{i[4]}}" width="100" height="100"></td>
+         <td ><a href="{{url_for('deletecriminallist',id=i[0])}}">DELETE</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+    </form>
+</div>
+{% endblock %}
+

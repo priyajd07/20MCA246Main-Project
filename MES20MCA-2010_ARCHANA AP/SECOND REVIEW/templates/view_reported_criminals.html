@@ -1,0 +1,31 @@
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />-->
+<!--<title>Untitled Document</title>-->
+<!--</head>-->
+
+<!--<body>-->
+{% extends 'indexpolice.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="">
+  <div align="center">
+    <table width="287" height="113" border="1" id="customers">
+      <tr>
+        <th width="84" scope="row">Criminal</th>
+        <th width="72">Criminal Details </th>
+        <th width="109">User Details </th>
+      </tr>
+      {% for i in val %}
+      <tr>
+        <td scope="row"><img src="static/criminalpic/{{i[14]}}" height="200" width="300"></td>
+        <td><font color="black">Name:{{i[11]}} <br> Phone:{{i[12]}} <br> Place:{{i[13]}}</font></td>
+        <td><font color="black">Name:{{i[2]}} <br> Gender:{{i[3]}} <br>  Place:{{i[4]}} <br> Post:{{i[5]}} <br> Pincode:{{i[6]}} <br> Email:{{i[7]}}</font></td>
+      </tr>
+      {% endfor %}
+      </table>
+  </div>
+</form>
+{% endblock %}
+<!--</body>-->
+<!--</html>-->

@@ -1,0 +1,21 @@
+{% extends 'indexpolicestation.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/addcriminaldetails1" enctype="multipart/form-data">
+  <div align="center">
+    <table width="200" border="1">
+      <tr>
+      <th></th><th>Date</th><th>Camera</th>
+      </tr>
+{% for i in val %}
+      <tr>
+        <td><img src="../static/noti/{{i[2]}}" width="150" height="150"> </td>
+        <td>{{i[1]}}</td>
+        <td>{{i[3]}}</td>
+
+      </tr>
+      {% endfor %}
+      </table>  
+  </div>
+  <div align="center"></div>
+</form>
+{% endblock %}

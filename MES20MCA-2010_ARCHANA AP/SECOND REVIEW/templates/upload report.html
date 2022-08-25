@@ -1,0 +1,23 @@
+{% extends 'indexforensic.html' %}
+{% block body %}
+
+
+<body>
+<form action="uploadreport1" method="post" enctype="multipart/form-data">
+<table width="261" border="1" id="customers">
+  <tr>
+    <td width="105"> requestUpload </td>
+    <td width="53">&nbsp;
+    <input type="file" name="file" /></td>
+  </tr>
+  <tr>
+    <td height="28" colspan="3"><label>
+      <div align="center">
+        <input type="submit" name="Submit" value="Upload" />
+        </div>
+    </label></td>
+  </tr>
+</table>
+</form>
+</body>
+{% endblock %}

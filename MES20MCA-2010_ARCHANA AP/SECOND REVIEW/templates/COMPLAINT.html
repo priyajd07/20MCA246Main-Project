@@ -1,0 +1,28 @@
+{% extends 'indexadmin.html' %}
+{% block body %}
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <div align="center">
+    <table width="146" border="1" id="customers">
+      <tr>
+        <th width="26">DATE</th>
+        <th width="26">USER NAME</th>
+        <th width="26">PLACE</th>
+        <th width="26">COMPLAINT</th>
+        <th width="8">&nbsp;</th>
+      </tr>
+      {% for i in val %}
+      <tr>
+        <td><font color="black">{{i[2]}}</font></td>
+        <td><font color="black">{{i[7]}} {{i[14]}}</font></td>
+        <td><font color="black">{{i[9]}}</font></td>
+        <td><font color="black">{{i[3]}}</font></td>
+        <td><a href="{{url_for('allocatepolice',id=i[0])}}#about"> Allocate complaint </a></td>
+      </tr>
+      {% endfor %}
+      </table>
+  </div>
+</form>
+{% endblock %}
+

@@ -1,0 +1,56 @@
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+<!--<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />-->
+<!--<title>Untitled Document</title>-->
+<!--</head>-->
+{% extends 'indexadmin.html' %}
+{% block body %}
+<body>
+<form id="form1" name="form1" method="post" action="/updatestation">
+  <div align="center">
+    <table width="200" border="1" id="customers">
+      <tr>
+        <th>name</th>
+        <td><label>
+         <font color="black"><input type="text" name="textfield" value="{{val[1]}}"  /></font>
+        </label></td>
+      </tr>
+      <tr>
+        <th>email</th>
+        <td><label>
+          <font color="black"><input type="text" name="textfield2" value="{{val[3]}}" /></font>
+        </label></td>
+      </tr>
+      <tr>
+        <th>phone      </th>
+        <td><label>
+          <font color="black"><input type="text" name="textfield3"value="{{val[2]}}" /></font>
+        </label></td>
+      </tr>
+      <tr>
+        <th>place</th>
+        <td><label>
+          <font color="black"><input type="text" name="textfield4"value="{{val[4]}}" /></font>
+        </label></td>
+      </tr>
+      <tr>
+        <th>pincode</th>
+        <td><label>
+          <font color="black"><input type="text" name="textfield5"value="{{val[5]}}" /></font>
+        </label></td>
+      </tr>
+
+      <tr>
+        <td colspan="2" align="center"><label>
+          <div align="center">
+            <font color="black"><input type="submit" name="Submit" value="update" class="btn btn-info" /></font>
+            </div>
+        </label></td>
+      </tr>
+      </table>
+  </div>
+</form>
+</body>
+{% endblock %}
+<!--</html>-->
