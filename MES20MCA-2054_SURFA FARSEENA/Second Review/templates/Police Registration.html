@@ -1,0 +1,64 @@
+{% extends 'adminindex.html' %}
+{% block body %}
+<body>
+<form action="policereg" method="post">
+<div align="center">
+<div align="center">
+  <table width="330" border="0">
+    <tr>
+      <th width="111" scope="row"><div align="left">Name</div></th>
+        <td width="203"><input type="text" name="textfield" required pattern="[a-z A-Z]{2,20}" /></td>
+      </tr>
+    <tr>
+      <th scope="row"><div align="left">Date of Birth </div></th>
+        <td><input type="date" name="textfield2" required /></td>
+      </tr>
+    <tr>
+      <th scope="row"><div align="left">Gender</div></th>
+        <td><label>
+          <input name="radiobutton" type="radio" value="radiobutton" checked />
+        male
+        <input name="radiobutton" type="radio" value="radiobutton" />
+        female</label></td>
+    </tr>
+    <tr>
+      <th scope="row"><div align="left">Place</div></th>
+        <td><input type="text" name="textfield4" required pattern="[a-z A-Z]{2,20}" /></td>
+      </tr>
+    <tr>
+      <th scope="row"><div align="left">Pin</div></th>
+        <td><input type="number" name="textfield5" required pattern="[0-9]{6}" /></td>
+      </tr>
+    <tr>
+      <th scope="row"><div align="left">Post</div></th>
+        <td><input type="text" name="textfield6" required pattern="[a-z A-Z]{2,20}" /></td>
+      </tr>
+    <tr>
+      <th scope="row"><div align="left">Email</div></th>
+        <td><input type="text" name="textfield7" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" /></td>
+      </tr>
+    <tr>
+      <th scope="row"><div align="left">Phone Number </div></th>
+        <td><input type="number" name="textfield8" required pattern="[6789][0-9]{9}" /></td>
+      </tr>
+    <tr>
+      <th scope="row"><div align="left">Officer Post </div></th>
+        <td><input type="text" name="textfield9" required pattern="[a-z A-Z]{2,20}" /></td>
+      </tr>
+    <tr>
+      <th scope="row"><div align="left">Username</div></th>
+        <td><input type="text" name="textfield10" required /></td>
+      </tr>
+    <tr>
+      <th scope="row"><div align="left">Password</div></th>
+        <td><input type="password" name="textfield11" required /></td>
+      </tr>
+  </table>
+</div>
+<p align="center">
+  <input type="submit" name="Submit" value="Submit" />
+</p>
+</form>
+
+</body>
+{% endblock %}

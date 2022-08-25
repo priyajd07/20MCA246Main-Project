@@ -1,0 +1,27 @@
+{% extends 'adminindex.html' %}
+{% block body %}
+
+<body>
+<form action="camreg" method="post">
+<div align="center">
+  <table width="342" border="0">
+    <tr>
+      <th width="107" scope="row"><div align="left">Camera no </div></th>
+        <td width="219"><input type="text" name="textfield" required /></td>
+      </tr>
+    <tr>
+      <th scope="row"><div align="left">Landmark</div></th>
+        <td><input type="text" name="textfield2" required /></td>
+      </tr>
+    <tr>
+      <th scope="row"><div align="left">Place</div></th>
+        <td><input type="text" name="textfield3" required pattern="[a-z A-Z]{2,20}" /></td>
+      </tr>
+  </table>
+</div>
+<p align="center">
+  <input type="submit" name="Submit" value="Save" />
+</p>
+</form>
+</body>
+{% endblock %}

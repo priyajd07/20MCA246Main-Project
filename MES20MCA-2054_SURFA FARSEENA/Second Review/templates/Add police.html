@@ -1,0 +1,51 @@
+{% extends 'adminindex.html' %}
+{% block body %}
+
+<body>
+<form action="searchpolice" method="post">
+<div align="center">
+<table width="480" border="0">
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col"><input type="text" name="textfield"required  /></th>
+  </tr>
+  <tr>
+    <th width="170" scope="col">&nbsp;</th>
+    <th width="190" scope="col"><input name="Search" type="submit" id="Search" value="Search" /></th>
+  </tr>
+</table>
+</form>
+<p align="center">&nbsp;</p>
+
+  <table width="845" border="1">
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Post</th>
+      <th scope="col">Phone number </th>
+      <th scope="col">Email</th>
+      <th scope="col">&nbsp;</th>
+    </tr>
+    {% for i in val %}
+    <tr>
+      <td>{{i[2]}}</td>
+      <td>{{i[4]}}</td>
+      <td>{{i[7]}}</td>
+      <td>{{i[9]}}</td>
+      <td>{{i[8]}}</td>
+      <td><a href="#">Delete</a></td>
+    </tr>
+    {% endfor %}
+
+  </table>
+
+<form id="form2" name="form2" method="post" action="policeregistration">
+  <div align="center">
+    <input type="submit" name="Submit2" value="Add New" />
+ </div>
+</form>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+{% endblock %}

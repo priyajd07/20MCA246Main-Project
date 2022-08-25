@@ -1,0 +1,30 @@
+{% extends 'adminindex.html' %}
+{% block body %}
+
+<body>
+<form action="camregistration" method="post">
+<div align="center">
+  <table width="350" border="1">
+    <tr>
+      <th width="100" scope="row">Camera no </th>
+        <th width="87"><strong>Landmark</strong></th>
+        <th width="68"><strong>Place</strong></th>
+        <th width="77">&nbsp;</th>
+      </tr>
+    {% for i in val %}
+    <tr>
+      <td >{{i[1]}}&nbsp;</td>
+        <td>{{i[2]}}&nbsp;</td>
+        <td>{{i[3]}}&nbsp;</td>
+        <td><a href="#">Delete</a></td>
+      </tr>
+    {% endfor %}
+
+  </table>
+</div>
+<p align="center">
+  <input type="submit" name="Submit" value="Add New" />
+</p>
+</form>
+</body>
+{% endblock %}

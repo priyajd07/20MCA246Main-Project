@@ -1,0 +1,30 @@
+{% extends 'adminindex.html' %}
+{% block body %}
+
+<body>
+<form action="videoup1" method="post" enctype="multipart/form-data" >
+<div align="center">
+  <table width="342" border="0">
+    <tr>
+      <th width="107" scope="row"><div align="left">camera_no  </div></th>
+      <td width="219"><select name="cam">{%for i in res%}
+        <option value="{{i[0]}}" >{{i[1]}}</option>{%endfor%}
+      </select></td>
+      </tr>
+    <tr>
+      <th scope="row"><div align="left">Video</div></th>
+        <td><input type="file" name="file" required /></td>
+      </tr>
+    <!--<tr>-->
+      <!--<th scope="row"><div align="left">Place</div></th>-->
+        <!--<td><input type="text" name="textfield3" /></td>-->
+      <!--</tr>-->
+  </table>
+</div>
+<p align="center">
+  <input type=
+                 "submit" name="Submit" value="Save" />
+</p>
+</form>
+</body>
+{% endblock %}
