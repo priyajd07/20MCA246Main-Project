@@ -1,0 +1,105 @@
+{% extends "index.html" %}
+{% block body %}
+<head>
+<style>
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+}
+
+#customers td {
+
+  background-color:#fd7e14;
+  color: white;
+}
+</style>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="/addingmanager" enctype="multipart/form-data">
+  <div align="center">
+    <table width="200" border="0" id="customers" >
+      <tr>
+        <td>first name </td>
+        <td><label>
+          <input type="text" name="textfield7" required pattern="[A-Z a-z]{2,25}"/>
+        </label></td>
+      </tr>
+      <tr>
+        <td>last name </td>
+        <td><label>
+          <input type="text" name="textfield6" required pattern="[A-Z a-z]{1,25}"/>
+        </label></td>
+      </tr>
+      <tr>
+        <td>date of birth </td>
+        <td><label>
+          <input type="date" name="textfield5" />
+        </label></td>
+      </tr>
+      <tr>
+        <td>gender</td>
+        <td><label>
+          <input name="radiobutton" type="radio" value="male" checked />
+          male<br />
+          <input name="radiobutton" type="radio" value="female" />
+        female</label></td>
+      </tr>
+       <tr>
+        <td>Photo </td>
+        <td><label>
+          <input type="file" name="file" required />
+        </label></td>
+      </tr>
+      <tr>
+        <td>phone number </td>
+        <td><label>
+          <input type="text" name="textfield4" required pattern="[6789][0-9]{9}"/>
+        </label></td>
+      </tr>
+      <tr>
+        <td>E-mail</td>
+        <td><label>
+          <input type="text" name="textfield3" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}"/>
+        </label></td>
+      </tr>
+      <tr>
+        <td>qualification</td>
+        <td><label>
+          <input type="checkbox" name="checkbox" value="UG" />
+          UG  
+          <input type="checkbox" name="checkbox" value="PG" />
+          PG 
+          <input type="checkbox" name="checkbox" value="PhD" />
+        PhD</label></td>
+      </tr>
+      <tr>
+        <td>username</td>
+        <td><label>
+          <input type="text" name="textfield2" required/>
+        </label></td>
+      </tr>
+      <tr>
+        <td height="41">password</td>
+        <td><label>
+          <input type="password" name="textfield" required/>
+        </label></td>
+      </tr>
+      <tr>
+        <td colspan="2"><div align="center">
+          <label>
+            <input type="submit" name="Submit" value="save" />
+            </label>
+        </div></td>
+      </tr>
+      </table>
+  </div>
+</form>
+</body>
+</div>
+    </div>
+    </div>
+
+</section>
+
+{% endblock %}

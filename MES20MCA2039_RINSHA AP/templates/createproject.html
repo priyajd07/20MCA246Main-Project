@@ -1,0 +1,54 @@
+{% extends 'indexmanager.html' %}
+{% block body %}
+<head>
+<style>
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+}
+#customers th {
+  background-color:#fd7e14;
+  color: white;
+}
+</style>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="createproject2#about">
+    <div align="center">
+  <table width="600" border="1" id="customers" class="table">
+    <tr>
+      <th scope="col">project</th>
+      <th scope="col">description</th>
+      <th scope="col">amount</th>
+      <th scope="col">status</th>
+      <th scope="col">&nbsp;Date</th>
+              <!--<th scope="col">&nbsp;</th>-->
+    </tr>
+        {% for i in v %}
+    <tr>
+     <td>{{i[2]}} </td>
+      <td>&nbsp;{{i[3]}}</td>
+      <td>{{i[4]}}</td>
+      <td>{{i[6]}}</td>
+        <td>{{i[8]}} </td>
+        <!--<td>  <a href="pvalet?id={{i[0]}}#about" class="btn btn-warning">Wallet</a></td>-->
+    </tr>
+        {% endfor %}
+    <tr>
+      <td colspan="7"><div align="center">
+        <label>
+        <input type="submit" name="Submit" value="add new" class="btn btn-warning"/>
+        </label>
+      </div></td>
+    </tr>
+  </table></div>
+</form>
+</body>
+</div>
+    </div>
+    </div>
+
+</section>
+
+{% endblock %}

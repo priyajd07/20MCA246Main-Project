@@ -1,0 +1,58 @@
+{% extends 'indexmanager.html' %}
+{% block body %}
+<head>
+<style>
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+}
+
+#customers td ,#customers th{
+
+  background-color:#fd7e14;
+  color: white;
+}
+</style>
+</head>
+
+<body>
+<form action="addproj" method="post" enctype="multipart/form-data" name="form1" id="form1">
+  <div align="center">
+  <table width="200" border="1" id="customers" class="table">
+    <tr>
+      <th scope="row">project</th>
+      <td><label>
+        <input type="text" name="textfield" required/>
+      </label></td>
+    </tr>
+    <tr>
+      <th scope="row">description</th>
+      <td><label>
+        <input type="text" name="textfield2" required/>
+      </label></td>
+    </tr>
+    <tr>
+      <th scope="row">amount</th>
+      <td><label>
+        <input type="text" name="textfield3" required/>
+      </label></td>
+    </tr>
+    <tr>
+      <th scope="row">details</th>
+      <td><label>
+        <input type="file" name="file" required/>
+      </label></td>
+    </tr>
+
+  </table>
+          <input type="submit" name="Submit" value="save" />
+</div>
+</form>
+</body>
+</div>
+    </div>
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'indexadmin.html' %}
+{% block body %}
+
+<head>
+<style>
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th,#customers td {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color:#fd7e14;
+  color: white;
+}
+</style>
+</head>
+<body>
+<form id="form1" name="form1" method="post" action="/accept1">
+  <div align="center">
+    <table width="600" border="1" id="customers">
+      <tr>
+        <th scope="col">Last Date</th>
+
+        <th scope="col"><input type="date" name="date"><input type="hidden" name="id" value="{{val}}">&nbsp;</th>
+      </tr>
+
+    <tr>
+     <td colspan="2"> <input type="submit" value="Set"></td>
+
+      </tr>
+
+
+      </table>
+  </div>
+</form>
+</body>
+</div>
+    </div>
+    </div>
+
+</section>
+
+{% endblock %}

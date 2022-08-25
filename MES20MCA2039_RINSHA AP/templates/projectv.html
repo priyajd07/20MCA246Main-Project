@@ -1,0 +1,52 @@
+{% extends 'indexmanager.html' %}
+{% block body %}
+<head>
+<style>
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+}
+
+#customers th {
+
+  background-color:#fd7e14;
+  color: white;
+}
+</style>
+</head>
+<body>
+<form id="form1" name="form1" method="post" action="createproject2">
+    <div align="center">
+  <table width="400" border="1"  >
+    <tr><th>
+     <table width="400" border="0" id="customers" >
+    <tr>
+        <th scope="col"><div align="center"><h2><font color="white"> {{v[0]}}</font></h2></div></th>
+
+
+    </tr>
+
+    <tr>
+        <td><div align="center"><p>Total Budget <b>{{v[1]}}</b></p> </div></td>
+
+    </tr>
+
+    <tr>
+      <td><div align="center">
+          <p>{{v[2]}}</p></div>
+        </td>
+    </tr>
+      <tr>
+          <td><div align="center"><p>Balance</p> <h3>{{v[3]}}</h3> </td>
+
+    </tr>
+     </table></th></tr></table></div>
+</form>
+</body>
+</div>
+    </div>
+    </div>
+
+</section>
+
+{% endblock %}

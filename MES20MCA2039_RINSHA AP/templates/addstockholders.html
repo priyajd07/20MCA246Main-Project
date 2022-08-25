@@ -1,0 +1,96 @@
+{% include 'adminheader.html' %}
+
+<section id="hero" class="d-flex align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 d-flex flex-column justify-content-center pt-6 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="300">
+<br>
+            <br>
+<br>
+<br>
+<br>
+<head>
+<style>
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+}
+
+#customers th {
+
+  background-color:#37517e;
+  color: white;
+}
+</style>
+</head>
+<body>
+<form id="form1" name="form1" method="post" action="stockholders">
+  <div align="center">
+  <table width="600" border="0" id="customers">
+    <tr>
+      <th scope="row">firstname</th>
+      <td><label>
+        <input type="text" name="textfield" required pattern="[A-Z a-z]{2,25}"/>
+      </label></td>
+    </tr>
+    <tr>
+      <th scope="row">lastname</th>
+      <td><label>
+        <input type="text" name="textfield2" required pattern="[A-Z a-z]{1,25}"/>
+      </label></td>
+    </tr>
+    <tr>
+      <th scope="row">place</th>
+      <td><label>
+        <input type="text" name="textfield3" required pattern="[A-Z a-z]{3,25}"/>
+      </label></td>
+    </tr>
+    <tr>
+      <th height="32" scope="row">post</th>
+      <td><label>
+        <input type="text" name="textfield4" required pattern="[A-Z a-z]{3,25}"/>
+      </label></td>
+    </tr>
+    <tr>
+      <th scope="row">pin</th>
+      <td><label>
+        <input type="text" name="textfield5" required pattern="[0-9]{6}"/>
+      </label></td>
+    </tr>
+    <tr>
+      <th scope="row">phone number </th>
+      <td><label>
+        <input type="text" name="textfield6" required pattern="[6789][0-9]{9}"/>
+      </label></td>
+    </tr>
+    <tr>
+      <th scope="row">email</th>
+      <td><label>
+        <input type="text" name="textfield7" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}"/>
+      </label></td>
+    </tr>
+    <tr>
+      <th scope="row">username</th>
+      <td><label>
+        <input type="text" name="textfield8" required/>
+      </label></td>
+    </tr>
+    <tr>
+      <th scope="row">password</th>
+      <td><label>
+        <input type="password" name="textfield9" required/>
+      </label></td>
+    </tr>
+
+  </table>
+          <input type="submit" name="Submit" value="save" />
+</div>
+</form>
+</body>
+</div>
+    </div>
+    </div>
+
+</section>
+
+{% include 'footer.html' %}

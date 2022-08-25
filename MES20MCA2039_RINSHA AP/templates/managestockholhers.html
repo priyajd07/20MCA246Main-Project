@@ -1,0 +1,64 @@
+{% extends 'indexadmin.html' %}
+{% block body %}
+<head>
+<style>
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color:#fd7e14;
+  color: white;
+}
+</style>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="addstockholders">
+  <div align="center">
+    <table width="600" border="1" id="customers">
+      <tr>
+        <th scope="col">name</th>
+        <th scope="col">address</th>
+        <th scope="col">phone</th>
+        <th scope="col">email</th>
+          <th scope="col">photo</th>
+        <th scope="col">&nbsp;</th>
+                  <th scope="col">&nbsp;</th>
+      </tr>    {% for i in v %}
+      <tr>
+        <td>{{i[2]}} {{i[3]}}</td>
+      <td>{{i[4]}}, {{i[5]}}, {{i[6]}}</td>
+      <td>{{i[8]}}</td>
+      <td>{{i[7]}}</td>
+          <td><img src="./static/pic/{{i[1]}}.png" width="100" height="100"></td>
+   <td><a href="acceptsh?id={{i[1]}}" >Accept</a></td>
+      <td><a href="rjctmanagers?id={{i[1]}}" onclick="return confirm('Are you sure?')">Reject</a></td>      </tr>
+          {% endfor %}
+
+
+      </table>
+  </div>
+</form>
+</body>
+</div>
+    </div>
+    </div>
+
+</section>
+
+{% endblock %}

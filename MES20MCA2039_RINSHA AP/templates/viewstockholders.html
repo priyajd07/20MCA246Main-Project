@@ -1,0 +1,45 @@
+{% extends 'indexmanager.html' %}
+{% block body %}
+<head>
+<style>
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+}
+
+#customers th {
+
+  background-color:#fd7e14;
+  color: white;
+}
+</style>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <table width="200" border="1" id="customers" class="table">
+    <tr>
+      <th scope="col">name</th>
+      <th scope="col">project</th>
+      <th scope="col">phone number </th>
+      <th scope="col">email</th>
+    </tr>
+    {% for i in v %}
+      <tr>
+        <td>{{i[2]}} {{i[3]}}</td>
+      <td>{{i[12]}}</td>
+      <td>{{i[8]}}</td>
+      <td>{{i[7]}}</td>
+        <!--<td><a href="dltsh?id={{i[1]}}" onclick="return confirm('Are you sure?')">delete</a></td>-->
+      </tr>
+          {% endfor %}
+  </table>
+</form>
+</body>
+</div>
+    </div>
+    </div>
+
+</section>
+
+{% endblock %}
